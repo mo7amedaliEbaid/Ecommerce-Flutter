@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import '../screens/user_screens/account_screen.dart';
-import '../screens/user_screens/branches.dart';
-import '../screens/productsbycategory/categoriesScr.dart';
-import '../screens/user_screens/settings.dart';
-import '../screens/mainScreen/mainscreen_body.dart';
+
+import '../ui/screens/account_screen.dart';
+import '../ui/screens/branches.dart';
+import '../ui/screens/categoriesScr.dart';
+import '../ui/screens/mainscreen_body.dart';
+import '../ui/screens/settings.dart';
 class CustomConstants {
   static const String PRICE_LOW_TO_HIGH = "Price: Low to High";
   static const String PRICE_HIGH_TO_LOW = "Price: High to Low";

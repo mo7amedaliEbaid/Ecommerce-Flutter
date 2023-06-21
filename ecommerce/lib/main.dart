@@ -5,10 +5,10 @@ import 'package:myfirst_app/providers/cart_provider.dart';
 import 'package:myfirst_app/providers/favourited_provider.dart';
 import 'package:myfirst_app/providers/postdata_Provider.dart';
 import 'package:myfirst_app/providers/product_provider.dart';
-import 'package:myfirst_app/screens/mainScreen/mainscreen_body.dart';
-import 'package:myfirst_app/screens/mainScreen/mainscreenwidgets/mybottomnavBar.dart';
-import 'package:myfirst_app/screens/splash_screens/splash.dart';
-import 'package:myfirst_app/screens/user_screens/regesterScr.dart';
+import 'package:myfirst_app/ui/screens/mainscreen_body.dart';
+import 'package:myfirst_app/ui/screens/regesterScr.dart';
+import 'package:myfirst_app/ui/screens/splash_screen.dart';
+import 'package:myfirst_app/ui/widgets/mainscreenwidgets/mybottomnavBar.dart';
 import 'package:provider/provider.dart';
 import 'constants/globalConsts.dart';
 import 'localization/localization.dart';
@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
           return supportedLocales.first;
         },
         navigatorKey: navigatorKey,
-        title: 'Ebaid Store',
+        //title: 'Ebaid Store',
         debugShowCheckedModeBanner: false,
         routes: {
           'm': (context) => MainScreen(),
