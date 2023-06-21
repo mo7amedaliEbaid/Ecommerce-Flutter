@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:myfirst_app/constants/globalConsts.dart';
+import 'package:myfirst_app/constants/global_constants.dart';
 import 'package:provider/provider.dart';
 
-import '../../constants/constants.dart';
+import '../../constants/app_constants.dart';
 import '../../models/products_model.dart';
 import '../../providers/product_provider.dart';
 import '../widgets/loading_shimmer.dart';

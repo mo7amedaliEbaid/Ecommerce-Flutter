@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myfirst_app/providers/favourited_provider.dart';
 import 'package:provider/provider.dart';
-import '../../constants/globalConsts.dart';
+import '../../constants/global_constants.dart';
 import 'favouriteScreen.dart';
 
 class AccountScreen extends StatelessWidget {

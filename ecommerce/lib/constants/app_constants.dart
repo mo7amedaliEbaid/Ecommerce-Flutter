@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../ui/screens/account_screen.dart';
 import '../ui/screens/branches.dart';
-import '../ui/screens/categoriesScr.dart';
-import '../ui/screens/mainscreen_body.dart';
+import '../ui/screens/categories_screen.dart';
+import '../ui/screens/home_screen.dart';
 import '../ui/screens/settings.dart';
 class CustomConstants {
   static const String PRICE_LOW_TO_HIGH = "Price: Low to High";
@@ -24,9 +24,9 @@ class CustomConstants {
   String? selectedValue;
   String? secselectedValue;
   final List<Widget> bottomBarPages = [
-    CategoryScr(),
+    CategoriesScreen(),
     BranchesScreen(),
-    MainScreen(),
+    HomeScreen(),
     AccountScreen(),
     Settings(),
   ];

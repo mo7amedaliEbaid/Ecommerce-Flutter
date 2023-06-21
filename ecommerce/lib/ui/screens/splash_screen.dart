@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/globalConsts.dart';
+import '../../constants/global_constants.dart';
 import 'ads_ascreen.dart';
 
 class SplashScreen extends StatelessWidget {

@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:myfirst_app/constants/constants.dart';
+import 'package:myfirst_app/constants/app_constants.dart';
 import 'package:myfirst_app/providers/cart_provider.dart';
 import 'package:myfirst_app/providers/favourited_provider.dart';
-import 'package:myfirst_app/providers/postdata_Provider.dart';
+import 'package:myfirst_app/providers/auth_provider.dart';
 import 'package:myfirst_app/providers/product_provider.dart';
-import 'package:myfirst_app/ui/screens/mainscreen_body.dart';
-import 'package:myfirst_app/ui/screens/regesterScr.dart';
+import 'package:myfirst_app/ui/screens/home_screen.dart';
+import 'package:myfirst_app/ui/screens/onboarding_screen.dart';
+import 'package:myfirst_app/ui/screens/register_screen.dart';
 import 'package:myfirst_app/ui/screens/splash_screen.dart';
-import 'package:myfirst_app/ui/widgets/mainscreenwidgets/mybottomnavBar.dart';
+import 'package:myfirst_app/ui/widgets/mybottomnavbar_widget.dart';
 import 'package:provider/provider.dart';
-import 'constants/globalConsts.dart';
+import 'constants/global_constants.dart';
 import 'localization/localization.dart';
 import 'providers/locale_provider.dart';
 
@@ -19,7 +20,7 @@ void main() {
     ChangeNotifierProvider(create: (_) => ProductProvider()),
     ChangeNotifierProvider(create: (_) => CartProvider()),
     ChangeNotifierProvider(create: (_) => FavouritesProvider()),
-    ChangeNotifierProvider(create: (_) => PostDataProvider()),
+    ChangeNotifierProvider(create: (_) => AuthProvider()),
     ChangeNotifierProvider(create: (_) => LocaleCont()),
   ], child: MyApp()));
 }
@@ -57,9 +58,10 @@ class MyApp extends StatelessWidget {
         //title: 'Ebaid Store',
         debugShowCheckedModeBanner: false,
         routes: {
-          'm': (context) => MainScreen(),
+          'm': (context) => HomeScreen(),
           'nav': (context) => MyBottombar(),
           '/register': (context) => RegisterScreen(),
+          '/onboarding': (context) => OnBoardingScreen(),
         },
         home: SplashScreen(),
       );

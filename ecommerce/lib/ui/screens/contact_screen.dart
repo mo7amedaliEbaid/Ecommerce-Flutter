@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../constants/globalConsts.dart';
+import '../../constants/global_constants.dart';
 import '../widgets/dialog.dart';
 
 class ContactScreen extends StatefulWidget {

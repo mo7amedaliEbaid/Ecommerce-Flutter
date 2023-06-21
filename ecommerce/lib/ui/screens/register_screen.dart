@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../constants/globalConsts.dart';
-import '../../providers/postdata_Provider.dart';
+import '../../constants/global_constants.dart';
+import '../../providers/auth_provider.dart';
 import '../widgets/myDialog.dart';
-import 'categoriesScr.dart';
+import 'categories_screen.dart';
 import 'forgetpassword.dart';
 import 'logInScreeen.dart';
 class RegisterScreen extends StatefulWidget {
@@ -20,11 +20,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  late PostDataProvider postDataProvider;
+  late AuthProvider authprovider;
   bool _obscureText = true;
   @override
   void initState() {
-    postDataProvider = Provider.of<PostDataProvider>(context, listen: false);
+    authprovider = Provider.of<AuthProvider>(context, listen: false);
     super.initState();
   }
   void _toggle() {
@@ -39,18 +39,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   go()
-    async {
+     {
       _changeLoading();
       if (_formKey.currentState!.validate()) {
-        await postDataProvider.register.call(usernameController.text.toString(),
+         authprovider.register(usernameController.text.toString(),
             emailController.text.toString(),
-            passwordController.text.toString())
-            ?
+            passwordController.text.toString());
+            /*?
             Navigator.of(context).push(DismissibleDialog<void>(
                 over: new Over("Successfully Registered!","You are successfully registered",true)
             ))
             : Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => CategoryScr()));
+            .push(MaterialPageRoute(builder: (context) => CategoryScr()));*/
         _changeLoading();
       }
   }

@@ -1,8 +1,8 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:myfirst_app/constants/constants.dart';
+import 'package:myfirst_app/constants/app_constants.dart';
 
-import '../../constants/globalConsts.dart';
+import '../../constants/global_constants.dart';
 
 class BranchesScreen extends StatefulWidget {
   BranchesScreen({Key? key}) : super(key: key);

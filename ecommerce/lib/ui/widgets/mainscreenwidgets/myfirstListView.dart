@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../constants/constants.dart';
+import '../../../constants/app_constants.dart';
 import '../../../providers/product_provider.dart';
 import '../loading_shimmer.dart';
 import '../mycategoryItem.dart';

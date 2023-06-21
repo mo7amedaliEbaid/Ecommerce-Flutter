@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myfirst_app/ui/screens/submitted_search.dart';
 import 'package:provider/provider.dart';
 
-import '../../constants/globalConsts.dart';
+import '../../constants/global_constants.dart';
 import '../../providers/product_provider.dart';
 
 

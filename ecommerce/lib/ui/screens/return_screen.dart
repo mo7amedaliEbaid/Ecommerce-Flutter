@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/globalConsts.dart';
+import '../../constants/global_constants.dart';
 class ReturnScreen extends StatelessWidget {
   const ReturnScreen ({Key? key}) : super(key: key);
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:myfirst_app/ui/screens/regesterScr.dart';
+import 'package:myfirst_app/ui/screens/register_screen.dart';
 import 'package:provider/provider.dart';
 
-import '../../constants/globalConsts.dart';
-import '../../providers/postdata_Provider.dart';
+import '../../constants/global_constants.dart';
+import '../../providers/auth_provider.dart';
 import 'forgetpassword.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -14,7 +14,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  late PostDataProvider postDataProvider;
+  late AuthProvider postDataProvider;
   bool _obscureText = true;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -22,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
-    postDataProvider = Provider.of<PostDataProvider>(context, listen: false);
+    postDataProvider = Provider.of<AuthProvider>(context, listen: false);
     super.initState();
   }
 

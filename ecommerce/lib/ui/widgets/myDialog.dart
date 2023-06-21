@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../screens/forgetpassword.dart';
 import '../screens/logInScreeen.dart';
-import 'mainscreenwidgets/mybottomnavBar.dart';
+import 'mybottomnavbar_widget.dart';
 
 class DismissibleDialog<T> extends PopupRoute<T> {
   final Over over;

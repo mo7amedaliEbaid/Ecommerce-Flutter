@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../constants/constants.dart';
+import '../../constants/app_constants.dart';
 import '../../providers/product_provider.dart';
 import '../widgets/loading_shimmer.dart';
 import 'productsByCategory.dart';
 
-class CategoryScr extends StatefulWidget {
-  CategoryScr({Key? key}) : super(key: key);
+class CategoriesScreen extends StatefulWidget {
+  CategoriesScreen({Key? key}) : super(key: key);
 
   @override
-  State<CategoryScr> createState() => _CategoryScrState();
+  State<CategoriesScreen> createState() => _CategoriesScreenState();
 }
 
-class _CategoryScrState extends State<CategoryScr> {
+class _CategoriesScreenState extends State<CategoriesScreen> {
   late Future<List> _listcategories;
   late ProductProvider productProvider;
   CustomConstants constants = CustomConstants();

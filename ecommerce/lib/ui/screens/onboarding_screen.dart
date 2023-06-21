@@ -1,14 +1,14 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:myfirst_app/constants/constants.dart';
+import 'package:myfirst_app/constants/app_constants.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../constants/globalConsts.dart';
+import '../../constants/global_constants.dart';
 import '../../localization/localization.dart';
 import '../../providers/locale_provider.dart';
 import '../../providers/product_provider.dart';
-import '../widgets/mainscreenwidgets/mybottomnavBar.dart';
+import '../widgets/mybottomnavbar_widget.dart';
 import 'logInScreeen.dart';
 
 class OnBoardingScreen extends StatefulWidget {

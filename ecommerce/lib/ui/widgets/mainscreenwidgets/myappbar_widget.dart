@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myfirst_app/constants/globalConsts.dart';
+import 'package:myfirst_app/constants/global_constants.dart';
 import 'package:myfirst_app/providers/favourited_provider.dart';
 import 'package:myfirst_app/providers/cart_provider.dart';
 import 'package:provider/provider.dart';
@@ -10,23 +10,17 @@ import '../../screens/cartscreen.dart';
 import '../../screens/favouriteScreen.dart';
 import '../../screens/searchscreen.dart';
 
-
-class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
+class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   MyAppBar({Key? key}) : super(key: key);
 
   @override
-  State<MyAppBar> createState() => _MyAppBarState();
-
-  @override
   Size get preferredSize => Size(400, 190);
-}
 
-class _MyAppBarState extends State<MyAppBar> {
-  @override
   Widget build(BuildContext context) {
+    Size size=MediaQuery.sizeOf(context);
     return Container(
-      height: MediaQuery.of(context).size.height * 0.28,
-      width: 400,
+      height: size.height * 0.28,
+      //width: 400,
       child: Column(
         children: [
           Row(
@@ -89,9 +83,7 @@ class _MyAppBarState extends State<MyAppBar> {
               }),
             ],
           ),
-          SizedBox(
-            height: 10,
-          ),
+          vertical_space,
           Consumer<ProductProvider>(builder: (context, data, child) {
             return InkWell(
               onTap: () {
@@ -99,6 +91,7 @@ class _MyAppBarState extends State<MyAppBar> {
                     MaterialPageRoute(builder: (context) => SearchScreen()));
               },
               child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 15),
                 margin: EdgeInsets.symmetric(horizontal: 15),
                 // width: 400,
                 height: 50,
@@ -107,19 +100,20 @@ class _MyAppBarState extends State<MyAppBar> {
                   color: Colors.white,
                 ),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
+                    /*SizedBox(
                       width: 30,
-                    ),
+                    ),*/
                     Text(
                       AppLocalization.of(context)
                           .getTranslatedValue("search")
                           .toString(), //'Search',
                       style: hintStyle,
                     ),
-                    SizedBox(
+                    /*SizedBox(
                       width: 260,
-                    ),
+                    ),*/
                     Icon(Icons.search),
                   ],
                 ),

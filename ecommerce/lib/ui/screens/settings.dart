@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myfirst_app/constants/globalConsts.dart';
+import 'package:myfirst_app/constants/global_constants.dart';
 import 'package:myfirst_app/ui/screens/privacy_screen.dart';
 import 'package:myfirst_app/ui/screens/return_screen.dart';
 import 'package:myfirst_app/ui/screens/terms_screen.dart';
