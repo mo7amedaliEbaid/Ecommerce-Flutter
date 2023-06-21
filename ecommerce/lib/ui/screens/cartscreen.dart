@@ -266,7 +266,7 @@ class CartPage extends StatelessWidget {
                 height: 140,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: NetworkImage(product.image), fit: BoxFit.fill)),
+                        image: NetworkImage(product.image!), fit: BoxFit.fill)),
               ),
               SizedBox(
                 width: 20,
@@ -277,7 +277,7 @@ class CartPage extends StatelessWidget {
                   Container(
                     width: 170,
                     child: Text(
-                      product.title,
+                      product.title!,
                       maxLines: 2,
                       style: TextStyle(
                           overflow: TextOverflow.ellipsis,
@@ -297,7 +297,7 @@ class CartPage extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    "${product.price * product.quantity}  KWD",
+                    "${product.price! * product.quantity}  KWD",
                     // "test",
                     style: Theme.of(context).textTheme.headline6,
                   ),

@@ -40,7 +40,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     return _a;
   }
 
-  CustomConstants constants = CustomConstants();
+  AppConstants constants = AppConstants();
   ProductProvider productProvider = ProductProvider();
 
   @override

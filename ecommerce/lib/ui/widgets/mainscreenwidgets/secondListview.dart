@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../models/products_model.dart';
 import '../../../providers/product_provider.dart';
 import '../loading_shimmer.dart';
-import '../productitem.dart';
+import '../productitem_widget.dart';
 
 
 class SecondListview extends StatefulWidget {
@@ -39,14 +39,7 @@ class _SecondListviewState extends State<SecondListview> {
               return data.allproducts.length == 0
                   ? loadingShimmer()
                   : ProductItem(
-                      productImage: data.allproducts[index].image,
-                      productTitle: data.allproducts[index].title,
-                      productPrice: data.allproducts[index].price,
-                      previousPrice: 150.000,
-                      productId: data.allproducts[index].id,
-                      productdescription: data.allproducts[index].description,
-                      productrating: data.allproducts[index].rating,
-                      productcategory: data.allproducts[index].category,
+                  data.allproducts[index],150
                     );
             },
           ),

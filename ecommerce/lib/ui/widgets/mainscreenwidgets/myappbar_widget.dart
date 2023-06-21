@@ -19,7 +19,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     Size size=MediaQuery.sizeOf(context);
     return Container(
-      height: size.height * 0.28,
+      height: size.height * 0.24,
       //width: 400,
       child: Column(
         children: [
@@ -59,7 +59,6 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                     AppLocalization.of(context)
                         .getTranslatedValue("title")
                         .toString(),
-                    // 'Ebaid Store',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -102,18 +101,14 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    /*SizedBox(
-                      width: 30,
-                    ),*/
+
                     Text(
                       AppLocalization.of(context)
                           .getTranslatedValue("search")
                           .toString(), //'Search',
                       style: hintStyle,
                     ),
-                    /*SizedBox(
-                      width: 260,
-                    ),*/
+
                     Icon(Icons.search),
                   ],
                 ),

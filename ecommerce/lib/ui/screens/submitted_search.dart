@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../constants/global_constants.dart';
 import '../../models/products_model.dart';
-import '../widgets/productitem.dart';
+import '../widgets/productitem_widget.dart';
 
 class SearchedforScreen extends StatelessWidget {
   SearchedforScreen(
@@ -98,15 +98,7 @@ class SearchedforScreen extends StatelessWidget {
                       itemCount: data.searchedForproducts.length,
                       itemBuilder: (context, index) {
                         return ProductItem(
-                          productImage: data.searchedForproducts[index].image,
-                          productTitle: data.searchedForproducts[index].title,
-                          productPrice: data.searchedForproducts[index].price,
-                          previousPrice: 0,
-                          productId: data.searchedForproducts[index].id,
-                          productdescription:
-                              data.allproducts[index].description,
-                          productrating: data.allproducts[index].rating,
-                          productcategory: data.allproducts[index].category,
+                            data.searchedForproducts[index],0
                         );
                       },
                     ),

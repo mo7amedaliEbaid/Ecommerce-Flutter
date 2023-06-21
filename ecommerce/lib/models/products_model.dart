@@ -1,33 +1,33 @@
 class Product {
-   int id;
-   String title;
-   double price;
-   String description;
-   String image;
-   Map rating;
-   String category;
+   int? id;
+   String? title;
+   double? price;
+   String? description;
+   String? image;
+  // Map rating;
+   String? category;
    int quantity;
 
   Product({
-    required  this.id,
-    required this.title,
-    required this.price,
-    required  this.description,
-    required   this.image,
-    required this.rating,
-    required this.category,
+      this.id,
+     this.title,
+     this.price,
+      this.description,
+       this.image,
+  //   this.rating,
+     this.category,
      this.quantity=0,
   });
 
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
-    id: json["id"],
-    title: json["title"],
-    price: json["price"]?.toDouble(),
-    description: json["description"],
-    image: json["image"],
-    rating: json['rating'],
-    category: json['category'],
+    id: json["id"]??null,
+    title: json["title"]??null,
+    price: json["price"].toDouble()??null,
+    description: json["description"]??null,
+    image: json["image"]??null,
+   // rating: json['rating'],
+    category: json['category']??null,
   );
    factory Product.fromItem(Product item, int quantity) {
      return Product(
@@ -37,7 +37,7 @@ class Product {
        price: item.price,
        category: item.category,
        image: item.image,
-       rating: item.rating,
+   //    rating: item.rating,
        quantity: quantity,
      );
    }
@@ -49,7 +49,7 @@ class Product {
        price: item.price,
        category: item.category,
        image: item.image,
-       rating: item.rating,
+     //  rating: item.rating,
        quantity: quantity,
      );
    }
@@ -61,7 +61,7 @@ class Product {
        price: item.price,
        category: item.category,
        image: item.image,
-       rating: item.rating,
+  //     rating: item.rating,
        quantity: quantity,
      );
    }

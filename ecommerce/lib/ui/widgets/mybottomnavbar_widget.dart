@@ -5,7 +5,7 @@ import 'custom_notchedbottomBar.dart';
 
 class MyBottombar extends StatelessWidget {
 
-  CustomConstants constants = CustomConstants();
+  AppConstants constants = AppConstants();
   final _pageController = PageController(initialPage: 2);
   int maxCount = 5;
 

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:myfirst_app/constants/api_constansts.dart';
 import '../constants/app_constants.dart';
 import '../models/products_model.dart';
 
@@ -21,24 +22,24 @@ class ProductProvider extends ChangeNotifier {
   String apiCategoryURL = 'https://fakestoreapi.com/products/category';
  void sortListProduct(condition) {
    switch (condition) {
-     case CustomConstants.PRICE_LOW_TO_HIGH:
+     case AppConstants.PRICE_LOW_TO_HIGH:
        allproducts.sort((a, b) {
-         return a.price.compareTo(b.price);
+         return a.price!.compareTo(b.price!);
        });
        break;
-     case CustomConstants.PRICE_HIGH_TO_LOW:
+     case AppConstants.PRICE_HIGH_TO_LOW:
        allproducts.sort((a, b) {
-         return b.price.compareTo(a.price);
+         return b.price!.compareTo(a.price!);
        });
        break;
-     case CustomConstants.ALPHABET_LOW_TO_HIGH:
+     case AppConstants.ALPHABET_LOW_TO_HIGH:
        allproducts.sort((a, b) {
-         return a.title.compareTo(b.title);
+         return a.title!.compareTo(b.title!);
        });
        break;
-     case CustomConstants.ALPHABET_HIGHT_TO_LOW:
+     case AppConstants.ALPHABET_HIGHT_TO_LOW:
        allproducts.sort((a, b) {
-         return b.title.compareTo(a.title);
+         return b.title!.compareTo(a.title!);
        });
        break;
      default:
@@ -47,24 +48,24 @@ class ProductProvider extends ChangeNotifier {
  }
  void sortListProductcat(condition) {
    switch (condition) {
-     case CustomConstants.PRICE_LOW_TO_HIGH:
+     case AppConstants.PRICE_LOW_TO_HIGH:
        productsbyCat.sort((a, b) {
-         return a.price.compareTo(b.price);
+         return a.price!.compareTo(b.price!);
        });
        break;
-     case CustomConstants.PRICE_HIGH_TO_LOW:
+     case AppConstants.PRICE_HIGH_TO_LOW:
        productsbyCat.sort((a, b) {
-         return b.price.compareTo(a.price);
+         return b.price!.compareTo(a.price!);
        });
        break;
-     case CustomConstants.ALPHABET_LOW_TO_HIGH:
+     case AppConstants.ALPHABET_LOW_TO_HIGH:
        productsbyCat.sort((a, b) {
-         return a.title.compareTo(b.title);
+         return a.title!.compareTo(b.title!);
        });
        break;
-     case CustomConstants.ALPHABET_HIGHT_TO_LOW:
+     case AppConstants.ALPHABET_HIGHT_TO_LOW:
        productsbyCat.sort((a, b) {
-         return b.title.compareTo(a.title);
+         return b.title!.compareTo(a.title!);
        });
        break;
      default:
@@ -77,18 +78,18 @@ class ProductProvider extends ChangeNotifier {
   Future<List<Product>> getproductsbycategoryelec(
       {required String selectedCategory}) async {
     var response = await http.get(Uri.parse(
-        "https://fakestoreapi.com/products/category/$selectedCategory"));
+        "${Apiconstants.BASE_URL}${Apiconstants.PRODUCTS_BY_CATEGORY}$selectedCategory"));
     print('Response status: ${response.statusCode}');
     log('Response body: ${response.body}');
     var data = jsonDecode(response.body);
-    List newsTempList = [];
+    List productsTempList = [];
     for (var v in data) {
-      newsTempList.add(v);
+      productsTempList.add(v);
       log(v.toString());
       print(data.length.toString());
     }
     if (response.statusCode == 200) {
-      productsbyCat=Product.productsFromSnapshot(newsTempList);
+      productsbyCat=Product.productsFromSnapshot(productsTempList);
       notifyListeners();
       return productsbyCat;
       //return Product.productsFromSnapshot(newsTempList);
@@ -158,9 +159,9 @@ class ProductProvider extends ChangeNotifier {
    }
      products=Product.productsFromSnapshot(newsTempList);
    searchedForproducts = products
-       .where((e) => e.title.toLowerCase().contains(searchValue.toLowerCase()))
+       .where((e) => e.title!.toLowerCase().contains(searchValue.toLowerCase()))
        .toList();
-   log(searchedForproducts.last.title);
+   log(searchedForproducts.last.title!);
    notifyListeners();
    return searchedForproducts;
 
@@ -169,6 +170,7 @@ class ProductProvider extends ChangeNotifier {
  void clearSearch(){
     searchedForproducts.clear();
  }
+
 }
 
 

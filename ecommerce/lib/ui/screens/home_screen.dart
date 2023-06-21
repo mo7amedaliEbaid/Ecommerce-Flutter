@@ -3,7 +3,7 @@ import 'package:myfirst_app/constants/global_constants.dart';
 
 import '../../localization/localization.dart';
 import '../widgets/mainscreenwidgets/myappbar_widget.dart';
-import '../widgets/mainscreenwidgets/myfirstListView.dart';
+import '../widgets/categories_listview_widget.dart';
 import '../widgets/mainscreenwidgets/mypage_view.dart';
 import '../widgets/mainscreenwidgets/secondListview.dart';
 import 'allproductsScr.dart';
@@ -29,19 +29,19 @@ Widget homebody(BuildContext context){
         onTap: (){
           Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CategoriesScreen()));
         },
-        child: Container(
-          margin: EdgeInsets.fromLTRB(20, 20, 10, 10),
-          height: 30,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12.0,horizontal: 20),
           child: Text(
             AppLocalization.of(context)
                 .getTranslatedValue("shop_by_category")
                 .toString(),
-            //'Shop By Category',
-            style: titleStyle,
+            style: titleStyle.copyWith(
+              backgroundColor: shadow_color
+            ),
           ),
         ),
       ),
-      MyfirstListview(),
+      categories_listview(context),
       MyPageView(),
       SizedBox(height: 20,),
       Container(

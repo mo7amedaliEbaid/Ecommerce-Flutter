@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 SizedBox vertical_space=const SizedBox(height: 10,);
 SizedBox horizontal_space=const SizedBox(width: 10,);
-
+Color shadow_color = Color(0xffebe4d5);
 TextStyle titleStyle = const TextStyle(
   color: Colors.black,
   fontSize: 20,
   fontWeight: FontWeight.bold,
+);
+TextStyle categorynamestyle = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.w500,
 );
 TextStyle mediumStyle = const TextStyle(
   color: Colors.black,

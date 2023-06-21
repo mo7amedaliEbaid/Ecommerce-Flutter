@@ -13,7 +13,7 @@ class BranchesScreen extends StatefulWidget {
 
 class _BranchesScreenState extends State<BranchesScreen> {
   bool nocountryChosen = true;
-  CustomConstants constants = CustomConstants();
+  AppConstants constants = AppConstants();
 
   @override
   Widget build(BuildContext context) {

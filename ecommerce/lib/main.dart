@@ -28,7 +28,7 @@ void main() {
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
   ProductProvider productProvider = ProductProvider();
-  CustomConstants customConstants = CustomConstants();
+  AppConstants customConstants = AppConstants();
 
   @override
   Widget build(BuildContext context) {

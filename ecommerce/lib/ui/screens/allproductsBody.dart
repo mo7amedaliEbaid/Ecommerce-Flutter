@@ -6,7 +6,7 @@ import '../../constants/app_constants.dart';
 import '../../models/products_model.dart';
 import '../../providers/product_provider.dart';
 import '../widgets/loading_shimmer.dart';
-import '../widgets/productitem.dart';
+import '../widgets/productitem_widget.dart';
 
 class AllProductsBody extends StatefulWidget {
   const AllProductsBody({Key? key}) : super(key: key);
@@ -19,10 +19,10 @@ class _AllProductsBodyState extends State<AllProductsBody> {
   late Future<List<Product>> _listProducts;
   late ProductProvider productProvider;
   List<String> sortDropdown = [
-    CustomConstants.ALPHABET_LOW_TO_HIGH,
-    CustomConstants.ALPHABET_HIGHT_TO_LOW,
-    CustomConstants.PRICE_LOW_TO_HIGH,
-    CustomConstants.PRICE_HIGH_TO_LOW,
+    AppConstants.ALPHABET_LOW_TO_HIGH,
+    AppConstants.ALPHABET_HIGHT_TO_LOW,
+    AppConstants.PRICE_LOW_TO_HIGH,
+    AppConstants.PRICE_HIGH_TO_LOW,
   ];
 
   @override
@@ -86,14 +86,7 @@ class _AllProductsBodyState extends State<AllProductsBody> {
                 return data.allproducts.length == 0
                     ? loadingShimmer()
                     : ProductItem(
-                        productImage: data.allproducts[index].image,
-                        productId: data.allproducts[index].id,
-                        productPrice: data.allproducts[index].price,
-                        previousPrice: 0,
-                        productTitle: data.allproducts[index].title,
-                        productcategory: data.allproducts[index].category,
-                        productrating: data.allproducts[index].rating,
-                        productdescription: data.allproducts[index].description,
+                        data.allproducts[index],0
                       );
               },
             ),

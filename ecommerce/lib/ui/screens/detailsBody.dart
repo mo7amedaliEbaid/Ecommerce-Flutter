@@ -88,7 +88,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                           decoration: BoxDecoration(
                             image: DecorationImage(
                                 image:
-                                    NetworkImage(data.allproducts[index].image),
+                                    NetworkImage(data.allproducts[index].image!),
                                 fit: BoxFit.contain),
                           ),
                         ),
@@ -155,7 +155,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                                   .pushReplacement(MaterialPageRoute(
                                       builder: (context) => DetailsScreen(
                                             detailsproductid:
-                                                data.allproducts[index].id,
+                                                data.allproducts[index].id!,
                                           )));
                             },
                             child: Container(
@@ -164,7 +164,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                               decoration: BoxDecoration(
                                   image: DecorationImage(
                                       image: NetworkImage(
-                                          data.allproducts[index].image),
+                                          data.allproducts[index].image!),
                                       fit: BoxFit.fill)),
                             ),
                           );
@@ -201,7 +201,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                                         height: size.height * .1,
                                         width: size.width * .7,
                                         child: Text(
-                                          data.allproducts[index].title,
+                                          data.allproducts[index].title!,
                                           maxLines: 2,
                                           style: TextStyle(
                                             overflow: TextOverflow.ellipsis,
@@ -230,7 +230,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                                   child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text(
-                                        data.allproducts[index].category,
+                                        data.allproducts[index].category!,
                                         style: hintStyle,
                                       )),
                                 ),
@@ -297,7 +297,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      data.allproducts[index].description,
+                                      data.allproducts[index].description!,
                                       style: TextStyle(
                                         fontWeight: FontWeight.w400,
                                         color: Colors.black,

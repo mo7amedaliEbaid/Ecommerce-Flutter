@@ -16,7 +16,7 @@ class CategoriesScreen extends StatefulWidget {
 class _CategoriesScreenState extends State<CategoriesScreen> {
   late Future<List> _listcategories;
   late ProductProvider productProvider;
-  CustomConstants constants = CustomConstants();
+  //AppConstants constants = AppConstants();
 
   @override
   void initState() {
@@ -62,7 +62,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               return data.categories.length == 0
                   ? loadingShimmer()
                   : AnotherCategoryItem(
-                      imageasset: constants.assets[index],
+                      imageasset: AppConstants.assets[index],
                       categoryname: data.categories[index]);
             },
           ),

@@ -146,7 +146,7 @@ class FavouritePge extends StatelessWidget {
                     height: 100,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: NetworkImage(product.image), fit: BoxFit.contain)),
+                            image: NetworkImage(product.image!), fit: BoxFit.contain)),
                   ),
                   SizedBox(
                     width: 10,
@@ -160,7 +160,7 @@ class FavouritePge extends StatelessWidget {
                       Container(
                         width: 150,
                         child: Text(
-                          product.title,
+                          product.title!,
                           maxLines: 2,
                           style: TextStyle(
                               overflow: TextOverflow.ellipsis,
