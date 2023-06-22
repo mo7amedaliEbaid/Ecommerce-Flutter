@@ -5,16 +5,18 @@ import 'package:provider/provider.dart';
 import '../../models/products_model.dart';
 import '../../providers/favourited_provider.dart';
 import '../screens/drtailsScreen.dart';
-class ProductItem extends StatelessWidget {
+class ProductItem extends StatefulWidget {
   ProductItem(this.chosenproduct, this._previousprice);
  final Product chosenproduct;
  final double _previousprice;
-  Icon pressedIcon = Icon(
-    Icons.favorite,
-    color: Colors.black,
-  );
-  Icon unpressedIcon = Icon(Icons.favorite_border);
+
+  @override
+  State<ProductItem> createState() => _ProductItemState();
+}
+
+class _ProductItemState extends State<ProductItem> {
   bool isPressed = false;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -28,7 +30,7 @@ class ProductItem extends StatelessWidget {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => DetailsScreen(
-                    detailsproductid: chosenproduct.id!,
+                    detailsproductid: widget.chosenproduct.id!,
                   ),
                 ),
               );
@@ -40,7 +42,7 @@ class ProductItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white,
                   image: DecorationImage(
-                      image: NetworkImage(chosenproduct.image!),
+                      image: NetworkImage(widget.chosenproduct.image!),
                       fit: BoxFit.contain)),
             ),
           ),
@@ -49,29 +51,26 @@ class ProductItem extends StatelessWidget {
             width: 150,
             height: 47,
             child: Text(
-              chosenproduct.title!,
+              widget.chosenproduct.title!,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
+              style: meduimStyl.copyWith(fontWeight: FontWeight.w700)
             ),
           ),
           Text(
-            '${chosenproduct.price} KWD',
+            '${widget.chosenproduct.price} KWD',
             style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
           ),
-          SizedBox(
+          widget._previousprice==0?Container():SizedBox(
             height: 5,
           ),
-          _buildprevios_price(_previousprice),
+          _buildprevios_price(widget._previousprice),
           Row(
             children: [
               Consumer<CartProvider>(builder: (context,cartdata,_){
                 return  ElevatedButton(
                   onPressed: () {
-                    cartdata.add(chosenproduct, 1);
+                    cartdata.add(widget.chosenproduct, 1);
                     /*setState(() {
                     _cart = cartProvider.cartlistProduct;
                   });*/
@@ -103,7 +102,6 @@ class ProductItem extends StatelessWidget {
                   ),
                 );
               }),
-
               vertical_space,
               Consumer<FavouritesProvider>(builder: (context,favdata,_){
                 return Container(
@@ -115,18 +113,18 @@ class ProductItem extends StatelessWidget {
                   child: isPressed
                       ? InkWell(
                       onTap: () {
-                        favdata.remove(chosenproduct);
-                        /*setState(() {
+                        favdata.remove(widget.chosenproduct);
+                        setState(() {
                           isPressed = !isPressed;
-                        });*/
+                        });
                       },
                       child: pressedIcon)
                       : InkWell(
                       onTap: () {
-                        favdata.add(item: chosenproduct);
-                       /* setState(() {
+                        favdata.add(item: widget.chosenproduct);
+                       setState(() {
                           isPressed = !isPressed;
-                        });*/
+                        });
                       },
                       child: unpressedIcon),
                 );
@@ -138,6 +136,7 @@ class ProductItem extends StatelessWidget {
       ),
     );
   }
+
   _buildprevios_price(double price){
     if (price == 0) {
       return Text('');

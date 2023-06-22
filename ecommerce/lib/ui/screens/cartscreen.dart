@@ -211,7 +211,7 @@ class CartPage extends StatelessWidget {
                       fontSize: 18, fontWeight: FontWeight.w600),
                 ),
                 SizedBox(
-                  width: 140,
+                  width: 80,
                 ),
                 Text(
                   "This is Gift",

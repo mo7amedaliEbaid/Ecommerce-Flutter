@@ -6,25 +6,10 @@ import '../../providers/product_provider.dart';
 import '../widgets/loading_shimmer.dart';
 import 'productsByCategory.dart';
 
-class CategoriesScreen extends StatefulWidget {
+class CategoriesScreen extends StatelessWidget {
   CategoriesScreen({Key? key}) : super(key: key);
 
-  @override
-  State<CategoriesScreen> createState() => _CategoriesScreenState();
-}
 
-class _CategoriesScreenState extends State<CategoriesScreen> {
-  late Future<List> _listcategories;
-  late ProductProvider productProvider;
-  //AppConstants constants = AppConstants();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    productProvider = Provider.of<ProductProvider>(context, listen: false);
-    _listcategories = productProvider.getListCategory();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +86,7 @@ class AnotherCategoryItem extends StatelessWidget {
               children: [
                 Container(
                   margin: EdgeInsets.all(15),
-                  width: 140,
+                  width: 120,
                   height: 120,
                   decoration: BoxDecoration(
                       image: DecorationImage(

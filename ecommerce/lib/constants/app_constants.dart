@@ -17,7 +17,11 @@ class AppConstants {
     PRICE_LOW_TO_HIGH,
     PRICE_HIGH_TO_LOW,
   ];
-  final List<String> currencies = [
+ static const String pageviewimage="images/splashstore.jpg";
+ static const SCALE_FRACTION = 0.7;
+  static const FULL_SCALE = 1.0;
+  static const PAGER_HEIGHT = 220.0;
+   final List<String> currencies = [
     'Dollars',
     'Pounds',
     'Yen',

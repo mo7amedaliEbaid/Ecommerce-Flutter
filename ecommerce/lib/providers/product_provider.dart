@@ -17,7 +17,7 @@ class ProductProvider extends ChangeNotifier {
   List categories = [];
    late Product oneproductbyId;
   List<String> listTitle = [];
-  String apiProductURL = 'https://fakestoreapi.com/products';
+ String apiProductURL = 'https://fakestoreapi.com/products';
   String apiAllCategoryURL = 'https://fakestoreapi.com/products/categories';
   String apiCategoryURL = 'https://fakestoreapi.com/products/category';
  void sortListProduct(condition) {
@@ -166,6 +166,7 @@ class ProductProvider extends ChangeNotifier {
    return searchedForproducts;
 
  }
+
 
  void clearSearch(){
     searchedForproducts.clear();

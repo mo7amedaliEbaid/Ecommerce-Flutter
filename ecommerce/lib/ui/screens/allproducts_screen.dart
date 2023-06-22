@@ -16,7 +16,7 @@ final List<Product> allproductslist;
       backgroundColor: Colors.grey.shade300,
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: Colors.black, //change your color here
+          color: Colors.black,
         ),
         centerTitle: true,
         title: Text(
@@ -38,22 +38,19 @@ final List<Product> allproductslist;
 
   _buildproducts_body() {
     return Consumer<ProductProvider>(builder: (context, data, child) {
-      //data.getallproducts();
        return Column(
          children: [
            Padding(
-             padding: const EdgeInsets.fromLTRB(14.0, 5, 1, 20),
+             padding: const EdgeInsets.fromLTRB(14.0, 5, 1, 0),
              child: Row(
                mainAxisAlignment: MainAxisAlignment.end,
                children: [
-                 //Text('Sort Products'),
                  DropdownButton<String>(
                    underline: Container(),
                    hint: Text(
                      'Sort Products',
                      style: hintStyle,
                    ),
-                   // dropdownColor: Colors.blue,
                    icon: Icon(
                      Icons.sort,
                      color: Colors.black,
@@ -77,12 +74,12 @@ final List<Product> allproductslist;
              child: GridView.builder(
                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                  crossAxisCount: 2,
-                 childAspectRatio: 1.7 / 3,
+                 childAspectRatio: 1.6 / 3,
                  crossAxisSpacing: 0,
                  mainAxisSpacing: 0,
                ),
                shrinkWrap: true,
-               physics: const ClampingScrollPhysics(),
+               physics: const BouncingScrollPhysics(),
                padding: EdgeInsets.zero,
                itemCount: data.allproducts.length,
                itemBuilder: (context, index) {

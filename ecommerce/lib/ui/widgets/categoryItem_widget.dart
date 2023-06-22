@@ -4,7 +4,6 @@ import '../screens/productsByCategory.dart';
 
 Widget CategoryItem(
     BuildContext context, String imageasset, String categoryname) {
- // Size size=MediaQuery.sizeOf(context);
   return InkWell(
     onTap: () {
       Navigator.of(context).push(MaterialPageRoute(
@@ -26,7 +25,7 @@ Widget CategoryItem(
           ),
          vertical_space,
           Text(
-            categoryname,
+            categoryname.toUpperCase(),
             style: categorynamestyle,
           ),
         ],
