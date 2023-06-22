@@ -1,38 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../constants/global_constants.dart';
-import '../../../localization/localization.dart';
-import '../../../models/products_model.dart';
-import '../../../providers/product_provider.dart';
-import '../../screens/allproducts_screen.dart';
-import '../loading_shimmer.dart';
-import '../productitem_widget.dart';
+import '../../constants/global_constants.dart';
+import '../../localization/localization.dart';
+import '../../providers/product_provider.dart';
+import '../screens/allproducts_screen.dart';
+import 'loading_shimmer.dart';
+import 'productitem_widget.dart';
 
 
-class SecondListview extends StatefulWidget {
-  SecondListview({Key? key}) : super(key: key);
+class FeaturedListView extends StatefulWidget {
+  FeaturedListView({Key? key}) : super(key: key);
 
   @override
-  State<SecondListview> createState() => _SecondListviewState();
+  State<FeaturedListView> createState() => _FeaturedListViewState();
 }
 
-class _SecondListviewState extends State<SecondListview> {
- /* late Future<List<Product>> listProducts;
+class _FeaturedListViewState extends State<FeaturedListView> {
   late ProductProvider productProvider;
 
   @override
   void initState() {
     super.initState();
-    productProvider = Provider.of<ProductProvider>(context, listen: false);
- //   listProducts = productProvider.getallproducts();
+   productProvider = Provider.of<ProductProvider>(context, listen: false);
+    productProvider.getallproducts();
   }
-*/
+
   @override
   Widget build(BuildContext context) {
     return Consumer<ProductProvider>(
       builder: (context, data, child) {
-        data.getallproducts();
+
         return Column(
           children: [
           Row(

@@ -4,11 +4,11 @@ import 'package:myfirst_app/providers/favourited_provider.dart';
 import 'package:myfirst_app/providers/cart_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../../../localization/localization.dart';
-import '../../../providers/product_provider.dart';
-import '../../screens/cartscreen.dart';
-import '../../screens/favouriteScreen.dart';
-import '../../screens/searchscreen.dart';
+import '../../localization/localization.dart';
+import '../../providers/product_provider.dart';
+import '../screens/cartscreen.dart';
+import '../screens/favouriteScreen.dart';
+import '../screens/searchscreen.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   MyAppBar({Key? key}) : super(key: key);

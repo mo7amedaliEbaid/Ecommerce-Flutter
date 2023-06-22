@@ -6,7 +6,6 @@ import '../../models/products_model.dart';
 import '../../providers/product_provider.dart';
 import '../widgets/loading_shimmer.dart';
 import '../widgets/productitem_widget.dart';
-import 'allproductsBody.dart';
 
 class AllProductsScreen extends StatelessWidget {
    AllProductsScreen({Key? key, required this.allproductslist}) : super(key: key);

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:myfirst_app/constants/global_constants.dart';
 
 import '../../localization/localization.dart';
-import '../widgets/mainscreenwidgets/myappbar_widget.dart';
+import '../widgets/myappbar_widget.dart';
 import '../widgets/categories_listview_widget.dart';
-import '../widgets/mainscreenwidgets/mypage_view.dart';
-import '../widgets/mainscreenwidgets/secondListview.dart';
+import '../widgets/mypage_view.dart';
+import '../widgets/featured_listview_widget.dart';
 import 'allproducts_screen.dart';
 import 'categories_screen.dart';
 
@@ -48,7 +48,7 @@ Widget _buildhomebody(BuildContext context){
       categories_listview(context),
       MyPageView(),
       SizedBox(height: 20,),
-      SecondListview(),
+      FeaturedListView(),
     ],
   );
 }}
