@@ -129,7 +129,7 @@ class ProductProvider extends ChangeNotifier {
     if (response.statusCode == 200) {
      allproducts=Product.productsFromSnapshot(newsTempList);
 
-     notifyListeners();
+     //notifyListeners();
      //log(allproducts.toString());
       return allproducts;
     } else {

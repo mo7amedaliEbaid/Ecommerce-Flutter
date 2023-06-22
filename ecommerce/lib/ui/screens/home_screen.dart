@@ -6,7 +6,7 @@ import '../widgets/mainscreenwidgets/myappbar_widget.dart';
 import '../widgets/categories_listview_widget.dart';
 import '../widgets/mainscreenwidgets/mypage_view.dart';
 import '../widgets/mainscreenwidgets/secondListview.dart';
-import 'allproductsScr.dart';
+import 'allproducts_screen.dart';
 import 'categories_screen.dart';
 
 
@@ -17,11 +17,11 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: scafoldBackground,
         appBar: MyAppBar(),
-        body: homebody(context)
+        body: _buildhomebody(context)
         );
   }
-}
-Widget homebody(BuildContext context){
+
+Widget _buildhomebody(BuildContext context){
   return  ListView(
     shrinkWrap: true,
     children: [
@@ -31,62 +31,24 @@ Widget homebody(BuildContext context){
         },
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 12.0,horizontal: 20),
-          child: Text(
-            AppLocalization.of(context)
-                .getTranslatedValue("shop_by_category")
-                .toString(),
-            style: titleStyle.copyWith(
-              backgroundColor: shadow_color
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                AppLocalization.of(context)
+                    .getTranslatedValue("shop_by_category")
+                    .toString(),
+                style: titleStyle
+              ),
+              Icon(Icons.arrow_forward_ios)
+            ],
           ),
         ),
       ),
       categories_listview(context),
       MyPageView(),
       SizedBox(height: 20,),
-      Container(
-        color: Colors.transparent,
-        margin: EdgeInsets.fromLTRB(20, 0, 0, 10),
-        height: 30,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: Text(AppLocalization.of(context)
-                  .getTranslatedValue("featured_products")
-                  .toString(),
-                  style: titleStyle
-              ),
-            ),
-            //SizedBox(width: 90,),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: ElevatedButton(
-                autofocus: false,
-                style: ButtonStyle(
-                    elevation: MaterialStateProperty.all(0),
-                    backgroundColor: MaterialStateProperty.all(scafoldBackground)
-                ),
-                onPressed: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AllProductsScreen()));
-                },
-                child: Text(AppLocalization.of(context)
-                    .getTranslatedValue("view_all")
-                    .toString(),
-                  style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600
-                  ),),
-              ),
-            ),
-          ],
-        ),
-      ),
-      SizedBox(height: 20,),
       SecondListview(),
     ],
   );
-}
+}}

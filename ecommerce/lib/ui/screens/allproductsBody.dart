@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:myfirst_app/constants/global_constants.dart';
 import 'package:provider/provider.dart';
@@ -34,65 +35,7 @@ class _AllProductsBodyState extends State<AllProductsBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ProductProvider>(builder: (context, data, child) {
-      return SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(14.0, 5, 14, 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  //Text('Sort Products'),
-                  DropdownButton<String>(
-                    underline: Container(),
-                    hint: Text(
-                      'Sort Products',
-                      style: hintStyle,
-                    ),
-                    // dropdownColor: Colors.blue,
-                    icon: Icon(
-                      Icons.sort,
-                      color: Colors.black,
-                      size: 40,
-                    ),
-                    items: sortDropdown
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                    onChanged: (value) {
-                      Provider.of<ProductProvider>(context, listen: false)
-                          .sortListProduct(value);
-                    },
-                  ),
-                ],
-              ),
-            ),
-            GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 1.7 / 3,
-                crossAxisSpacing: 0,
-                mainAxisSpacing: 0,
-              ),
-              shrinkWrap: true,
-              physics: const ClampingScrollPhysics(),
-              padding: EdgeInsets.zero,
-              itemCount: data.allproducts.length,
-              itemBuilder: (context, index) {
-                return data.allproducts.length == 0
-                    ? loadingShimmer()
-                    : ProductItem(
-                        data.allproducts[index],0
-                      );
-              },
-            ),
-          ],
-        ),
-      );
-    });
+    return
   }
 }
+*/

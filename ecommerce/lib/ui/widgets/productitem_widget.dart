@@ -4,7 +4,6 @@ import 'package:myfirst_app/providers/cart_provider.dart';
 import 'package:provider/provider.dart';
 import '../../models/products_model.dart';
 import '../../providers/favourited_provider.dart';
-import '../../providers/product_provider.dart';
 import '../screens/drtailsScreen.dart';
 class ProductItem extends StatelessWidget {
   ProductItem(this.chosenproduct, this._previousprice);
