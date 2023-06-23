@@ -4,7 +4,7 @@ class Product {
    double? price;
    String? description;
    String? image;
-  // Map rating;
+   Map? rating;
    String? category;
    int quantity;
 
@@ -14,9 +14,9 @@ class Product {
      this.price,
       this.description,
        this.image,
-  //   this.rating,
+    this.rating,
      this.category,
-     this.quantity=0,
+      this.quantity=0,
   });
 
 
@@ -26,9 +26,20 @@ class Product {
     price: json["price"].toDouble()??null,
     description: json["description"]??null,
     image: json["image"]??null,
-   // rating: json['rating'],
+   // quantity: json["quantity"]??null,
+    rating: json['rating']??null,
     category: json['category']??null,
   );
+   Map<String, dynamic> toJson() => {
+     "id": id??0,
+     "title": title??"",
+     "price": price??0,
+     "description": description??"",
+     "quantity": quantity??"",
+    // "category": categoryValues.reverse[category],
+     "image": image??"",
+   //  "rating": rating.toJson(),
+   };
    factory Product.fromItem(Product item, int quantity) {
      return Product(
        id: item.id,
@@ -75,3 +86,22 @@ class Product {
 
 }
 
+class Rating {
+  double rate;
+  int count;
+
+  Rating({
+    required this.rate,
+    required this.count,
+  });
+
+  factory Rating.fromJson(Map<String, dynamic> json) => Rating(
+    rate: json["rate"]?.toDouble(),
+    count: json["count"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "rate": rate,
+    "count": count,
+  };
+}

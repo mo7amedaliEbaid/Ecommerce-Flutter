@@ -7,7 +7,7 @@ import '../../constants/global_constants.dart';
 import '../../models/products_model.dart';
 import '../../providers/product_provider.dart';
 import '../widgets/loading_shimmer.dart';
-import 'drtailsScreen.dart';
+import 'details_screen.dart';
 
 class DetailsBody extends StatefulWidget {
   DetailsBody({required this.selectedproductid});
@@ -226,11 +226,38 @@ class _DetailsBodyState extends State<DetailsBody> {
                                   ),
                                 ),
                                 Padding(
+                                  padding: const EdgeInsets.fromLTRB(18.0,0,18,20),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      IconTheme(
+                                        data: IconThemeData(
+                                          color: Colors.grey,
+                                          size: 30,
+                                        ),
+                                        child: StarDisplay(value: data.allproducts[index].rating?["rate"].round()),
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "Votes",
+                                            style: hintStyle,
+                                          ),
+                                          Text(
+                                            data.allproducts[index].rating!["count"].toString(),
+                                            style: hintStyle,
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Padding(
                                   padding: const EdgeInsets.only(left: 22.0),
                                   child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text(
-                                        data.allproducts[index].category!,
+                                        data.allproducts[index].category!.toUpperCase(),
                                         style: hintStyle,
                                       )),
                                 ),

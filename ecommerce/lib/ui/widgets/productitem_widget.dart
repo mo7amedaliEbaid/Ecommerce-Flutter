@@ -4,7 +4,7 @@ import 'package:myfirst_app/providers/cart_provider.dart';
 import 'package:provider/provider.dart';
 import '../../models/products_model.dart';
 import '../../providers/favourited_provider.dart';
-import '../screens/drtailsScreen.dart';
+import '../screens/details_screen.dart';
 class ProductItem extends StatefulWidget {
   ProductItem(this.chosenproduct, this._previousprice);
  final Product chosenproduct;
@@ -70,7 +70,9 @@ class _ProductItemState extends State<ProductItem> {
               Consumer<CartProvider>(builder: (context,cartdata,_){
                 return  ElevatedButton(
                   onPressed: () {
+                    print("Llllllllllllllllllllllllllllllllllllllllllllllllll");
                     cartdata.add(widget.chosenproduct, 1);
+                    cartdata.addItemToCart(widget.chosenproduct);
                     /*setState(() {
                     _cart = cartProvider.cartlistProduct;
                   });*/

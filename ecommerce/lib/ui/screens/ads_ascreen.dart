@@ -68,11 +68,7 @@ class _AdsScreenState extends State<AdsScreen> {
         key: refreshIndicatorKey,
         onRefresh: _refresh,
         child: Center(
-          child: _connectionStatus == ConnectivityResult.wifi ||
-                  _connectionStatus == ConnectivityResult.mobile ||
-                  _connectionStatus == ConnectivityResult.ethernet ||
-                  _connectionStatus == ConnectivityResult.vpn ||
-                  _connectionStatus == ConnectivityResult.bluetooth
+          child: _connectionStatus != ConnectivityResult.none
               ? Stack(
                   children: [
                     Container(
@@ -94,7 +90,7 @@ class _AdsScreenState extends State<AdsScreen> {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => OnBoardingScreen()));
                           },
-                          child: Text('Skip ${_connectionStatus.toString()}',
+                          child: Text('Skip',
                               style: boldWhite),
                           style: blackWithsize,
                         ))

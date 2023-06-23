@@ -3,6 +3,7 @@ import 'package:myfirst_app/constants/app_constants.dart';
 import 'package:myfirst_app/constants/global_constants.dart';
 import 'package:myfirst_app/providers/favourited_provider.dart';
 import 'package:myfirst_app/providers/cart_provider.dart';
+import 'package:myfirst_app/ui/screens/cart_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../localization/localization.dart';
@@ -73,7 +74,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (BuildContext context) =>
-                                CartPage(listProduct: data.cartlistProduct)));
+                                CartScreen()));
                       },
                       icon: Icon(
                         Icons.shopping_bag,

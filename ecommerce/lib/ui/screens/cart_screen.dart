@@ -1,4 +1,4 @@
-/*
+
 import 'package:flutter/material.dart';
 import 'package:myfirst_app/constants/app_constants.dart';
 import 'package:myfirst_app/constants/global_constants.dart';
@@ -7,11 +7,23 @@ import 'package:provider/provider.dart';
 import '../../models/products_model.dart';
 import '../../providers/cart_provider.dart';
 
-class CartPage extends StatelessWidget {
-  const CartPage({super.key, required this.listProduct});
+class CartScreen extends StatefulWidget {
+  const CartScreen({super.key});
 
-  final List<Product> listProduct;
 
+  @override
+  State<CartScreen> createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
+  late CartProvider cartProvider;
+
+  @override
+  void initState() {
+    super.initState();
+    cartProvider = Provider.of<CartProvider>(context, listen: false);
+    cartProvider.getUpdatedSessionCartData();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +51,7 @@ class CartPage extends StatelessWidget {
         ),
         body: Consumer<CartProvider>(
           builder: (context, data, _) {
-            return data.cartlistProduct.isEmpty
+            return data.cartlist.isEmpty
                 ? Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -67,10 +79,8 @@ class CartPage extends StatelessWidget {
                         height: 20,
                       ),
                       buildListProcduct(context),
-                      */
-/* const SizedBox(
-                height: 10,
-              ),*//*
+
+
 
                       Padding(
                         padding: const EdgeInsets.all(10.0),
@@ -209,7 +219,7 @@ class CartPage extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  "${data.cartlistProduct.length} products".toUpperCase(),
+                  "${data.cartlist.length} products".toUpperCase(),
                   textAlign: TextAlign.start,
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.w600),
@@ -246,7 +256,7 @@ class CartPage extends StatelessWidget {
       builder: (context, data, _) {
         return Column(
                 children: [
-                  ...data.cartlistProduct
+                  ...data.cartlist
                       .map((e) => buildProductCard(context, e)),
                   SizedBox(
                     height: 25,
@@ -389,7 +399,7 @@ class CartPage extends StatelessWidget {
 
   buildButtons() {
     return Consumer<CartProvider>(builder: (context, data, _) {
-      return data.cartlistProduct.length == 0
+      return data.cartlist.length == 0
           ? Container()
           : ElevatedButton(
               onPressed: () {},
@@ -399,4 +409,4 @@ class CartPage extends StatelessWidget {
     });
   }
 }
-*/
+
