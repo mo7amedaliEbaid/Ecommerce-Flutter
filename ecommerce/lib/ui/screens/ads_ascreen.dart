@@ -1,11 +1,12 @@
 import 'dart:async';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:myfirst_app/constants/app_constants.dart';
 import 'package:myfirst_app/constants/global_constants.dart';
-import 'dart:developer'as developer;
+import 'dart:developer' as developer;
 import 'onboarding_screen.dart';
 
 class AdsScreen extends StatefulWidget {
@@ -16,7 +17,7 @@ class AdsScreen extends StatefulWidget {
 }
 
 class _AdsScreenState extends State<AdsScreen> {
-/*  ConnectivityResult _connectionStatus = ConnectivityResult.none;
+  ConnectivityResult _connectionStatus = ConnectivityResult.none;
   final Connectivity _connectivity = Connectivity();
   late StreamSubscription<ConnectivityResult> _connectivitySubscription;
 
@@ -24,6 +25,9 @@ class _AdsScreenState extends State<AdsScreen> {
   void initState() {
     super.initState();
     initConnectivity();
+
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => refreshIndicatorKey.currentState?.show());
 
     _connectivitySubscription =
         _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
@@ -35,24 +39,17 @@ class _AdsScreenState extends State<AdsScreen> {
     super.dispose();
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initConnectivity() async {
     late ConnectivityResult result;
-    // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       result = await _connectivity.checkConnectivity();
     } on PlatformException catch (e) {
       developer.log('Couldn\'t check connectivity status', error: e);
       return;
     }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
     if (!mounted) {
       return Future.value(null);
     }
-
     return _updateConnectionStatus(result);
   }
 
@@ -61,54 +58,115 @@ class _AdsScreenState extends State<AdsScreen> {
       _connectionStatus = result;
     });
   }
-  @override*/
+
+  @override
   Widget build(BuildContext context) {
-  /*  final connectivityResult =  (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.mobile) {
-      // I am connected to a mobile network.
-    } else if (connectivityResult == ConnectivityResult.wifi) {
-      // I am connected to a wifi network.
-    } else if (connectivityResult == ConnectivityResult.ethernet) {
-      // I am connected to a ethernet network.
-    } else if (connectivityResult == ConnectivityResult.vpn) {
-      // I am connected to a vpn network.
-      // Note for iOS and macOS:
-      // There is no separate network interface type for [vpn].
-      // It returns [other] on any device (also simulator)
-    } else if (connectivityResult == ConnectivityResult.bluetooth) {
-      // I am connected to a bluetooth.
-    } else if (connectivityResult == ConnectivityResult.other) {
-      // I am connected to a network which is not in the above mentioned networks.
-    } else if (connectivityResult == ConnectivityResult.none) {
-      // I am not connected to any network.
-    }*/
+    Size size = MediaQuery.sizeOf(context);
     return Scaffold(
       backgroundColor: scafoldBackground,
-      body: Center(
-        child: Stack(
-          children: [
-            Container(
-              child: Image.network("https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",fit: BoxFit.contain,errorBuilder: (context, error, stackTrace) =>
-                  Image.asset(
-                    "${AppConstants.error_image}",
-                    fit: BoxFit.contain,
-                  ),),
-
-            ),
-            Positioned(
-                bottom: 20,
-                right: 10,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => OnBoardingScreen()));
-                  },
-                  child: Text('Skip', style: boldWhite),
-                  style: blackWithsize,
-                ))
-          ],
+      body: RefreshIndicator(
+        key: refreshIndicatorKey,
+        onRefresh: _refresh,
+        child: Center(
+          child: _connectionStatus == ConnectivityResult.wifi ||
+                  _connectionStatus == ConnectivityResult.mobile ||
+                  _connectionStatus == ConnectivityResult.ethernet ||
+                  _connectionStatus == ConnectivityResult.vpn ||
+                  _connectionStatus == ConnectivityResult.bluetooth
+              ? Stack(
+                  children: [
+                    Container(
+                      child: Image.network(
+                        "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+                        fit: BoxFit.contain,
+                        errorBuilder: (context, error, stackTrace) =>
+                            Image.asset(
+                          "${AppConstants.error_image}",
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                        bottom: 20,
+                        right: 10,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => OnBoardingScreen()));
+                          },
+                          child: Text('Skip ${_connectionStatus.toString()}',
+                              style: boldWhite),
+                          style: blackWithsize,
+                        ))
+                  ],
+                )
+              : Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            height: size.height * .25,
+                            width: size.width * .5,
+                            child: Image.asset(
+                              "${AppConstants.appbar_image}",
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(8.0, 0, 8, 28),
+                            child: Text(
+                              "Alpha Store",
+                              style: titleStyle,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        height: size.height * .2,
+                        width: size.width * .5,
+                        child: Image.asset(
+                          "${AppConstants.noconnection_image}",
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      Container(
+                        width: size.width * .5,
+                        child: Text(
+                          "No Internet Connection",
+                          style: titleStyle.copyWith(fontSize: 30),
+                        ),
+                      ),
+                      Container(
+                          height: size.height * .1,
+                          width: size.width * .5,
+                          margin: EdgeInsets.symmetric(horizontal: 10),
+                          child: AutoSizeText(
+                            "${AppConstants.offline_text}",
+                            style: titleStyle.copyWith(fontSize: 18),
+                          )),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            refreshIndicatorKey.currentState?.show();
+                          });
+                        },
+                        child: Text("Try Again",
+                            style: meduimStyl.copyWith(
+                                fontSize: 20,
+                                decoration: TextDecoration.underline)),
+                      )
+                    ],
+                  ),
+                ),
         ),
       ),
     );
+  }
+
+  Future<void> _refresh() async {
+    AdsScreen();
   }
 }

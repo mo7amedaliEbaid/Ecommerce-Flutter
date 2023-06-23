@@ -34,6 +34,7 @@ class AppConstants {
     'Egypt',
     'Emirates',
   ];
+  static const String offline_text="Please check your Wi-Fi or data connection and click on Try Again.";
   String? selectedValue;
   String? secselectedValue;
   final List<Widget> bottomBarPages = [
@@ -47,6 +48,7 @@ class AppConstants {
   static const String emptycart="assets/images/emptycart.png";
   static const String splash_image="assets/images/store3.jpg";
   static const String error_image="assets/images/myStore.jpeg";
+  static const String noconnection_image="assets/images/noconnection.png";
   static const List<String> assets = [
     "assets/images/electronic.jpeg",
     "assets/images/jewelery.jpg",

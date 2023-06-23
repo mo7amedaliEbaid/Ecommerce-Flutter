@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+final GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
+new GlobalKey<RefreshIndicatorState>();
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 SizedBox vertical_space=const SizedBox(height: 10,);
 SizedBox horizontal_space=const SizedBox(width: 10,);
