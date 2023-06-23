@@ -1,7 +1,9 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:myfirst_app/constants/app_constants.dart';
 import '../../constants/global_constants.dart';
 import '../widgets/dialog.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 class ContactScreen extends StatefulWidget {
   ContactScreen({Key? key}) : super(key: key);
 
@@ -13,6 +15,18 @@ class _ContactScreenState extends State<ContactScreen> {
   go() {
     Navigator.of(context).push(DismissibleDialog2<void>(
            ));
+  }
+  Future<void>? _launched;
+
+  Future<void> _launchInWebViewOrVC(Uri url) async {
+    if (!await launchUrl(
+      url,
+      mode: LaunchMode.inAppWebView,
+      webViewConfiguration: const WebViewConfiguration(
+          headers: <String, String>{'my_header_key': 'my_header_value'}),
+    )) {
+      throw Exception('Could not launch $url');
+    }
   }
   @override
   Widget build(BuildContext context) {
@@ -50,31 +64,41 @@ class _ContactScreenState extends State<ContactScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                    width: size.width * 0.44,
-                    height: size.height * 0.24,
-                    child: Column(
-                      children: [
-                        SizedBox(height: size.height * 0.028),
-                        Icon(
-                          Icons.email_outlined,
-                          size: 45,
-                        ),
-                        SizedBox(height: size.height * 0.02),
-                        Text(
-                          "Email Address",
-                          style: hintStyle,
-                        ),
-                        SizedBox(height: size.height * 0.02),
-                        Text(
-                          "user@atyabalmarshoud.kw",
-                          style: smallStyle,
-                        ),
-                      ],
+                  InkWell(
+                    onTap: (){
+                      _launched = _launchInWebViewOrVC(
+                          Uri.parse(AppConstants.gmail_link));
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      width: size.width * 0.44,
+                      height: size.height * 0.24,
+                      child: Column(
+                        children: [
+                          SizedBox(height: size.height * 0.028),
+                          Icon(
+                            Icons.email_outlined,
+                            size: 45,
+                          ),
+                          SizedBox(height: size.height * 0.02),
+                          Text(
+                            "Email Address",
+                            style: hintStyle,
+                          ),
+                          SizedBox(height: size.height * 0.02),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: AutoSizeText(
+                              "user@atyabalmarshoud.kw",
+                              style: smallStyle,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(width: size.width * 0.05),

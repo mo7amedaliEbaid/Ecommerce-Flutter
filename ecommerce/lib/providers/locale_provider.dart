@@ -1,24 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:myfirst_app/constants/app_constants.dart';
+
+import '../models/language_model.dart';
 
 class LocaleCont extends ChangeNotifier {
   Locale locale = Locale('en', "US");
+
   updateLocale(Locale a) {
     locale = a;
     notifyListeners();
   }
-}
 
-class Language {
-  final String name;
-  final String flag;
-  final String languageCode;
+  Locale changeLanguage(Language language, context) {
+    Locale _a;
+    switch (language.languageCode) {
+      case AppConstants.ENGLISH:
+        _a = Locale(language.languageCode, "US");
+        break;
+      case AppConstants.Arabic:
+        _a = Locale(language.languageCode, "EG");
+        break;
 
-  Language(this.name, this.flag, this.languageCode);
-
-  static List<Language> languageList() {
-    return <Language>[
-      Language("English", "US", "en"),
-      Language("Arabic", 'EG', "ar"),
-    ];
+      default:
+        _a = Locale(language.languageCode, 'US');
+    }
+    notifyListeners();
+    return _a;
   }
 }

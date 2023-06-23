@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myfirst_app/constants/global_constants.dart';
 import '../../constants/app_constants.dart';
-import 'custom_notchedbottomBar.dart';
+import '../../packages/custom_notchedbottomBar.dart';
 
 class MyBottombar extends StatelessWidget {
 

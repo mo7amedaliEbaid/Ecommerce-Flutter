@@ -6,6 +6,7 @@ import 'package:myfirst_app/ui/screens/return_screen.dart';
 import 'package:myfirst_app/ui/screens/terms_screen.dart';
 import 'package:provider/provider.dart';
 import '../../localization/localization.dart';
+import '../../models/language_model.dart';
 import '../../providers/locale_provider.dart';
 import 'contact_screen.dart';
 
@@ -19,7 +20,7 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
 
 
-  Locale _changeLanguage(Language language, context) {
+  /*Locale _changeLanguage(Language language, context) {
     Locale _a;
     switch (language.languageCode) {
       case AppConstants.ENGLISH:
@@ -35,7 +36,7 @@ class _SettingsState extends State<Settings> {
         _a = Locale(language.languageCode, 'US');
     }
     return _a;
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -96,8 +97,7 @@ class _SettingsState extends State<Settings> {
                                 const EdgeInsets.symmetric(horizontal: 1.0),
                             child: InkWell(
                               onTap: () {
-                                data.updateLocale(_changeLanguage(e, context));
-                                print('kkkkkkkkkkkkkkkkkkkkkkkkkkkkk');
+                                data.updateLocale(data.changeLanguage(e, context));
                               },
                               child: Container(
                                   decoration: BoxDecoration(
@@ -134,7 +134,6 @@ class _SettingsState extends State<Settings> {
                       .toString(),
                   style: bigStyle,
                 ),
-                // SizedBox(width: size.width*0.54),
                 Row(
                   children: [
                     Text(

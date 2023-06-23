@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constants/global_constants.dart';
 import '../../localization/localization.dart';
+import '../../models/language_model.dart';
 import '../../providers/locale_provider.dart';
 import '../../providers/product_provider.dart';
 import '../widgets/mybottomnavbar_widget.dart';
@@ -19,28 +20,10 @@ class OnBoardingScreen extends StatefulWidget {
 }
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
-  static const String ENGLISH = "en";
-  static const String Arabic = "ar";
 
-  Locale _changeLanguage(Language language, context) {
-    Locale _a;
-    switch (language.languageCode) {
-      case ENGLISH:
-        _a = Locale(language.languageCode, "US");
 
-        break;
-      case Arabic:
-        _a = Locale(language.languageCode, "EG");
 
-        break;
-
-      default:
-        _a = Locale(language.languageCode, 'US');
-    }
-    return _a;
-  }
-
-  AppConstants constants = AppConstants();
+ // AppConstants constants = AppConstants();
   ProductProvider productProvider = ProductProvider();
 
   @override
@@ -95,7 +78,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         child: InkWell(
                           onTap: () {
-                            data.updateLocale(_changeLanguage(e, context));
+                            data.updateLocale(data.changeLanguage(e, context));
                           },
                           child: Container(
                               decoration: BoxDecoration(
@@ -149,7 +132,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         ),
                       ],
                     ),
-                    items: constants.currencies
+                    items: AppConstants.currencies
                         .map((item) => DropdownMenuItem<String>(
                               value: item,
                               child: Text(
@@ -163,10 +146,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               ),
                             ))
                         .toList(),
-                    value: constants.selectedValue,
+                    value: AppConstants.selectedValue,
                     onChanged: (value) {
                       setState(() {
-                        constants.selectedValue = value as String;
+                        AppConstants.selectedValue = value as String;
                       });
                     },
                     buttonStyleData: ButtonStyleData(

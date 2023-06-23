@@ -27,18 +27,18 @@ class AuthProvider with ChangeNotifier {
         print(email);
         //print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
         navigatorKey.currentState!.pushNamed('/onboarding');
-       // return true;
+        // return true;
         //   navigatorKey.currentState!.pushNamed('nav');
       } else {
         print('failed');
-       // print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-     //   return false;
-         navigatorKey.currentState!.pushNamed('/register');
+        // print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+        //   return false;
+        navigatorKey.currentState!.pushNamed('/register');
       }
     } catch (e) {
       print(e.toString());
     }
-  //  throw Exception('error');
+    //  throw Exception('error');
   }
 
   Future<bool> login(String email, password) async {

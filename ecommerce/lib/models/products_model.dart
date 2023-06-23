@@ -16,7 +16,7 @@ class Product {
        this.image,
     this.rating,
      this.category,
-      this.quantity=0,
+      this.quantity=1,
   });
 
 

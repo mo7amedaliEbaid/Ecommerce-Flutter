@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:myfirst_app/constants/app_constants.dart';
 import 'package:myfirst_app/providers/cart_provider.dart';
 import 'package:myfirst_app/providers/favourited_provider.dart';
 import 'package:provider/provider.dart';
@@ -7,6 +9,7 @@ import '../../constants/global_constants.dart';
 import '../../models/products_model.dart';
 import '../../providers/product_provider.dart';
 import '../widgets/loading_shimmer.dart';
+import '../widgets/stardisplay_widget.dart';
 import 'details_screen.dart';
 
 class DetailsBody extends StatefulWidget {
@@ -64,15 +67,14 @@ class _DetailsBodyState extends State<DetailsBody> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.sizeOf(context);
     return Container(
       padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
       child: ListView(
         children: [
           Consumer<ProductProvider>(builder: (context, data, child) {
             return Container(
-              width: 400,
-              height: 300,
+              height: size.height * .3,
               color: Colors.white,
               child: PageView.builder(
                   controller: _topPageController,
@@ -83,12 +85,10 @@ class _DetailsBodyState extends State<DetailsBody> {
                       Align(
                         alignment: Alignment.center,
                         child: Container(
-                          width: 300,
-                          height: 300,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                                image:
-                                    NetworkImage(data.allproducts[index].image!),
+                                image: NetworkImage(
+                                    data.allproducts[index].image!),
                                 fit: BoxFit.contain),
                           ),
                         ),
@@ -141,7 +141,7 @@ class _DetailsBodyState extends State<DetailsBody> {
             return data.allproducts.length == 0
                 ? loadingShimmer()
                 : Container(
-                    height: 110,
+                    height: size.height * .14,
                     child: ListView.builder(
                         controller: _mainPageController,
                         itemCount: data.allproducts.length,
@@ -159,13 +159,18 @@ class _DetailsBodyState extends State<DetailsBody> {
                                           )));
                             },
                             child: Container(
-                              height: 100,
-                              width: 80,
+                              width: size.width * .24,
+                              padding: EdgeInsets.all(5),
                               decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: NetworkImage(
-                                          data.allproducts[index].image!),
-                                      fit: BoxFit.fill)),
+                                border:
+                                    Border.all(color: Colors.grey, width: 2),
+                              ),
+                              child: data.allproducts[index].image != null
+                                  ? Image.network(
+                                      data.allproducts[index].image!,
+                                      fit: BoxFit.fill,
+                                    )
+                                  : Image.asset(AppConstants.appbar_image),
                             ),
                           );
                         }),
@@ -187,29 +192,26 @@ class _DetailsBodyState extends State<DetailsBody> {
                         itemBuilder: (context, index) {
                           return Container(
                             // height: 490,
-                            width: 400,
+                            // width: 400,
                             child: Column(
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.fromLTRB(
                                       10.0, 10, 12, 0),
                                   child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
                                     children: [
                                       Container(
-                                        height: size.height * .1,
-                                        width: size.width * .7,
-                                        child: Text(
-                                          data.allproducts[index].title!,
-                                          maxLines: 2,
-                                          style: TextStyle(
-                                            overflow: TextOverflow.ellipsis,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ),
+                                          height: size.height * .07,
+                                          width: size.width * .7,
+                                          child: AutoSizeText(
+                                              textAlign: TextAlign.center,
+                                              data.allproducts[index].title!,
+                                              maxLines: 2,
+                                              style: mediumStyle)),
                                       InkWell(
                                           onTap: () {
                                             favouritesProvider.add(
@@ -226,16 +228,20 @@ class _DetailsBodyState extends State<DetailsBody> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(18.0,0,18,20),
+                                  padding: const EdgeInsets.fromLTRB(
+                                      18.0, 0, 18, 20),
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       IconTheme(
                                         data: IconThemeData(
                                           color: Colors.grey,
                                           size: 30,
                                         ),
-                                        child: StarDisplay(value: data.allproducts[index].rating?["rate"].round()),
+                                        child: StarDisplay(data
+                                            .allproducts[index].rating?["rate"]
+                                            .round()),
                                       ),
                                       Row(
                                         children: [
@@ -243,8 +249,11 @@ class _DetailsBodyState extends State<DetailsBody> {
                                             "Votes",
                                             style: hintStyle,
                                           ),
+                                          horizontal_space,
                                           Text(
-                                            data.allproducts[index].rating!["count"].toString(),
+                                            data.allproducts[index]
+                                                .rating!["count"]
+                                                .toString(),
                                             style: hintStyle,
                                           ),
                                         ],
@@ -257,7 +266,8 @@ class _DetailsBodyState extends State<DetailsBody> {
                                   child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text(
-                                        data.allproducts[index].category!.toUpperCase(),
+                                        data.allproducts[index].category!
+                                            .toUpperCase(),
                                         style: hintStyle,
                                       )),
                                 ),
@@ -335,86 +345,8 @@ class _DetailsBodyState extends State<DetailsBody> {
                                     ),
                                   ),
                                 ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      width: size.width * 0.4,
-                                      height: size.height * 0.09,
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(5),
-                                          topLeft: Radius.circular(5),
-                                        ),
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        children: [
-                                          if (index != 0)
-                                            Container(
-                                              width: 40,
-                                              height: 40,
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                color: scafoldBackground,
-                                              ),
-                                              child: IconButton(
-                                                icon: Icon(Icons.minimize),
-                                                onPressed: () {
-                                                  _goToPage(index - 1);
-                                                },
-                                              ),
-                                            ),
-                                          Text(
-                                            '${data.allproducts[index].id}',
-                                            style: titleStyle,
-                                          ),
-                                          if (index !=
-                                              data.allproducts.length - 1)
-                                            Container(
-                                              width: 40,
-                                              height: 40,
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                color: scafoldBackground,
-                                              ),
-                                              child: IconButton(
-                                                icon: Icon(Icons.add),
-                                                onPressed: () {
-                                                  _goToPage(index + 1);
-                                                },
-                                              ),
-                                            ),
-                                        ],
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        cartProvider.add(
-                                            data.allproducts[index], 1);
-                                      },
-                                      child: Container(
-                                        width: size.width * 0.4,
-                                        height: size.height * 0.09,
-                                        decoration: BoxDecoration(
-                                          color: Colors.black,
-                                          borderRadius: BorderRadius.only(
-                                            bottomRight: Radius.circular(5),
-                                            topRight: Radius.circular(5),
-                                          ),
-                                        ),
-                                        child: Align(
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              'Add to cart'.toUpperCase(),
-                                              style: boldWhite,
-                                            )),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                _buildaddto_cart(
+                                    context, data.allproducts[index])
                               ],
                             ),
                           );
@@ -427,5 +359,83 @@ class _DetailsBodyState extends State<DetailsBody> {
         ],
       ),
     );
+  }
+
+  _buildaddto_cart(BuildContext context, Product product) {
+    Size size = MediaQuery.sizeOf(context);
+    return Consumer<CartProvider>(builder: (context, cartdata, _) {
+      return Container(
+          // width: size.width * 0.4,
+          margin: EdgeInsets.symmetric(horizontal: 20),
+          height: size.height * 0.06,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(5),
+              topLeft: Radius.circular(5),
+            ),
+          ),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: scafoldBackground,
+              ),
+              child: IconButton(
+                icon: Icon(Icons.minimize),
+                onPressed: () {
+                  cartdata.decreaseQtyOfItemInCart(product);
+                  // _goToPage(index - 1);
+                },
+              ),
+            ),
+            Text(
+              '${product.quantity}',
+              style: titleStyle,
+            ),
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: scafoldBackground,
+              ),
+              child: IconButton(
+                icon: Icon(Icons.add),
+                onPressed: () {
+                  cartdata.increaseQtyOfItemInCart(product);
+                  //      _goToPage(index + 1);
+                },
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                cartdata.addItemToCart(product);
+                /*cartProvider.add(
+                  data.allproducts[index], 1);*/
+              },
+              child: Container(
+                width: size.width * 0.4,
+                height: size.height * 0.09,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(5),
+                    topRight: Radius.circular(5),
+                  ),
+                ),
+                child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Add to cart'.toUpperCase(),
+                      style: boldWhite,
+                    )),
+              ),
+            ),
+          ]));
+    });
   }
 }

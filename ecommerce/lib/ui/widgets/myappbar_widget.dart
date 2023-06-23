@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 
 import '../../localization/localization.dart';
 import '../../providers/product_provider.dart';
-import '../screens/cartscreen.dart';
 import '../screens/favouriteScreen.dart';
 import '../screens/searchscreen.dart';
 

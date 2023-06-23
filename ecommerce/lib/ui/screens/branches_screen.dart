@@ -13,7 +13,7 @@ class BranchesScreen extends StatefulWidget {
 
 class _BranchesScreenState extends State<BranchesScreen> {
   bool nocountryChosen = true;
-  AppConstants constants = AppConstants();
+  //AppConstants constants = AppConstants();
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +84,7 @@ class _BranchesScreenState extends State<BranchesScreen> {
                             ),
                           ],
                         ),
-                        items: constants.countries
+                        items: AppConstants.countries
                             .map((item) => DropdownMenuItem<String>(
                                   value: item,
                                   child: Text(
@@ -98,12 +98,12 @@ class _BranchesScreenState extends State<BranchesScreen> {
                                   ),
                                 ))
                             .toList(),
-                        value: constants.secselectedValue,
+                        value: AppConstants.secselectedValue,
                         onChanged: (value) {
                           setState(() {
-                            constants.secselectedValue = value as String;
-                            if (constants.secselectedValue == 'Kuwait' ||
-                                constants.secselectedValue == 'Egypt') {
+                            AppConstants.secselectedValue = value as String;
+                            if (AppConstants.secselectedValue == 'Kuwait' ||
+                                AppConstants.secselectedValue == 'Egypt') {
                               nocountryChosen = false;
                             } else {
                               nocountryChosen = true;

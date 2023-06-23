@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../ui/screens/account_screen.dart';
-import '../ui/screens/branches.dart';
+import '../ui/screens/branches_screen.dart';
 import '../ui/screens/categories_screen.dart';
 import '../ui/screens/home_screen.dart';
 import '../ui/screens/settings_screen.dart';
@@ -17,26 +17,27 @@ class AppConstants {
     PRICE_LOW_TO_HIGH,
     PRICE_HIGH_TO_LOW,
   ];
+ static const String gmail_link="https://www.google.com/gmail/about/";
   static const String ENGLISH = "en";
   static const String Arabic = "ar";
  static const String pageviewimage="assets/images/splashstore.jpg";
  static const SCALE_FRACTION = 0.7;
   static const FULL_SCALE = 1.0;
   static const PAGER_HEIGHT = 220.0;
-   final List<String> currencies = [
+  static final List<String> currencies = [
     'Dollars',
     'Pounds',
     'Yen',
     'Lira',
   ];
-  final List<String> countries = [
+ static final List<String> countries = [
     'Kuwait',
     'Egypt',
     'Emirates',
   ];
   static const String offline_text="Please check your Wi-Fi or data connection and click on Try Again.";
-  String? selectedValue;
-  String? secselectedValue;
+ static String? selectedValue;
+ static String? secselectedValue;
   final List<Widget> bottomBarPages = [
     CategoriesScreen(),
     BranchesScreen(),

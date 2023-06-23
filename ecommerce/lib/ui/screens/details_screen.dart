@@ -3,7 +3,6 @@ import 'package:myfirst_app/providers/cart_provider.dart';
 import 'package:myfirst_app/ui/screens/cart_screen.dart';
 import 'package:provider/provider.dart';
 import '../../constants/global_constants.dart';
-import 'cartscreen.dart';
 import 'detailsBody.dart';
 
 
@@ -52,20 +51,4 @@ class DetailsScreen extends StatelessWidget {
       body: DetailsBody(selectedproductid:detailsproductid,),
     );
   }}
-class StarDisplay extends StatelessWidget {
-  final int value;
-  const StarDisplay({Key? key, this.value = 0})
-      : assert(value != null),
-        super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: List.generate(5, (index) {
-        return Icon(
-          index < value ? Icons.star : Icons.star_border,
-        );
-      }),
-    );
-  }
-}
+

@@ -61,7 +61,7 @@ class _MyPageViewState extends State<MyPageView> {
           bottom: 40,
           left: 0,
           right: 0,
-          child:MyDotsIndicator(dotsindex: pageController!.hasClients?pageController?.page?.round():0,),
+          child:MyDotsIndicator( pageController!.hasClients?pageController?.page?.round():0,),
         ),
       ],
     );

@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:myfirst_app/constants/app_constants.dart';
 import 'package:myfirst_app/constants/global_constants.dart';
+import 'package:myfirst_app/ui/widgets/shippingaddress_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/products_model.dart';
@@ -9,7 +9,6 @@ import '../../providers/cart_provider.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
-
 
   @override
   State<CartScreen> createState() => _CartScreenState();
@@ -24,6 +23,7 @@ class _CartScreenState extends State<CartScreen> {
     cartProvider = Provider.of<CartProvider>(context, listen: false);
     cartProvider.getUpdatedSessionCartData();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +61,8 @@ class _CartScreenState extends State<CartScreen> {
                           width: MediaQuery.of(context).size.width * .25,
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                  image: AssetImage("${AppConstants.emptycart}"))),
+                                  image:
+                                      AssetImage("${AppConstants.emptycart}"))),
                         ),
                         Text(
                           "Your Cart is Empty",
@@ -73,132 +74,94 @@ class _CartScreenState extends State<CartScreen> {
                   )
                 : Container(
                     padding: const EdgeInsets.all(10),
-                    child: ListView(shrinkWrap: true, children: [
-                      buildTitle(),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      buildListProcduct(context),
-
-
-
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          'Shipping Address'.toUpperCase(),
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                    child: SingleChildScrollView(
+                      child: Container(
+                        width: 500,
+                        child: Column( children: [
+                          buildTitle(),
+                          const SizedBox(
+                            height: 20,
                           ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(30),
-                        // height: 300,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(9),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Home',
-                              style: titleStyle,
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Text(
-                              "Kuwait, Salmiya \n +96551352757 \nAddress Line 1 \nAddress line 2 \n110002 \n Near Al Rashid",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w500, fontSize: 19),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          height: 60,
-                          decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(5)),
-                          child: Center(
-                            child: Text(
-                              'Change'.toUpperCase(),
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18),
+                          buildListProcduct(context),
+                           ShippingAdress(),
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              height: 60,
+                              decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: Center(
+                                child: Text(
+                                  'Change'.toUpperCase(),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      buildTotalPrice(),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          height: 60,
-                          decoration: BoxDecoration(
-                              color: Colors.grey.shade600,
-                              borderRadius: BorderRadius.circular(5)),
-                          child: Center(
-                            child: Text(
-                              'Continue Shopping'.toUpperCase(),
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          buildTotalPrice(),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              height: 60,
+                              decoration: BoxDecoration(
+                                  color: Colors.grey.shade600,
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: Center(
+                                child: Text(
+                                  'Continue Shopping'.toUpperCase(),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          height: 60,
-                          decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(5)),
-                          child: Center(
-                            child: Text(
-                              'Proceed to checkout'.toUpperCase(),
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              height: 60,
+                              decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: Center(
+                                child: Text(
+                                  'Proceed to checkout'.toUpperCase(),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            "Note: Shipping fees, Customs, VAT and Taxes shall be calculated at the checkout page, if applicable.",
+                            style: TextStyle(
+                                fontSize: 17, fontWeight: FontWeight.w500),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                        ]),
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "Note: Shipping fees, Customs, VAT and Taxes shall be calculated at the checkout page, if applicable.",
-                        style: TextStyle(
-                            fontSize: 17, fontWeight: FontWeight.w500),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                    ]),
+                    ),
                   );
           },
         ));
@@ -255,87 +218,90 @@ class _CartScreenState extends State<CartScreen> {
     return Consumer<CartProvider>(
       builder: (context, data, _) {
         return Column(
-                children: [
-                  ...data.cartlist
-                      .map((e) => buildProductCard(context, e)),
-                  SizedBox(
-                    height: 25,
-                  )
-                ],
-              );
+          children: [
+            ...data.cartlist.map((e) => buildProductCard(context, e)),
+            SizedBox(
+              height: 25,
+            )
+          ],
+        );
       },
     );
   }
 
   buildProductCard(BuildContext context, Product product) {
-    return Container(
-      margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-      child: Column(
-        children: <Widget>[
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: 120,
-                height: 140,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: NetworkImage(product.image!), fit: BoxFit.fill)),
-              ),
-              SizedBox(
-                width: 20,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 170,
-                    child: Text(
-                      product.title!,
-                      maxLines: 2,
-                      style: TextStyle(
-                          overflow: TextOverflow.ellipsis,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Quantity : ${product.quantity}",
-                    // "test",
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "${product.price! * product.quantity}  KWD",
-                    // "test",
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                ],
-              ),
-              SizedBox(
-                width: 25,
-              ),
-              InkWell(
-                onTap: () {
-                  Provider.of<CartProvider>(context, listen: false)
-                      .remove(product);
-                },
-                child: const Icon(
-                  Icons.clear,
-                  size: 22,
-                  color: Colors.black,
+    return Consumer<CartProvider>(builder: (context, cartdata, _) {
+      return Container(
+        margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+        child: Column(
+          children: <Widget>[
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: 120,
+                  height: 140,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage(product.image!),
+                          fit: BoxFit.fill)),
                 ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+                SizedBox(
+                  width: 20,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 170,
+                      child: Text(
+                        product.title!,
+                        maxLines: 2,
+                        style: TextStyle(
+                            overflow: TextOverflow.ellipsis,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "Quantity : ${product.quantity}",
+                      // "test",
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "${product.price! * product.quantity}  KWD",
+                      // "test",
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  width: 25,
+                ),
+                InkWell(
+                  onTap: () {
+                    cartdata.removeSelectedItemFromCart(product.id!);
+                    Provider.of<CartProvider>(context, listen: false)
+                        .remove(product);
+                  },
+                  child: const Icon(
+                    Icons.clear,
+                    size: 22,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    });
   }
 
   buildTotalPrice() {
@@ -409,4 +375,3 @@ class _CartScreenState extends State<CartScreen> {
     });
   }
 }
-

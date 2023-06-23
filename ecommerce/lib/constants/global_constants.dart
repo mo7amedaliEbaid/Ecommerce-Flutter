@@ -22,6 +22,7 @@ TextStyle categorynamestyle = TextStyle(
 TextStyle mediumStyle = const TextStyle(
   color: Colors.black,
   fontSize: 18,
+  overflow: TextOverflow.ellipsis
 );
 TextStyle whiteStyle = const TextStyle(
   color: Colors.white,

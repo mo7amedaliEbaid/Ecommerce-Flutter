@@ -130,18 +130,18 @@ class _AdsScreenState extends State<AdsScreen> {
                       ),
                       Container(
                         width: size.width * .5,
-                        child: Text(
+                        child: AutoSizeText(
                           "No Internet Connection",
                           style: titleStyle.copyWith(fontSize: 30),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                       Container(
-                          height: size.height * .1,
-                          width: size.width * .5,
-                          margin: EdgeInsets.symmetric(horizontal: 10),
+                          margin: EdgeInsets.symmetric(horizontal: 30),
                           child: AutoSizeText(
                             "${AppConstants.offline_text}",
                             style: titleStyle.copyWith(fontSize: 18),
+                            textAlign: TextAlign.center,
                           )),
                       InkWell(
                         onTap: () {

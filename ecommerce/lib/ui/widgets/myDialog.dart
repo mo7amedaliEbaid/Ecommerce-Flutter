@@ -11,8 +11,6 @@ class DismissibleDialog<T> extends PopupRoute<T> {
   @override
   Color? get barrierColor => Colors.black.withAlpha(0x60);
 
-  // This allows the popup to be dismissed by tapping the scrim or by pressing
-  // the escape key on the keyboard.
   @override
   bool get barrierDismissible => true;
 
