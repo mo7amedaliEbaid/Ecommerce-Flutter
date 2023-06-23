@@ -25,13 +25,13 @@ class AuthProvider with ChangeNotifier {
         prefs.setString('email', email);
         prefs.setString('pass', password);
         print(email);
-        print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+        //print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
         navigatorKey.currentState!.pushNamed('/onboarding');
        // return true;
         //   navigatorKey.currentState!.pushNamed('nav');
       } else {
         print('failed');
-        print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+       // print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
      //   return false;
          navigatorKey.currentState!.pushNamed('/register');
       }

@@ -45,7 +45,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.sizeOf(context);
     return Consumer<LocaleCont>(builder: (context, data, child) {
       return Scaffold(
           backgroundColor: scafoldBackground,
@@ -58,7 +58,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 width: 300,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage('images/store2.png'),
+                        image: AssetImage('${AppConstants.appbar_image}'),
                         fit: BoxFit.fill)),
               ),
             ),
@@ -95,9 +95,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         child: InkWell(
                           onTap: () {
-                            // Get.find<LocaleCont>()
                             data.updateLocale(_changeLanguage(e, context));
-                            print('kkkkkkkkkkkkkkkkkkkkkkkkkkkkk');
                           },
                           child: Container(
                               decoration: BoxDecoration(

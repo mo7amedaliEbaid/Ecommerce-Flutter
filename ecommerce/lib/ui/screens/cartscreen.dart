@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myfirst_app/constants/app_constants.dart';
 import 'package:myfirst_app/constants/global_constants.dart';
 import 'package:provider/provider.dart';
 
@@ -47,7 +48,7 @@ class CartPage extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * .25,
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                  image: AssetImage("images/emptycart.png"))),
+                                  image: AssetImage("${AppConstants.emptycart}"))),
                         ),
                         Text(
                           "Your Cart is Empty",

@@ -44,6 +44,7 @@ dependencies:
   dots_indicator:
   shimmer:
   shared_preferences:
+  connectivity_plus:
 
 
 
@@ -72,17 +73,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/emptycart.png
-    - images/electronic.jpeg
-    - images/jewelery.jpg
-    - images/mensCloth.jpg
-    - images/womenCloth.jpg
-    - images/myStore.jpeg
-    - images/store2.png
-    - images/store3.jpg
-    - images/splashstore.jpg
-    - images/lang/ar.json
-    - images/lang/en.json
+    - assets/images/
+    - assets/lang/ar.json
+    - assets/lang/en.json
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

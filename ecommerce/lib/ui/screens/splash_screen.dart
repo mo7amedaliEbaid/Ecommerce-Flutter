@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myfirst_app/constants/app_constants.dart';
 
 import '../../constants/global_constants.dart';
 import 'ads_ascreen.dart';
@@ -61,7 +62,7 @@ class _SplashBodyState extends State<SplashBody>
           ),
           Spacer(),
           Image.asset(
-            'images/store3.jpg',
+            '${AppConstants.splash_image}',
             fit: BoxFit.cover,
             height: 300,
           ),

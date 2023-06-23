@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myfirst_app/constants/app_constants.dart';
 import 'package:myfirst_app/constants/global_constants.dart';
 import 'package:myfirst_app/ui/screens/privacy_screen.dart';
 import 'package:myfirst_app/ui/screens/return_screen.dart';
@@ -16,17 +17,16 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-  static const String ENGLISH = "en";
-  static const String Arabic = "ar";
+
 
   Locale _changeLanguage(Language language, context) {
     Locale _a;
     switch (language.languageCode) {
-      case ENGLISH:
+      case AppConstants.ENGLISH:
         _a = Locale(language.languageCode, "US");
 
         break;
-      case Arabic:
+      case AppConstants.Arabic:
         _a = Locale(language.languageCode, "EG");
 
         break;

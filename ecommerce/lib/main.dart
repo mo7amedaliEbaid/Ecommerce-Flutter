@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:myfirst_app/constants/app_constants.dart';
 import 'package:myfirst_app/providers/cart_provider.dart';
@@ -16,6 +17,10 @@ import 'localization/localization.dart';
 import 'providers/locale_provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => ProductProvider()),
     ChangeNotifierProvider(create: (_) => CartProvider()),

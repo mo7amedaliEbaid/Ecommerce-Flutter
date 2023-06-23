@@ -29,7 +29,7 @@ TextStyle whiteStyle = const TextStyle(
 ButtonStyle blackBackground = ButtonStyle(
   backgroundColor: MaterialStateProperty.all(Colors.black),
 );
-Color scafoldBackground = Colors.grey.shade300;
+Color scafoldBackground = Color(0xffEDECE9);
 ButtonStyle whiteBackground = ButtonStyle(
   backgroundColor: MaterialStateProperty.all(Colors.white),
 );

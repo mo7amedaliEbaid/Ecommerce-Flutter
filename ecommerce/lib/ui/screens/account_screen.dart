@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:myfirst_app/providers/favourited_provider.dart';
+import 'package:myfirst_app/ui/screens/orders_screen.dart';
 import 'package:provider/provider.dart';
 import '../../constants/global_constants.dart';
+import '../../localization/localization.dart';
 import 'favouriteScreen.dart';
 
 class AccountScreen extends StatelessWidget {
@@ -121,11 +123,12 @@ class AccountScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Icon(Icons.favorite,color: Colors.white,),
-                        SizedBox(width: size.width*0.05),
+                       // SizedBox(width: size.width*0.05),
                         Text("My Favourites",style: boldWhite,),
-                        SizedBox(width: size.width*0.37),
+                       // SizedBox(width: size.width*0.37),
                         Icon(Icons.arrow_forward_ios,color: Colors.white,),
                       ],
                     ),
@@ -135,7 +138,7 @@ class AccountScreen extends StatelessWidget {
                 SizedBox(height: size.height*0.03),
                 InkWell(
                   onTap: (){
-                    //Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ReturnScreen()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>OrdersScreen()));
                   },
                   child: Container(
                     padding: EdgeInsets.all(20),
@@ -145,11 +148,12 @@ class AccountScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Icon(Icons.shopping_bag,color: Colors.white,),
-                        SizedBox(width: size.width*0.05),
-                        Text("My Orders",style: boldWhite,),
-                        SizedBox(width: size.width*0.45),
+                        Text(AppLocalization.of(context)
+                            .getTranslatedValue("orders")
+                            .toString(),style: boldWhite,),
                         Icon(Icons.arrow_forward_ios,color: Colors.white,),
                       ],
                     ),
@@ -168,11 +172,12 @@ class AccountScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Icon(Icons.location_on,color: Colors.white,),
-                        SizedBox(width: size.width*0.05),
+                      //  SizedBox(width: size.width*0.05),
                         Text("Address Book",style: boldWhite,),
-                        SizedBox(width: size.width*0.37),
+                       // SizedBox(width: size.width*0.37),
                         Icon(Icons.arrow_forward_ios,color: Colors.white,),
                       ],
                     ),
@@ -191,11 +196,10 @@ class AccountScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Icon(Icons.lock,color: Colors.white,),
-                        SizedBox(width: size.width*0.05),
                         Text("Change Password",style: boldWhite,),
-                        SizedBox(width: size.width*0.3),
                         Icon(Icons.arrow_forward_ios,color: Colors.white,),
                       ],
                     ),

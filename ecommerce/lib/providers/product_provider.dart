@@ -17,9 +17,9 @@ class ProductProvider extends ChangeNotifier {
   List categories = [];
    late Product oneproductbyId;
   List<String> listTitle = [];
- String apiProductURL = 'https://fakestoreapi.com/products';
-  String apiAllCategoryURL = 'https://fakestoreapi.com/products/categories';
-  String apiCategoryURL = 'https://fakestoreapi.com/products/category';
+// String apiProductURL = 'https://fakestoreapi.com/products';
+ // String apiAllCategoryURL = 'https://fakestoreapi.com/products/categories';
+//  String apiCategoryURL = 'https://fakestoreapi.com/products/category';
  void sortListProduct(condition) {
    switch (condition) {
      case AppConstants.PRICE_LOW_TO_HIGH:
@@ -78,7 +78,7 @@ class ProductProvider extends ChangeNotifier {
   Future<List<Product>> getproductsbycategoryelec(
       {required String selectedCategory}) async {
     var response = await http.get(Uri.parse(
-        "${Apiconstants.BASE_URL}${Apiconstants.PRODUCTS_BY_CATEGORY}$selectedCategory"));
+        "${Apiconstants.BASE_URL}${Apiconstants.PRODUCTS}/${Apiconstants.BY_CATEGORY}/$selectedCategory"));
     print('Response status: ${response.statusCode}');
     log('Response body: ${response.body}');
     var data = jsonDecode(response.body);
@@ -99,7 +99,7 @@ class ProductProvider extends ChangeNotifier {
   }
    Future<Product> getProductById({required int id}) async {
     try {
-      var response = await http.get(Uri.parse('https://fakestoreapi.com/products/$id'));
+      var response = await http.get(Uri.parse('${Apiconstants.BASE_URL}${Apiconstants.PRODUCTS}/$id'));
       print("response ${jsonDecode(response.body)}");
       var data = jsonDecode(response.body);
       if (response.statusCode != 200) {
@@ -116,7 +116,7 @@ class ProductProvider extends ChangeNotifier {
 
   Future<List<Product>> getallproducts() async {
     var response = await http.get(Uri.parse(
-        'https://fakestoreapi.com/products'));
+        '${Apiconstants.BASE_URL}${Apiconstants.PRODUCTS}'));
     print('Response status: ${response.statusCode}');
     log('Response body: ${response.body}');
     var data = jsonDecode(response.body);
@@ -139,15 +139,20 @@ class ProductProvider extends ChangeNotifier {
 
   Future<List> getListCategory() async {
     var client = http.Client();
-    var jsonString = await client.get(Uri.parse(apiAllCategoryURL));
+    var jsonString = await client.get(Uri.parse('${Apiconstants.BASE_URL}${Apiconstants.PRODUCTS}/${Apiconstants.ALL_CATEGORIES}'));
     var jsonObject = jsonDecode(jsonString.body);
-    categories = jsonObject;
-    notifyListeners();
-    return categories;
+    if(jsonString.statusCode==200){
+      categories = jsonObject;
+      notifyListeners();
+      return categories;
+    }else{
+      throw Exception("Failed to load categories list");
+    }
+
   }
  Future<List<Product>> getListSearch(String searchValue) async {
    var response = await http.get(Uri.parse(
-       'https://fakestoreapi.com/products'));
+       '${Apiconstants.BASE_URL}${Apiconstants.PRODUCTS}'));
    print('Response status: ${response.statusCode}');
    log('Response body: ${response.body}');
    var data = jsonDecode(response.body);

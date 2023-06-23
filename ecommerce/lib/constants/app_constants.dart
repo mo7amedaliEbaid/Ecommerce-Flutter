@@ -4,7 +4,7 @@ import '../ui/screens/account_screen.dart';
 import '../ui/screens/branches.dart';
 import '../ui/screens/categories_screen.dart';
 import '../ui/screens/home_screen.dart';
-import '../ui/screens/settings.dart';
+import '../ui/screens/settings_screen.dart';
 
 class AppConstants {
   static const String PRICE_LOW_TO_HIGH = "Price: Low to High";
@@ -17,7 +17,9 @@ class AppConstants {
     PRICE_LOW_TO_HIGH,
     PRICE_HIGH_TO_LOW,
   ];
- static const String pageviewimage="images/splashstore.jpg";
+  static const String ENGLISH = "en";
+  static const String Arabic = "ar";
+ static const String pageviewimage="assets/images/splashstore.jpg";
  static const SCALE_FRACTION = 0.7;
   static const FULL_SCALE = 1.0;
   static const PAGER_HEIGHT = 220.0;
@@ -41,10 +43,14 @@ class AppConstants {
     AccountScreen(),
     Settings(),
   ];
+  static const String appbar_image="assets/images/store2.png";
+  static const String emptycart="assets/images/emptycart.png";
+  static const String splash_image="assets/images/store3.jpg";
+  static const String error_image="assets/images/myStore.jpeg";
   static const List<String> assets = [
-    "images/electronic.jpeg",
-    "images/jewelery.jpg",
-    "images/mensCloth.jpg",
-    "images/womenCloth.jpg"
+    "assets/images/electronic.jpeg",
+    "assets/images/jewelery.jpg",
+    "assets/images/mensCloth.jpg",
+    "assets/images/womenCloth.jpg"
   ];
 }

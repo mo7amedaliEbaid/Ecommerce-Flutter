@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myfirst_app/constants/app_constants.dart';
 import 'package:myfirst_app/constants/global_constants.dart';
 import 'package:myfirst_app/providers/favourited_provider.dart';
 import 'package:myfirst_app/providers/cart_provider.dart';
@@ -52,7 +53,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                     width: 100,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage('images/store2.png'),
+                            image: AssetImage('${AppConstants.appbar_image}'),
                             fit: BoxFit.fill)),
                   ),
                   Text(
