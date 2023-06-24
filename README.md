@@ -11,7 +11,7 @@ and many other features
 Provider, Statemanagement,   
 Get Storage, Animations,      
 Ecommerce, Cart,    
-Connectivity Checking, Loading Shimmer,     
+Connectivity Checking, Loading Shimmer,Search     
 Localization , Api , Http,      
 Media Query, RefreshIndicator,    
 NotificationListener, Notched Bottom Bar
