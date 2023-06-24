@@ -25,16 +25,12 @@ class _AdsScreenState extends State<AdsScreen> {
   void initState() {
     super.initState();
     initConnectivity();
-
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) => refreshIndicatorKey.currentState?.show());
-
     _connectivitySubscription =
         _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
   }
 
   @override
-  void dispose() {
+  void dispose()async {
     _connectivitySubscription.cancel();
     super.dispose();
   }
@@ -52,7 +48,6 @@ class _AdsScreenState extends State<AdsScreen> {
     }
     return _updateConnectionStatus(result);
   }
-
   Future<void> _updateConnectionStatus(ConnectivityResult result) async {
     setState(() {
       _connectionStatus = result;

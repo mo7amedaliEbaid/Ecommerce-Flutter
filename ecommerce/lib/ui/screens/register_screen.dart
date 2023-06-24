@@ -5,7 +5,7 @@ import '../../constants/global_constants.dart';
 import '../../providers/auth_provider.dart';
 import '../widgets/myDialog.dart';
 import 'categories_screen.dart';
-import 'forgetpassword.dart';
+import 'forgetpassword_screen.dart';
 import 'logInScreeen.dart';
 class RegisterScreen extends StatefulWidget {
   RegisterScreen({Key? key}) : super(key: key);

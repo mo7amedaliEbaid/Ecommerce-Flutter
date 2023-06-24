@@ -26,7 +26,7 @@ class Product {
     price: json["price"].toDouble()??null,
     description: json["description"]??null,
     image: json["image"]??null,
-   // quantity: json["quantity"]??null,
+   quantity: json["quantity"]??1,
     rating: json['rating']??null,
     category: json['category']??null,
   );

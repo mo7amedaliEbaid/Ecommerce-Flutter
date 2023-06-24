@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../screens/forgetpassword.dart';
+import '../screens/forgetpassword_screen.dart';
 import '../screens/logInScreeen.dart';
 import 'mybottomnavbar_widget.dart';
 

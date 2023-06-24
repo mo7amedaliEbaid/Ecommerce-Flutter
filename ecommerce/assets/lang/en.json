@@ -17,5 +17,6 @@
   "return":"Return Policy",
   "contact":"Contact Us",
   "settings":"Settings",
-  "orders":"My Orders"
+  "orders":"My Orders",
+  "remove": "Remove From Cart"
 }

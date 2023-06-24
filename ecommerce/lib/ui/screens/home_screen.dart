@@ -99,7 +99,7 @@ class HomeScreen extends StatelessWidget {
             vertical_space,
             Text(
               categoryname.toUpperCase(),
-              style: categorynamestyle,
+              style: titleStyle.copyWith(fontWeight: FontWeight.w500),
             ),
           ],
         ),

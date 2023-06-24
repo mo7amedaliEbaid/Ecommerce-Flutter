@@ -21,8 +21,8 @@ class MyBottombar extends StatelessWidget {
       extendBody: true,
       bottomNavigationBar: (constants.bottomBarPages.length <= maxCount)
           ? MyAnimatedNotchBottomBar(
+
               pageController: _pageController,
-              color: scafoldBackground,
               showBlurBottomBar: false,
               showShadow: true,
               showLabel: false,

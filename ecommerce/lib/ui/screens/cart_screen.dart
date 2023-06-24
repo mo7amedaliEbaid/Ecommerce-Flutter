@@ -287,8 +287,6 @@ class _CartScreenState extends State<CartScreen> {
                 InkWell(
                   onTap: () {
                     cartdata.removeSelectedItemFromCart(product.id!);
-                    Provider.of<CartProvider>(context, listen: false)
-                        .remove(product);
                   },
                   child: const Icon(
                     Icons.clear,
@@ -306,7 +304,7 @@ class _CartScreenState extends State<CartScreen> {
 
   buildTotalPrice() {
     return Consumer<CartProvider>(builder: (context, data, _) {
-      return data.cartlistProduct.length == 0
+      return data.cartlist.length == 0
           ? Container()
           : Column(
               children: [
@@ -320,7 +318,8 @@ class _CartScreenState extends State<CartScreen> {
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                      Text("${data.totalPrice()} KWD",
+                      Text(//"${data.totalPrice()} KWD",
+                        "",
                           style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold))
                     ],
@@ -352,7 +351,8 @@ class _CartScreenState extends State<CartScreen> {
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                      Text(" ${data.totalPrice() - 2.000} KWD",
+                      Text(//" ${data.totalPrice() - 2.000} KWD",
+                        "",
                           style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold))
                     ],

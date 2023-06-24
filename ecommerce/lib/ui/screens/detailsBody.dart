@@ -2,7 +2,10 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:myfirst_app/constants/app_constants.dart';
 import 'package:myfirst_app/providers/cart_provider.dart';
-import 'package:myfirst_app/providers/favourited_provider.dart';
+import 'package:myfirst_app/providers/favourites_provider.dart';
+import 'package:myfirst_app/ui/widgets/addtocart_button_widget.dart';
+import 'package:myfirst_app/ui/widgets/changequantity_widget.dart';
+import 'package:myfirst_app/ui/widgets/favicon_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/global_constants.dart';
@@ -28,14 +31,9 @@ class _DetailsBodyState extends State<DetailsBody> {
   PageController _topPageController = PageController();
   PageController _mainPageController = PageController();
   PageController _secondPageController = PageController();
-  late CartProvider cartProvider;
-  late FavouritesProvider favouritesProvider;
 
   @override
   void initState() {
-    cartProvider = Provider.of<CartProvider>(context, listen: false);
-    favouritesProvider =
-        Provider.of<FavouritesProvider>(context, listen: false);
     productProvider = Provider.of<ProductProvider>(context, listen: false);
     _listProducts = productProvider.getallproducts();
     _topPageController = PageController(
@@ -47,7 +45,6 @@ class _DetailsBodyState extends State<DetailsBody> {
     _secondPageController =
         PageController(initialPage: widget.selectedproductid - 1)
           ..addListener(_onMainScroll);
-
     super.initState();
   }
 
@@ -191,251 +188,167 @@ class _DetailsBodyState extends State<DetailsBody> {
                         itemCount: data.allproducts.length,
                         itemBuilder: (context, index) {
                           return Container(
-                            // height: 490,
-                            // width: 400,
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(
-                                      10.0, 10, 12, 0),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Container(
-                                          height: size.height * .07,
-                                          width: size.width * .7,
-                                          child: AutoSizeText(
-                                              textAlign: TextAlign.center,
-                                              data.allproducts[index].title!,
-                                              maxLines: 2,
-                                              style: mediumStyle)),
-                                      InkWell(
-                                          onTap: () {
-                                            favouritesProvider.add(
-                                                item: data.allproducts[index]);
-                                            /*setState(() {
-                        _favourites = favouritesProvider.favouritelistProduct;
-                      });*/
-                                          },
-                                          child: Icon(
-                                            Icons.favorite_border,
-                                            size: 30,
-                                          )),
-                                    ],
+                              //height: 490,
+                              // width: 400,
+                              child: Column(children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(5, 10, 30, 0),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                      height: size.height * .07,
+                                      width: size.width * .7,
+                                      child: AutoSizeText(
+                                          textAlign: TextAlign.center,
+                                          data.allproducts[index].title!,
+                                          maxLines: 2,
+                                          style: mediumStyle)),
+                                  buildFavicon(
+                                      context, data.allproducts[index], true),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.fromLTRB(18.0, 0, 18, 20),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  IconTheme(
+                                    data: IconThemeData(
+                                      color: Colors.grey,
+                                      size: 30,
+                                    ),
+                                    child: StarDisplay(data
+                                        .allproducts[index].rating?["rate"]
+                                        .round()),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(
-                                      18.0, 0, 18, 20),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                  Row(
                                     children: [
-                                      IconTheme(
-                                        data: IconThemeData(
-                                          color: Colors.grey,
-                                          size: 30,
-                                        ),
-                                        child: StarDisplay(data
-                                            .allproducts[index].rating?["rate"]
-                                            .round()),
+                                      Text(
+                                        "Votes",
+                                        style: hintStyle,
                                       ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            "Votes",
-                                            style: hintStyle,
-                                          ),
-                                          horizontal_space,
-                                          Text(
-                                            data.allproducts[index]
-                                                .rating!["count"]
-                                                .toString(),
-                                            style: hintStyle,
-                                          ),
-                                        ],
+                                      horizontal_space,
+                                      Text(
+                                        data.allproducts[index].rating!["count"]
+                                            .toString(),
+                                        style: hintStyle,
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 22.0),
+                              child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    data.allproducts[index].category!
+                                        .toUpperCase(),
+                                    style: hintStyle,
+                                  )),
+                            ),
+                            SizedBox(
+                              height: size.height * .01,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                //SizedBox(width: size.width*.05,),
+                                Column(
+                                  children: [
+                                    Text('price', style: hintStyle),
+                                    SizedBox(
+                                      height: size.height * .008,
+                                    ),
+                                    Text(
+                                      '${data.allproducts[index].price}',
+                                      style: lightStyle,
+                                    ),
+                                  ],
+                                ),
+                                // SizedBox(width: size.width*.05,),
+                                Align(
+                                  alignment: Alignment.bottomRight,
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.share,
+                                        size: 20,
+                                      ),
+                                      SizedBox(
+                                        width: size.width * .03,
+                                      ),
+                                      Text(
+                                        'Share'.toUpperCase(),
+                                        style: meduimStyle,
                                       )
                                     ],
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 22.0),
-                                  child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        data.allproducts[index].category!
-                                            .toUpperCase(),
-                                        style: hintStyle,
-                                      )),
-                                ),
-                                SizedBox(
-                                  height: size.height * .01,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    //SizedBox(width: size.width*.05,),
-                                    Column(
-                                      children: [
-                                        Text('price', style: hintStyle),
-                                        SizedBox(
-                                          height: size.height * .008,
-                                        ),
-                                        Text(
-                                          '${data.allproducts[index].price}',
-                                          style: lightStyle,
-                                        ),
-                                      ],
-                                    ),
-                                    // SizedBox(width: size.width*.05,),
-                                    Align(
-                                      alignment: Alignment.bottomRight,
-                                      child: Row(
-                                        children: [
-                                          Icon(
-                                            Icons.share,
-                                            size: 20,
-                                          ),
-                                          SizedBox(
-                                            width: size.width * .03,
-                                          ),
-                                          Text(
-                                            'Share'.toUpperCase(),
-                                            style: meduimStyle,
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Container(
-                                  margin: EdgeInsets.all(10),
-                                  color: Colors.black,
-                                  height: 2,
-                                  width: double.infinity,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(
-                                      21.0, 10, 0, 10),
-                                  child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        'About the product',
-                                        style: lightStyle,
-                                      )),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(22, 0, 22, 20),
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      data.allproducts[index].description!,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.black,
-                                        decoration: TextDecoration.none,
-                                        fontSize: 15,
-                                      ),
-                                      textAlign: TextAlign.justify,
-                                    ),
-                                  ),
-                                ),
-                                _buildaddto_cart(
-                                    context, data.allproducts[index])
                               ],
                             ),
-                          );
+                            Container(
+                              margin: EdgeInsets.all(10),
+                              color: Colors.black,
+                              height: 2,
+                              width: double.infinity,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.fromLTRB(21.0, 10, 0, 10),
+                              child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    'About the product',
+                                    style: lightStyle,
+                                  )),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(22, 0, 22, 20),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  data.allproducts[index].description!,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black,
+                                    decoration: TextDecoration.none,
+                                    fontSize: 15,
+                                  ),
+                                  textAlign: TextAlign.justify,
+                                ),
+                              ),
+                            ),
+                            _buildaddto_cart(context, data.allproducts[index])
+                          ]));
                         }),
                   );
           }),
-          /*SizedBox(
-            height: size.height * .01,
-          ),*/
         ],
       ),
     );
   }
 
   _buildaddto_cart(BuildContext context, Product product) {
-    Size size = MediaQuery.sizeOf(context);
+    //Size size = MediaQuery.sizeOf(context);
     return Consumer<CartProvider>(builder: (context, cartdata, _) {
-      return Container(
-          // width: size.width * 0.4,
-          margin: EdgeInsets.symmetric(horizontal: 20),
-          height: size.height * 0.06,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(5),
-              topLeft: Radius.circular(5),
-            ),
-          ),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: scafoldBackground,
-              ),
-              child: IconButton(
-                icon: Icon(Icons.minimize),
-                onPressed: () {
-                  cartdata.decreaseQtyOfItemInCart(product);
-                  // _goToPage(index - 1);
-                },
-              ),
-            ),
-            Text(
-              '${product.quantity}',
-              style: titleStyle,
-            ),
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: scafoldBackground,
-              ),
-              child: IconButton(
-                icon: Icon(Icons.add),
-                onPressed: () {
-                  cartdata.increaseQtyOfItemInCart(product);
-                  //      _goToPage(index + 1);
-                },
-              ),
-            ),
-            InkWell(
-              onTap: () {
-                cartdata.addItemToCart(product);
-                /*cartProvider.add(
-                  data.allproducts[index], 1);*/
-              },
-              child: Container(
-                width: size.width * 0.4,
-                height: size.height * 0.09,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(5),
-                    topRight: Radius.circular(5),
-                  ),
-                ),
-                child: Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Add to cart'.toUpperCase(),
-                      style: boldWhite,
-                    )),
-              ),
-            ),
-          ]));
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          buildqty(context, product),
+          horizontal_space,
+          horizontal_space,
+          horizontal_space,
+          buildAddToCartButton(context, product)
+        ],
+      );
     });
   }
 }

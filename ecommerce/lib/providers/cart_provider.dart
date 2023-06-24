@@ -4,7 +4,6 @@ import 'package:get_storage/get_storage.dart';
 import '../models/products_model.dart';
 
 class CartProvider extends ChangeNotifier {
-  List<Product> cartlistProduct = [];
   GetStorage box = GetStorage();
   List<Product> cartlist = <Product>[];
 
@@ -20,22 +19,11 @@ class CartProvider extends ChangeNotifier {
     List<dynamic> value = GetStorage().read('items_cart');
     notifyListeners();
 
-    print(
-        "$value vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+    //print(
+     //   "$value vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
   }
 
-  void add(Product item, int quantity) {
-    for (int i = 0; i < cartlistProduct.length; i++) {
-      if (cartlistProduct[i].title == item.title) {
-        cartlistProduct[i].quantity = cartlistProduct[i].quantity + quantity;
-        notifyListeners();
-        return;
-      }
-    }
-    Product product = Product.fromItem(item, 1);
-    cartlistProduct.add(product);
-    notifyListeners();
-  }
+
 
   void updatingSession() {
     box.listenKey('items_cart', (updatedValue) {
@@ -93,7 +81,6 @@ class CartProvider extends ChangeNotifier {
     cartlist.removeWhere((Product selectedItem) => selectedItem.id == id);
     List<Map<String, dynamic>> items_cart =
         cartlist.map((Product e) => e.toJson()).toList();
-    notifyListeners();
 
     box.write('items_cart', items_cart);
     notifyListeners();
@@ -107,7 +94,6 @@ class CartProvider extends ChangeNotifier {
             value.map((e) => Product.fromJson(e)).toList();
         cartlist.clear();
         cartlist.addAll(getModelFromSession);
-        notifyListeners();
       }
     }
     updatingSession();
@@ -127,27 +113,4 @@ class CartProvider extends ChangeNotifier {
     });
   }
 
-  void updateQuantity(Product product, int newQuantity) {
-    for (int i = 0; i < cartlistProduct.length; i++) {
-      if (cartlistProduct[i].title == product.title) {
-        cartlistProduct[i].quantity = newQuantity;
-        if (newQuantity == 0) remove(product);
-        notifyListeners();
-        return;
-      }
-    }
-  }
-
-  double totalPrice() {
-    double total = 0;
-    for (Product product in cartlistProduct) {
-      total += (product.price! * product.quantity);
-    }
-    return total;
-  }
-
-  void remove(Product item) {
-    cartlistProduct.remove(item);
-    notifyListeners();
-  }
 }

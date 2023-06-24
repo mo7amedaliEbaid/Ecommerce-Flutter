@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:myfirst_app/constants/app_constants.dart';
 import 'package:myfirst_app/providers/cart_provider.dart';
-import 'package:myfirst_app/providers/favourited_provider.dart';
+import 'package:myfirst_app/providers/favourites_provider.dart';
 import 'package:myfirst_app/providers/auth_provider.dart';
 import 'package:myfirst_app/providers/product_provider.dart';
 import 'package:myfirst_app/ui/screens/home_screen.dart';

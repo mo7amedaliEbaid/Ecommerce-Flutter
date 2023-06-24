@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:myfirst_app/providers/favourited_provider.dart';
+import 'package:myfirst_app/providers/favourites_provider.dart';
 import 'package:myfirst_app/ui/screens/orders_screen.dart';
 import 'package:provider/provider.dart';
 import '../../constants/global_constants.dart';
 import '../../localization/localization.dart';
-import 'favouriteScreen.dart';
+import 'favourites_screen.dart';
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({Key? key}) : super(key: key);
@@ -107,42 +107,58 @@ class AccountScreen extends StatelessWidget {
                     Positioned(
                         right: 20,
                         top: 50,
-                        child: Icon(Icons.edit,color: Colors.grey,size: 30,))
+                        child: Icon(
+                          Icons.edit,
+                          color: Colors.grey,
+                          size: 30,
+                        ))
                   ],
                 ),
-                SizedBox(height: size.height*0.03),
-                Consumer<FavouritesProvider>(builder: (context,data,_)=>InkWell(
-                  onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>FavouritePge(favouritelistProduct: data.favouritelistProduct)));
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(20),
-                    height: size.height*0.1,
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade800,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(Icons.favorite,color: Colors.white,),
-                       // SizedBox(width: size.width*0.05),
-                        Text("My Favourites",style: boldWhite,),
-                       // SizedBox(width: size.width*0.37),
-                        Icon(Icons.arrow_forward_ios,color: Colors.white,),
-                      ],
+                SizedBox(height: size.height * 0.03),
+                Consumer<FavouritesProvider>(
+                  builder: (context, data, _) => InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => FavouritePge()));
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      height: size.height * 0.1,
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade800,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon(
+                            Icons.favorite,
+                            color: Colors.white,
+                          ),
+                          // SizedBox(width: size.width*0.05),
+                          Text(
+                            "My Favourites",
+                            style: boldWhite,
+                          ),
+                          // SizedBox(width: size.width*0.37),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.white,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),),
-
-                SizedBox(height: size.height*0.03),
+                ),
+                SizedBox(height: size.height * 0.03),
                 InkWell(
-                  onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>OrdersScreen()));
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => OrdersScreen()));
                   },
                   child: Container(
                     padding: EdgeInsets.all(20),
-                    height: size.height*0.1,
+                    height: size.height * 0.1,
                     decoration: BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(10),
@@ -150,23 +166,32 @@ class AccountScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Icon(Icons.shopping_bag,color: Colors.white,),
-                        Text(AppLocalization.of(context)
-                            .getTranslatedValue("orders")
-                            .toString(),style: boldWhite,),
-                        Icon(Icons.arrow_forward_ios,color: Colors.white,),
+                        Icon(
+                          Icons.shopping_bag,
+                          color: Colors.white,
+                        ),
+                        Text(
+                          AppLocalization.of(context)
+                              .getTranslatedValue("orders")
+                              .toString(),
+                          style: boldWhite,
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.white,
+                        ),
                       ],
                     ),
                   ),
                 ),
-                SizedBox(height: size.height*0.03),
+                SizedBox(height: size.height * 0.03),
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     //Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ReturnScreen()));
                   },
                   child: Container(
                     padding: EdgeInsets.all(20),
-                    height: size.height*0.1,
+                    height: size.height * 0.1,
                     decoration: BoxDecoration(
                       color: Colors.grey.shade800,
                       borderRadius: BorderRadius.circular(10),
@@ -174,23 +199,32 @@ class AccountScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Icon(Icons.location_on,color: Colors.white,),
-                      //  SizedBox(width: size.width*0.05),
-                        Text("Address Book",style: boldWhite,),
-                       // SizedBox(width: size.width*0.37),
-                        Icon(Icons.arrow_forward_ios,color: Colors.white,),
+                        Icon(
+                          Icons.location_on,
+                          color: Colors.white,
+                        ),
+                        //  SizedBox(width: size.width*0.05),
+                        Text(
+                          "Address Book",
+                          style: boldWhite,
+                        ),
+                        // SizedBox(width: size.width*0.37),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.white,
+                        ),
                       ],
                     ),
                   ),
                 ),
-                SizedBox(height: size.height*0.03),
+                SizedBox(height: size.height * 0.03),
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     //Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ReturnScreen()));
                   },
                   child: Container(
                     padding: EdgeInsets.all(20),
-                    height: size.height*0.1,
+                    height: size.height * 0.1,
                     decoration: BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(10),
@@ -198,9 +232,18 @@ class AccountScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Icon(Icons.lock,color: Colors.white,),
-                        Text("Change Password",style: boldWhite,),
-                        Icon(Icons.arrow_forward_ios,color: Colors.white,),
+                        Icon(
+                          Icons.lock,
+                          color: Colors.white,
+                        ),
+                        Text(
+                          "Change Password",
+                          style: boldWhite,
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.white,
+                        ),
                       ],
                     ),
                   ),

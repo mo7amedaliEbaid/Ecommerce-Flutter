@@ -15,10 +15,7 @@ TextStyle titleStyle = const TextStyle(
   fontSize: 20,
   fontWeight: FontWeight.bold,
 );
-TextStyle categorynamestyle = TextStyle(
-  fontSize: 20,
-  fontWeight: FontWeight.w500,
-);
+
 TextStyle mediumStyle = const TextStyle(
   color: Colors.black,
   fontSize: 18,

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:myfirst_app/constants/global_constants.dart';
 import 'package:myfirst_app/providers/cart_provider.dart';
+import 'package:myfirst_app/ui/widgets/favicon_widget.dart';
 import 'package:provider/provider.dart';
 import '../../models/products_model.dart';
-import '../../providers/favourited_provider.dart';
+import '../../providers/favourites_provider.dart';
 import '../screens/details_screen.dart';
+import 'addtocart_button_widget.dart';
 class ProductItem extends StatefulWidget {
   ProductItem(this.chosenproduct, this._previousprice);
  final Product chosenproduct;
@@ -67,70 +69,11 @@ class _ProductItemState extends State<ProductItem> {
           _buildprevios_price(widget._previousprice),
           Row(
             children: [
-              Consumer<CartProvider>(builder: (context,cartdata,_){
-                return  ElevatedButton(
-                  onPressed: () {
-                    print("Llllllllllllllllllllllllllllllllllllllllllllllllll");
-                    cartdata.add(widget.chosenproduct, 1);
-                    cartdata.addItemToCart(widget.chosenproduct);
-                    /*setState(() {
-                    _cart = cartProvider.cartlistProduct;
-                  });*/
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.black),
-                    minimumSize: MaterialStateProperty.all(Size(70, 42)),
-                    maximumSize: MaterialStateProperty.all(Size(137, 60)),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.shopping_bag,
-                        color: Colors.white,
-                        size: 16,
-                      ),
-                      SizedBox(
-                        width: 7,
-                      ),
-                      Text(
-                        'Add to Cart',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                );
-              }),
-              vertical_space,
-              Consumer<FavouritesProvider>(builder: (context,favdata,_){
-                return Container(
-                  width: 30,
-                  height: 44,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(5)),
-                  child: isPressed
-                      ? InkWell(
-                      onTap: () {
-                        favdata.remove(widget.chosenproduct);
-                        setState(() {
-                          isPressed = !isPressed;
-                        });
-                      },
-                      child: pressedIcon)
-                      : InkWell(
-                      onTap: () {
-                        favdata.add(item: widget.chosenproduct);
-                       setState(() {
-                          isPressed = !isPressed;
-                        });
-                      },
-                      child: unpressedIcon),
-                );
-              })
+
+                 buildAddToCartButton(context,widget.chosenproduct),
+              horizontal_space,
+
+              buildFavicon(context, widget.chosenproduct, false)
 
             ],
           ),

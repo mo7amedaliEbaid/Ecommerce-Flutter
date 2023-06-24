@@ -1,14 +1,16 @@
+import 'package:badges/badges.dart' as badges;
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:myfirst_app/constants/app_constants.dart';
 import 'package:myfirst_app/constants/global_constants.dart';
-import 'package:myfirst_app/providers/favourited_provider.dart';
+import 'package:myfirst_app/providers/favourites_provider.dart';
 import 'package:myfirst_app/providers/cart_provider.dart';
 import 'package:myfirst_app/ui/screens/cart_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../localization/localization.dart';
 import '../../providers/product_provider.dart';
-import '../screens/favouriteScreen.dart';
+import '../screens/favourites_screen.dart';
 import '../screens/searchscreen.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -18,7 +20,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => Size(400, 190);
 
   Widget build(BuildContext context) {
-    Size size=MediaQuery.sizeOf(context);
+    Size size = MediaQuery.sizeOf(context);
     return Container(
       height: size.height * 0.24,
       //width: 400,
@@ -29,21 +31,22 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-                child: Consumer<FavouritesProvider>(
+                child: /*Consumer<FavouritesProvider>(
                     builder: (context, data, child) {
-                  return InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
+                  return */
+                    InkWell(
+                  onTap: () {
+                    /* Navigator.of(context).push(MaterialPageRoute(
                           builder: (BuildContext context) => FavouritePge(
                               favouritelistProduct:
-                                  data.favouritelistProduct)));
-                    },
-                    child: Icon(
-                      Icons.add_alert_sharp,
-                      color: Colors.grey.shade700,
-                    ),
-                  );
-                }),
+                                  data.favouritelistProduct)));*/
+                  },
+                  child: Icon(
+                    Icons.add_alert_sharp,
+                    color: Colors.grey.shade700,
+                  ),
+                ),
+                // }),
               ),
               Column(
                 children: [
@@ -70,15 +73,31 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                 return Padding(
                   padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
                   child: IconButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                CartScreen()));
-                      },
-                      icon: Icon(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (BuildContext context) => CartScreen()));
+                    },
+                    icon: badges.Badge(
+                      child: const Icon(
                         Icons.shopping_bag,
-                        color: Colors.grey.shade700,
-                      )),
+                        size: 30,
+                        // color: Colors.grey,
+                      ),
+                      badgeStyle: BadgeStyle(
+                        badgeColor: Colors.grey,
+                      ),
+                      badgeContent: Padding(
+                        padding: const EdgeInsets.all(0),
+                        child: Text(
+                          '${data.cartlist.length}',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 );
               }),
             ],
@@ -102,14 +121,12 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-
                     Text(
                       AppLocalization.of(context)
                           .getTranslatedValue("search")
                           .toString(), //'Search',
                       style: hintStyle,
                     ),
-
                     Icon(Icons.search),
                   ],
                 ),

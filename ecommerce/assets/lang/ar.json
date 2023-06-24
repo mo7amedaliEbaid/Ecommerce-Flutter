@@ -3,7 +3,7 @@
   "choose_language" : "اختر اللغه",
   "select_your_currency": "حدد العمله",
   "get_started":"ابدأ",
-  "buy":"اضف الى قائمة المشتريات",
+  "buy":"اضف الى المشتريات",
   "shop_by_category":"تسوق حسب التصنيف",
   "view_all":"فحص شامل",
   "featured_products":"منتجات بخصم",
@@ -17,6 +17,7 @@
   "return":"سياسات الارجاع",
   "contact":"تواصل معنا",
   "settings":"الاعدادات",
-  "orders":"الطلبات"
+  "orders":"الطلبات",
+  "remove": "حذف من المشتريات"
 
 }

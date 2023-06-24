@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:myfirst_app/constants/app_constants.dart';
 
-import 'dotsIndicator.dart';
+import 'dotsIndicator_widget.dart';
 
 class MyPageView extends StatefulWidget {
   MyPageView({Key? key}) : super(key: key);

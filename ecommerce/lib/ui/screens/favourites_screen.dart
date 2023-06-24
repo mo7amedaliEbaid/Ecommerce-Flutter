@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:myfirst_app/constants/global_constants.dart';
-import 'package:myfirst_app/providers/favourited_provider.dart';
+import 'package:myfirst_app/providers/favourites_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/products_model.dart';
 
-class FavouritePge extends StatelessWidget {
-  FavouritePge({super.key, required this.favouritelistProduct});
+class FavouritePge extends StatefulWidget {
+  FavouritePge({super.key});
 
-  final List<Product> favouritelistProduct;
 
+  @override
+  State<FavouritePge> createState() => _FavouritePgeState();
+}
+
+class _FavouritePgeState extends State<FavouritePge> {
+  late FavouritesProvider cartProvider;
+
+  @override
+  void initState() {
+    super.initState();
+    cartProvider = Provider.of<FavouritesProvider>(context, listen: false);
+    cartProvider.getUpdatedSessionfavData();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +74,7 @@ class FavouritePge extends StatelessWidget {
   buildTitlefavourite() {
     return Consumer<FavouritesProvider>(
       builder: (context, data, _) {
-        return data.favouritelistProduct.isEmpty
+        return data.favouriteslist.isEmpty
             ? Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: const Text(
@@ -93,7 +105,7 @@ class FavouritePge extends StatelessWidget {
   buildListProcductfav(BuildContext context) {
     return Consumer<FavouritesProvider>(
       builder: (context, data, _) {
-        return data.favouritelistProduct.length == 0
+        return data.favouriteslist.length == 0
             ? Align(
                 alignment: Alignment.bottomCenter,
                 child: Column(
@@ -118,7 +130,7 @@ class FavouritePge extends StatelessWidget {
               )
             : Column(
             children: [
-              ...data.favouritelistProduct
+              ...data.favouriteslist
                   .map((e) => buildProductfav(context, e)),
               SizedBox(height: 15,)
             ],
@@ -188,7 +200,7 @@ class FavouritePge extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         Provider.of<FavouritesProvider>(context, listen: false)
-                            .remove(product);
+                            .removeSelectedItemFromfavourites(product.id!);
                       },
                       child: const Icon(
                         Icons.favorite,
