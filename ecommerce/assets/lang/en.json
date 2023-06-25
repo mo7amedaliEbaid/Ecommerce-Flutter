@@ -18,5 +18,9 @@
   "contact":"Contact Us",
   "settings":"Settings",
   "orders":"My Orders",
-  "remove": "Remove From Cart"
+  "remove": "Remove From Cart",
+  "pass_validate": "Please Enter Your Required Password",
+  "name_validate": "Please Enter Your Required UserName",
+  "uname": "UserName",
+  "pass": "Password"
 }

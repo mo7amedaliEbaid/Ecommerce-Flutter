@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:myfirst_app/constants/app_constants.dart';
 import 'package:myfirst_app/ui/screens/register_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/global_constants.dart';
+import '../../localization/localization.dart';
 import '../../providers/auth_provider.dart';
 import 'forgetpassword_screen.dart';
 
@@ -43,9 +45,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.sizeOf(context);
     return Scaffold(
-      backgroundColor: Colors.grey.shade300,
+      backgroundColor: scafoldBackground,
       body: Form(
         key: _secformKey,
         child: Padding(
@@ -65,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: size.height * .20,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage('images/store2.png'),
+                          image: AssetImage('${AppConstants.appbar_image}'),
                           fit: BoxFit.contain),
                     ),
                   ),
@@ -89,12 +91,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 20,
                   ),
                   TextFormField(
+                    onTapOutside: (event) => FocusScope.of(context).unfocus(),
                     validator: (String? value) {
-                      if (value == null) {
-                        return 'Please Enter Your Required UserName';
-                      } else if (value.isEmpty) {
-                        return 'Please Enter Your Required Password';
+                      if (value == null||value.isEmpty) {
+                        return AppLocalization.of(context)
+                            .getTranslatedValue("name_validate")
+                            .toString();
                       }
+                      return null;
                     },
                     controller: emailController,
                     decoration: InputDecoration(
@@ -107,18 +111,22 @@ class _LoginScreenState extends State<LoginScreen> {
                         filled: true,
                         fillColor: Colors.white,
                         border: InputBorder.none,
-                        hintText: 'UserName'),
+                        hintText: AppLocalization.of(context)
+                            .getTranslatedValue("uname")
+                            .toString()),
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   TextFormField(
+                    onTapOutside: (event) => FocusScope.of(context).unfocus(),
                     validator: (String? value) {
-                      if (value == null) {
-                        return 'Please Enter Your Required Password';
-                      } else if (value.isEmpty) {
-                        return 'Please Enter Your Required Password';
+                      if (value == null||value.isEmpty) {
+                        return AppLocalization.of(context)
+                            .getTranslatedValue("pass_validate")
+                            .toString();
                       }
+                      return null;
                     },
                     controller: passwordController,
                     decoration: InputDecoration(
@@ -131,7 +139,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         border: InputBorder.none,
                         prefixIcon: Icon(Icons.lock),
                         iconColor: Colors.grey,
-                        hintText: 'Password',
+                        hintText: AppLocalization.of(context)
+                            .getTranslatedValue("pass")
+                            .toString(),
                         suffixIcon: IconButton(
                             onPressed: _toggle,
                             icon: Icon(_obscureText

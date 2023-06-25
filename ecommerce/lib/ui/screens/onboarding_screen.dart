@@ -10,7 +10,7 @@ import '../../models/language_model.dart';
 import '../../providers/locale_provider.dart';
 import '../../providers/product_provider.dart';
 import '../widgets/mybottomnavbar_widget.dart';
-import 'logInScreeen.dart';
+import 'logIn_screen.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   OnBoardingScreen({Key? key}) : super(key: key);
