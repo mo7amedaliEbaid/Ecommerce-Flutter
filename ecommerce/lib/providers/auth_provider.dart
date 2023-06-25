@@ -6,6 +6,8 @@ import 'package:myfirst_app/constants/api_constansts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/global_constants.dart';
+import '../ui/screens/forgetpassword_screen.dart';
+import '../ui/widgets/myDialog.dart';
 
 class AuthProvider with ChangeNotifier {
   void register(String username, email, password) async {
@@ -25,14 +27,12 @@ class AuthProvider with ChangeNotifier {
         prefs.setString('email', email);
         prefs.setString('pass', password);
         print(email);
-        //print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-        navigatorKey.currentState!.pushNamed('/onboarding');
-        // return true;
-        //   navigatorKey.currentState!.pushNamed('nav');
+        navigatorKey.currentState!.push(DismissibleDialog<void>(
+            over: new Over("Successfully Registered!","You are successfully registered",true)
+        ));
+
       } else {
         print('failed');
-        // print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-        //   return false;
         navigatorKey.currentState!.pushNamed('/register');
       }
     } catch (e) {
@@ -66,6 +66,28 @@ class AuthProvider with ChangeNotifier {
       print(e.toString());
     }
     throw Exception('error');
+  }
+  bool _isLoading = false;
+  void _changeLoading() {
+  //  setState(() {
+      _isLoading = !_isLoading;
+  //  });
+  }
+  gofromregister(BuildContext context)
+  {
+    _changeLoading();
+    if (registerformKey.currentState!.validate()) {
+     register(usernameController.text.toString(),
+          emailController.text.toString(),
+          passwordController.text.toString());
+      /*?
+            Navigator.of(context).push(DismissibleDialog<void>(
+                over: new Over("Successfully Registered!","You are successfully registered",true)
+            ))
+            : Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => CategoryScr()));*/
+      _changeLoading();
+    }
   }
 }
 /*

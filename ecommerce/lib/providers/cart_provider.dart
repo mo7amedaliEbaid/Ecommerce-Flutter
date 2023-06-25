@@ -20,10 +20,8 @@ class CartProvider extends ChangeNotifier {
     notifyListeners();
 
     //print(
-     //   "$value vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+    //   "$value vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
   }
-
-
 
   void updatingSession() {
     box.listenKey('items_cart', (updatedValue) {
@@ -89,28 +87,22 @@ class CartProvider extends ChangeNotifier {
   void getUpdatedSessionCartData() {
     if (box.hasData('items_cart')) {
       List<dynamic> value = GetStorage().read('items_cart');
-      if (value is List) {
-        List<Product> getModelFromSession =
-            value.map((e) => Product.fromJson(e)).toList();
-        cartlist.clear();
-        cartlist.addAll(getModelFromSession);
-      }
+      List<Product> getModelFromSession =
+          value.map((e) => Product.fromJson(e)).toList();
+      cartlist.clear();
+      cartlist.addAll(getModelFromSession);
     }
     updatingSession();
     notifyListeners();
   }
 
-  void transactionCompleted() {
+  void transactionCompleted(BuildContext context) {
     box.write("items_cart", []).then((value) {
-      /* grandTotal.value = 0;
-      cart.clear();
-      Get.back();
-      Get.snackbar("Message", "Transaction succeed ! ",
-          colorText: Colors.white,
-          backgroundColor: Color(0xff4D4D4D),
-          snackPosition: SnackPosition.BOTTOM);
-    });*/
+      grandTotal = 0;
+      cartlist.clear();
+      Navigator.pop(context);
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Message, Transaction succeed ! ")));
     });
   }
-
 }

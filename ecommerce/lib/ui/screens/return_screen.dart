@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myfirst_app/constants/app_constants.dart';
 
 import '../../constants/global_constants.dart';
 class ReturnScreen extends StatelessWidget {
@@ -26,7 +27,7 @@ class ReturnScreen extends StatelessWidget {
       ),
       body: Container(
         margin: EdgeInsets.all(20),
-        child: Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a commodo tortor. Nam eget porta nibh. Fusce quis dolor augue. Duis lacinia augue rhoncus ante tristique pulvinar. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a commodo tortor. Nam eget porta nibh. Fusce quis dolor augue. Duis lacinia augue rhoncus ante tristique pulvinar. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a commodo tortor. Nam eget porta nibh. Fusce quis dolor augue. Duis lacinia augue rhoncus ante tristique pulvinar. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a commodo tortor. Nam eget porta nibh. Fusce quis dolor augue. Duis lacinia augue rhoncus ante tristique pulvinar. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a",
+          child: Text(AppConstants.lorem_text,
           style: titleStyle,
           textAlign: TextAlign.justify,
         ),

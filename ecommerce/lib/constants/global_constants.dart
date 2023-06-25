@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
+
 final GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
-new GlobalKey<RefreshIndicatorState>();
+    new GlobalKey<RefreshIndicatorState>();
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-SizedBox vertical_space=const SizedBox(height: 10,);
-SizedBox horizontal_space=const SizedBox(width: 10,);
+final GlobalKey<FormState> loginformKey = GlobalKey<FormState>();
+final GlobalKey<FormState> registerformKey = GlobalKey<FormState>();
+TextEditingController emailController = TextEditingController();
+TextEditingController usernameController = TextEditingController();
+TextEditingController passwordController = TextEditingController();
+SizedBox vertical_space = const SizedBox(
+  height: 10,
+);
+SizedBox horizontal_space = const SizedBox(
+  width: 10,
+);
 Color shadow_color = Color(0xffebe4d5);
 Icon pressedIcon = Icon(
   Icons.favorite,
@@ -17,10 +27,7 @@ TextStyle titleStyle = const TextStyle(
 );
 
 TextStyle mediumStyle = const TextStyle(
-  color: Colors.black,
-  fontSize: 18,
-  overflow: TextOverflow.ellipsis
-);
+    color: Colors.black, fontSize: 18, overflow: TextOverflow.ellipsis);
 TextStyle whiteStyle = const TextStyle(
   color: Colors.white,
   fontSize: 23,
@@ -37,9 +44,9 @@ TextStyle boldWhite = TextStyle(
   fontWeight: FontWeight.bold,
   fontSize: 18,
 );
-ButtonStyle blackWithsize=ButtonStyle(
-backgroundColor: MaterialStateProperty.all(Colors.black),
-minimumSize: MaterialStateProperty.all(Size(80, 50)),
+ButtonStyle blackWithsize = ButtonStyle(
+  backgroundColor: MaterialStateProperty.all(Colors.black),
+  minimumSize: MaterialStateProperty.all(Size(80, 50)),
 );
 TextStyle smallStyle = TextStyle(
   fontWeight: FontWeight.bold,
@@ -70,6 +77,4 @@ TextStyle lightStyl = TextStyle(
 );
 
 TextStyle hintStyle =
-TextStyle(fontWeight: FontWeight.w500, fontSize: 17, color: Colors.black);
-
-
+    TextStyle(fontWeight: FontWeight.w500, fontSize: 17, color: Colors.black);

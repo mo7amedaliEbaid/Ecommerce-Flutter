@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:myfirst_app/ui/screens/productsbyCategory_body.dart';
+
 class ProductsbyCategory extends StatelessWidget {
-  ProductsbyCategory({Key? key,required this.selectedCategory}) : super(key: key);
+  ProductsbyCategory({Key? key, required this.selectedCategory})
+      : super(key: key);
   String selectedCategory;
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.grey.shade300,
       appBar: AppBar(
@@ -14,12 +15,15 @@ class ProductsbyCategory extends StatelessWidget {
           color: Colors.black, //change your color here
         ),
         centerTitle: true,
-        title: Text(selectedCategory.toUpperCase(),style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+        title: Text(
+          selectedCategory.toUpperCase(),
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
         backgroundColor: Colors.grey.shade300,
         elevation: 0,
         automaticallyImplyLeading: false,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Navigator.pop(context);
           },
           child: Padding(
@@ -34,7 +38,9 @@ class ProductsbyCategory extends StatelessWidget {
           ),
         ],
       ),
-      body: ProductsbyCategoryBody( selectedCategory:selectedCategory,),
+      body: ProductsbyCategoryBody(
+        selectedCategory: selectedCategory,
+      ),
     );
   }
 }
