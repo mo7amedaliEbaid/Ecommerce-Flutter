@@ -20,12 +20,7 @@ class ProductsbyCategoryBody extends StatefulWidget {
 class _ProductsbyCategoryBodyState extends State<ProductsbyCategoryBody> {
   late Future<List<Product>> _listProductsbycategory;
   late ProductProvider productProvider;
-  List<String> sortDropdown = [
-    AppConstants.ALPHABET_LOW_TO_HIGH,
-    AppConstants.ALPHABET_HIGHT_TO_LOW,
-    AppConstants.PRICE_LOW_TO_HIGH,
-    AppConstants.PRICE_HIGH_TO_LOW,
-  ];
+
 
   @override
   void initState() {
@@ -62,7 +57,7 @@ class _ProductsbyCategoryBodyState extends State<ProductsbyCategoryBody> {
                         color: Colors.black,
                         size: 40,
                       ),
-                      items: sortDropdown
+                      items: AppConstants.sortDropdown
                           .map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,

@@ -28,7 +28,7 @@ Widget ShippingAdress() {
             vertical_space,
             Text(
                 "Kuwait, Salmiya \n +96551352757 \nAddress Line 1 \nAddress line 2 \n110002 \n Near Al Rashid",
-                style: lightStyl),
+                style: lightStyle),
           ],
         ),
       ),

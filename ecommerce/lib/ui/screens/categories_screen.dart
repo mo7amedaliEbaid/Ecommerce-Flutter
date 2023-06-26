@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:myfirst_app/constants/global_constants.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/app_constants.dart';
@@ -8,7 +10,6 @@ import 'productsByCategory.dart';
 
 class CategoriesScreen extends StatelessWidget {
   CategoriesScreen({Key? key}) : super(key: key);
-
 
 
   @override
@@ -43,33 +44,28 @@ class CategoriesScreen extends StatelessWidget {
           margin: EdgeInsets.symmetric(vertical: 20),
           child: ListView.builder(
             itemCount: data.categories.length,
+            shrinkWrap: true,
             itemBuilder: (context, index) {
               return data.categories.length == 0
                   ? loadingShimmer()
-                  : AnotherCategoryItem(
-                      imageasset: AppConstants.assets[index],
-                      categoryname: data.categories[index]);
+                  : _buildcategory_row(context,
+                  AppConstants.assets[index],
+                  data.categories[index]);
             },
           ),
         ),
       );
     });
   }
-}
 
-class AnotherCategoryItem extends StatelessWidget {
-  AnotherCategoryItem({required this.imageasset, required this.categoryname});
-
-  final String imageasset;
-  final String categoryname;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
+  _buildcategory_row(BuildContext context, String img, String catname) {
+    Size size=MediaQuery.sizeOf(context);
+   return InkWell(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => ProductsbyCategory(
-                  selectedCategory: categoryname,
+            builder: (context) =>
+                ProductsbyCategory(
+                  selectedCategory: catname,
                 )));
       },
       child: Container(
@@ -78,49 +74,29 @@ class AnotherCategoryItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
         ),
-        width: 400,
-        child: Column(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: EdgeInsets.all(15),
-                  width: 120,
-                  height: 120,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(imageasset), fit: BoxFit.fill)),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Container(
-                      width: 200,
-                      child: Text(
-                        categoryname.toUpperCase(),
-                        style: TextStyle(
-                            overflow: TextOverflow.ellipsis,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                  ],
-                ),
-              ],
+            Container(
+              margin: EdgeInsets.all(15),
+              width: size.width*.3,
+              height: size.height*.16,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black54,width: 1),
+                  image: DecorationImage(
+                      image: AssetImage(img), fit: BoxFit.fill)),
             ),
+            horizontal_space,
+            horizontal_space,
+            AutoSizeText(
+              catname.toUpperCase(),
+              style:titleStyle,
+            ),
+
           ],
         ),
       ),
     );
   }
 }
+

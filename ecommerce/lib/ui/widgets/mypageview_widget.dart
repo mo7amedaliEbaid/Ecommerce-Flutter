@@ -16,10 +16,11 @@ class _MyPageViewState extends State<MyPageView> {
   PageController? pageController;
   int currentPage = 1;
   double? page = 1;
+
   @override
   void initState() {
-    pageController =
-        PageController(initialPage: currentPage, viewportFraction: viewPortFraction);
+    pageController = PageController(
+        initialPage: currentPage, viewportFraction: viewPortFraction);
     super.initState();
   }
 
@@ -29,54 +30,52 @@ class _MyPageViewState extends State<MyPageView> {
       children: [
         Container(
           height: AppConstants.PAGER_HEIGHT,
-      child: NotificationListener<ScrollNotification>(
-        onNotification: (ScrollNotification notification) {
-          if (notification is ScrollUpdateNotification) {
-            setState(() {
-              page = pageController?.page;
-            });
-          }
-          return true;
-      },
-          child: PageView.builder(
-            onPageChanged: (pos) {
-              setState(() {
-                currentPage = pos;
-              });
+          child: NotificationListener<ScrollNotification>(
+            onNotification: (ScrollNotification notification) {
+              if (notification is ScrollUpdateNotification) {
+                setState(() {
+                  page = pageController?.page;
+                });
+              }
+              return true;
             },
-            physics: ClampingScrollPhysics(),
-            controller: pageController,
-            itemCount: 3,
-            itemBuilder: (context, index) {
-              final scale =
-              max(AppConstants.SCALE_FRACTION,
-                  (AppConstants.FULL_SCALE - (index - page!).abs()) + .5);
-              return _buildmycontainer(
-                 AppConstants.pageviewimage, scale
-              );
-            }  ),
+            child: PageView.builder(
+                onPageChanged: (pos) {
+                  setState(() {
+                    currentPage = pos;
+                  });
+                },
+                physics: ClampingScrollPhysics(),
+                controller: pageController,
+                itemCount: 3,
+                itemBuilder: (context, index) {
+                  final scale = max(AppConstants.SCALE_FRACTION,
+                      (AppConstants.FULL_SCALE - (index - page!).abs()) + .5);
+                  return _buildmycontainer(AppConstants.pageviewimage, scale);
+                }),
+          ),
         ),
-    ),
         Positioned(
           bottom: 40,
           left: 0,
           right: 0,
-          child:MyDotsIndicator( pageController!.hasClients?pageController?.page?.round():0,),
+          child: MyDotsIndicator(
+            pageController!.hasClients ? pageController?.page?.round() : 0,
+          ),
         ),
       ],
     );
   }
-  Widget _buildmycontainer(String image,double scale){
+
+  Widget _buildmycontainer(String image, double scale) {
     return Align(
       alignment: Alignment.center,
       child: Container(
         margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
-        height: AppConstants.PAGER_HEIGHT*scale,
+        height: AppConstants.PAGER_HEIGHT * scale,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            image: DecorationImage(
-                image: AssetImage(image),
-                fit: BoxFit.fill)),
+            image: DecorationImage(image: AssetImage(image), fit: BoxFit.fill)),
       ),
     );
   }

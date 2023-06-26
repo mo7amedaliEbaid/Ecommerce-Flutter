@@ -22,6 +22,7 @@ TextStyle titleStyle = const TextStyle(
   color: Colors.black,
   fontSize: 20,
   fontWeight: FontWeight.bold,
+  overflow: TextOverflow.ellipsis,
 );
 
 TextStyle mediumStyle = const TextStyle(
@@ -51,10 +52,6 @@ TextStyle smallStyle = TextStyle(
   fontSize: 14,
 );
 
-TextStyle meduimStyle = TextStyle(
-  fontWeight: FontWeight.w500,
-  fontSize: 15,
-);
 TextStyle bigStyle = TextStyle(
   fontWeight: FontWeight.bold,
   fontSize: 17,
@@ -64,17 +61,11 @@ TextStyle meduimStyl = TextStyle(
   fontSize: 16,
   color: Colors.black,
 );
-TextStyle lightStyle = TextStyle(
-  fontWeight: FontWeight.w400,
-  fontSize: 18,
-);
-TextStyle errorstyle = TextStyle(
-  fontWeight: FontWeight.w400,
-  fontSize: 14,
-  color: Colors.black
-);
 
-TextStyle lightStyl = TextStyle(
+TextStyle errorstyle =
+    TextStyle(fontWeight: FontWeight.w400, fontSize: 14, color: Colors.black);
+
+TextStyle lightStyle = TextStyle(
   fontWeight: FontWeight.w500,
   fontSize: 18,
 );

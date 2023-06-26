@@ -42,7 +42,6 @@ Widget buildAddToCartButton(BuildContext context, Product product) {
           width: size.width * .3,
           height: size.height * .04,
           color: Colors.grey.shade600,
-          margin: EdgeInsets.only(top: 10),
           child: Center(
               child: AutoSizeText(
                 AppLocalization.of(context)

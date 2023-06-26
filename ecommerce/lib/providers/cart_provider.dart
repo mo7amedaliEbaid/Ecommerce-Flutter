@@ -36,12 +36,13 @@ class CartProvider extends ChangeNotifier {
 
   double grandTotal = 0;
 
-  void calculateGrandTotal() {
-    grandTotal = 0;
+  double calculateGrandTotal() {
+ //   grandTotal = 0;
     for (int i = 0; i < cartlist.length; i++) {
       grandTotal = grandTotal +
-          (cartlist[i].quantity * cartlist[i].price!.round()).round();
+          (cartlist[i].quantity * cartlist[i].price!.round());
     }
+    return grandTotal;
   }
 
   void decreaseQtyOfItemInCart(Product product) {

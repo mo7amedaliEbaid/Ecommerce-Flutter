@@ -17,9 +17,6 @@ class ProductProvider extends ChangeNotifier {
   List categories = [];
    late Product oneproductbyId;
   List<String> listTitle = [];
-// String apiProductURL = 'https://fakestoreapi.com/products';
- // String apiAllCategoryURL = 'https://fakestoreapi.com/products/categories';
-//  String apiCategoryURL = 'https://fakestoreapi.com/products/category';
  void sortListProduct(condition) {
    switch (condition) {
      case AppConstants.PRICE_LOW_TO_HIGH:
@@ -141,9 +138,11 @@ class ProductProvider extends ChangeNotifier {
     var client = http.Client();
     var jsonString = await client.get(Uri.parse('${Apiconstants.BASE_URL}${Apiconstants.PRODUCTS}/${Apiconstants.ALL_CATEGORIES}'));
     var jsonObject = jsonDecode(jsonString.body);
+    print(jsonString.toString());
     if(jsonString.statusCode==200){
       categories = jsonObject;
       notifyListeners();
+
       return categories;
     }else{
       throw Exception("Failed to load categories list");

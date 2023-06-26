@@ -83,7 +83,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       fillColor: Colors.white,
                       filled: true,
                       border: InputBorder.none,
-                      hintStyle: lightStyl,
+                      hintStyle: lightStyle,
                     ),
                   ),
                 ),

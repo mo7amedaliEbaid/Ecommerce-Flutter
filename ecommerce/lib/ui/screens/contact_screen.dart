@@ -244,23 +244,23 @@ class _ContactScreenState extends State<ContactScreen> {
                           false)));
                 },
                 child: Container(
-                  margin: EdgeInsets.fromLTRB(18, 17, 0, 100),
-                  height: 60,
-                  width: 380,
+                 margin: EdgeInsets.symmetric(vertical: 10,horizontal: 40),
+                 padding: EdgeInsets.symmetric(vertical: 15),
+                 // height: 60,
+                //  width: 380,
                   decoration: BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(10)),
                   child: Center(
                     child: Text(
                       'Send'.toUpperCase(),
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
+                      style: boldWhite
                     ),
                   ),
                 ),
               ),
+              vertical_space,
+              vertical_space,
             ],
           ),
         ]),

@@ -287,7 +287,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                                       ),
                                       Text(
                                         'Share'.toUpperCase(),
-                                        style: meduimStyle,
+                                        style: lightStyle.copyWith(fontSize: 15),
                                       )
                                     ],
                                   ),

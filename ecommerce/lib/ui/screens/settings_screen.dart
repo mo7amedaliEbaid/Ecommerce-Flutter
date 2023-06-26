@@ -8,7 +8,6 @@ import '../../providers/locale_provider.dart';
 import 'contact_screen.dart';
 
 class SettingScreen extends StatelessWidget {
-  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -36,7 +35,6 @@ class SettingScreen extends StatelessWidget {
                       .toString(),
                   style: bigStyle,
                 ),
-                //SizedBox(width: size.width*0.4),
                 Row(
                   children: [
                     Text('off'),
@@ -46,54 +44,41 @@ class SettingScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: size.height * 0.01),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  AppLocalization.of(context)
-                      .getTranslatedValue("language")
-                      .toString(),
-                  style: bigStyle,
-                ),
-                Consumer<LocaleCont>(builder: (context, data, child) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: Language.languageList()
-                        .map(
-                          (e) => Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 1.0),
-                            child: InkWell(
-                              onTap: () {
-                                data.updateLocale(
-                                    data.changeLanguage(e, context));
-                              },
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey.shade400,
-                                  ),
-                                  width: 50,
-                                  height: 30,
-                                  child: Center(
-                                      child: Text(
-                                    "${e.name}",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ))),
-                            ),
-                          ),
-                        )
-                        .toList(),
-                  );
-                }),
-                /*Text('AR'),
+            SizedBox(height: size.height * 0.02),
 
-                Text('EN')*/
-              ],
-            ),
+            Consumer<LocaleCont>(builder: (context, data, child) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    AppLocalization.of(context)
+                        .getTranslatedValue("language")
+                        .toString(),
+                    style: bigStyle,
+                  ),
+                  Row(
+                    children: [
+                      data.isenglish ? Text("English") : Text("عربي"),
+                      Switch(
+                          value: data.isenglish,
+                          activeTrackColor: Colors.white,
+                          inactiveTrackColor: Colors.white,
+                          thumbColor:
+                              MaterialStatePropertyAll<Color>(Colors.black),
+                          onChanged: (bool value) {
+                            data.changeswitch_text();
+                            data.isenglish == true
+                                ? data.updateLocale(data.changeLanguage(
+                                    Language.languageList().first, context))
+                                : data.updateLocale(data.changeLanguage(
+                                    Language.languageList().last, context));
+                            value = data.isenglish;
+                          }),
+                    ],
+                  ),
+                ],
+              );
+            }),
             SizedBox(height: size.height * 0.04),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -232,10 +217,12 @@ class SettingScreen extends StatelessWidget {
                 ],
               ),
             ),
-            //SizedBox(height: size.height*0.02),
-            Text(
-              'v 1.0.0',
-              style: hintStyle,
+            Padding(
+              padding: const EdgeInsets.only(top: 25.0),
+              child: Text(
+                'v 1.0.0',
+                style: hintStyle,
+              ),
             ),
             // SizedBox(height: size.height*0.02),
           ],

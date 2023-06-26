@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myfirst_app">
    <application
-        android:label="myfirst_app"
-        android:icon="@mipmap/ic_launcher">
+        android:label="Alpha Store"
+        android:icon="@mipmap/launch_ic">
         <activity
             android:name=".MainActivity"
             android:exported="true"
