@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 final GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
     new GlobalKey<RefreshIndicatorState>();
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-final GlobalKey<FormState> loginformKey = GlobalKey<FormState>();
-final GlobalKey<FormState> registerformKey = GlobalKey<FormState>();
 TextEditingController emailController = TextEditingController();
 TextEditingController usernameController = TextEditingController();
 TextEditingController passwordController = TextEditingController();
@@ -69,6 +67,11 @@ TextStyle meduimStyl = TextStyle(
 TextStyle lightStyle = TextStyle(
   fontWeight: FontWeight.w400,
   fontSize: 18,
+);
+TextStyle errorstyle = TextStyle(
+  fontWeight: FontWeight.w400,
+  fontSize: 14,
+  color: Colors.black
 );
 
 TextStyle lightStyl = TextStyle(

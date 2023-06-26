@@ -3,11 +3,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:myfirst_app/constants/api_constansts.dart';
+import 'package:myfirst_app/models/popUp_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/global_constants.dart';
 import '../ui/screens/forgetpassword_screen.dart';
-import '../ui/widgets/myDialog.dart';
+import '../ui/widgets/mypopUp_widget.dart';
 
 class AuthProvider with ChangeNotifier {
   void register(String username, email, password) async {
@@ -25,69 +26,70 @@ class AuthProvider with ChangeNotifier {
         print('Login successfully');
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString('email', email);
+        prefs.setString('username', username);
         prefs.setString('pass', password);
         print(email);
         navigatorKey.currentState!.push(DismissibleDialog<void>(
-            over: new Over("Successfully Registered!","You are successfully registered",true)
-        ));
-
+            popUpFields: new PopUpFields("Successfully Registered!",
+                "You are successfully registered", true,true)));
       } else {
         print('failed');
-        navigatorKey.currentState!.pushNamed('/register');
+        null;
       }
     } catch (e) {
       print(e.toString());
     }
-    //  throw Exception('error');
   }
 
-  Future<bool> login(String email, password) async {
+  void login(String username, password) async {
     try {
       Response response = await post(
           Uri.parse('${Apiconstants.BASE_URL}${Apiconstants.AUTH}'),
           body: {
-            'email': "$email",
-            //   'username': "$username",
+            'username': "$username",
             'password': "$password"
           });
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body.toString());
         print(data['id']);
         print('registered successfully');
-        // Navigator.of(context).push(DismissibleDialog<void>());
-        // navigatorKey.currentState!.pushNamed('/third');
-        return true;
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString('username', username);
+        navigatorKey.currentState!.push(DismissibleDialog<void>(popUpFields: new PopUpFields("Successfully Logged In!",
+            "You are successfully Logged In", true,true)));
       } else {
         print('failed');
-        // navigatorKey.currentState!.pushNamed('/register');
-        return false;
+        null;
       }
     } catch (e) {
       print(e.toString());
     }
     throw Exception('error');
   }
-  bool _isLoading = false;
-  void _changeLoading() {
+
+  /*bool isLoading = false;
+  void changeLoading() {
   //  setState(() {
-      _isLoading = !_isLoading;
+      isLoading = !isLoading;
   //  });
-  }
-  gofromregister(BuildContext context)
-  {
-    _changeLoading();
-    if (registerformKey.currentState!.validate()) {
-     register(usernameController.text.toString(),
-          emailController.text.toString(),
-          passwordController.text.toString());
-      /*?
-            Navigator.of(context).push(DismissibleDialog<void>(
-                over: new Over("Successfully Registered!","You are successfully registered",true)
-            ))
-            : Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => CategoryScr()));*/
-      _changeLoading();
+  }*/
+  gofromregister(GlobalKey<FormState> _registerformKey) {
+    if (_registerformKey.currentState!.validate()) {
+      register(usernameController.text.toString(),
+          emailController.text.toString(), passwordController.text.toString());
     }
+  }
+  gofromlogin(GlobalKey<FormState> _loginformKey) {
+    if (_loginformKey.currentState!.validate()) {
+      login(usernameController.text.toString(),
+          passwordController.text.toString());
+    }
+  }
+  bool obscureText = true;
+
+  void toggle() {
+    obscureText = !obscureText;
+    notifyListeners();
   }
 }
 /*

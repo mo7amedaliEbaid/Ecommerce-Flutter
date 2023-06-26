@@ -2,8 +2,11 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:myfirst_app/constants/app_constants.dart';
 import '../../constants/global_constants.dart';
-import '../widgets/dialog.dart';
+import '../../models/popUp_model.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../widgets/mypopUp_widget.dart';
+
 class ContactScreen extends StatefulWidget {
   ContactScreen({Key? key}) : super(key: key);
 
@@ -12,10 +15,6 @@ class ContactScreen extends StatefulWidget {
 }
 
 class _ContactScreenState extends State<ContactScreen> {
-  go() {
-    Navigator.of(context).push(DismissibleDialog2<void>(
-           ));
-  }
   Future<void>? _launched;
 
   Future<void> _launchInWebViewOrVC(Uri url) async {
@@ -28,6 +27,7 @@ class _ContactScreenState extends State<ContactScreen> {
       throw Exception('Could not launch $url');
     }
   }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -65,7 +65,7 @@ class _ContactScreenState extends State<ContactScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
-                    onTap: (){
+                    onTap: () {
                       _launched = _launchInWebViewOrVC(
                           Uri.parse(AppConstants.gmail_link));
                     },
@@ -90,7 +90,8 @@ class _ContactScreenState extends State<ContactScreen> {
                           ),
                           SizedBox(height: size.height * 0.02),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
                             child: AutoSizeText(
                               "user@atyabalmarshoud.kw",
                               style: smallStyle,
@@ -235,7 +236,12 @@ class _ContactScreenState extends State<ContactScreen> {
               ),
               GestureDetector(
                 onTap: () {
-                  go();
+                  Navigator.of(context).push(DismissibleDialog<void>(
+                      popUpFields: new PopUpFields(
+                          "Thanks",
+                          "Thanks for your message!\nWe will contact you soon",
+                          true,
+                          false)));
                 },
                 child: Container(
                   margin: EdgeInsets.fromLTRB(18, 17, 0, 100),

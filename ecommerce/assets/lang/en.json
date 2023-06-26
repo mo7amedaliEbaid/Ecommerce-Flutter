@@ -1,5 +1,6 @@
 {
   "title": "Alpha Store",
+  "about": "About Alpha Store",
   "choose_language" : "Choose Language",
   "select_your_currency": "Select your currency",
   "get_started":"Get Started",
@@ -21,6 +22,25 @@
   "remove": "Remove From Cart",
   "pass_validate": "Please Enter Your Required Password",
   "name_validate": "Please Enter Your Required UserName",
-  "uname": "UserName",
-  "pass": "Password"
+  "uname": "UserName*",
+  "pass": "Password*",
+  "forgotpass": "Forgot Password?",
+  "successregister": "Successfully Registered!",
+  "youareregistered": "You are successfully registered",
+  "successlogged": "Successfully Registered!",
+  "youarelogged": "You are successfully registered",
+  "loginplease": "Please Login into your Account",
+  "register": "Register",
+  "sign": "sign in",
+  "create": "Create Account",
+  "createaccount": "Create a New Account",
+  "fnamevalidate": "Please Enter Your Required FirstName",
+  "lnamevalidate": "Please Enter Your Required LastName",
+  "fname": "First Name*",
+  "confirm": "Confirm Password*",
+  "lname": "Last Name*",
+  "emailvalidate": "Please Enter Your Required Email",
+  "email": "Email Address*",
+  "login": "LogIn"
+
 }

@@ -208,12 +208,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   onPressed: () async {
                     SharedPreferences prefs =
                         await SharedPreferences.getInstance();
-                    var email = prefs.getString('email');
-                    print(email);
-                    //runApp(MaterialApp(home: email == null ? Login() : Home()));
+                    var username = prefs.getString('username');
+                    print(username);
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) =>
-                            email == null ? LoginScreen() : MyBottombar()));
+                        username == null ? LoginScreen() : MyBottombar()));
                   },
                   child: Text(
                       AppLocalization.of(context)

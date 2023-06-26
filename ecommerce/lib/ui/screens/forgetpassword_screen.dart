@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:myfirst_app/models/popUp_model.dart';
 
-import '../widgets/myDialog.dart';
+import '../widgets/mypopUp_widget.dart';
 
 class ForgetPassScr extends StatefulWidget {
   ForgetPassScr({Key? key}) : super(key: key);
@@ -10,7 +11,6 @@ class ForgetPassScr extends StatefulWidget {
 }
 
 class _ForgetPassScrState extends State<ForgetPassScr> {
-  late Over over;
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   TextEditingController emailController = TextEditingController();
@@ -101,10 +101,10 @@ class _ForgetPassScrState extends State<ForgetPassScr> {
                     onTap: () {
                       setState(() {
                         Navigator.of(context).push(DismissibleDialog<void>(
-                            over: new Over(
+                            popUpFields: new PopUpFields(
                                 "Password Sent",
                                 "A reset password link has been sent to you, Please check your account !",
-                                false)));
+                                false,true)));
                       });
                     },
                     child: Container(
@@ -136,10 +136,4 @@ class _ForgetPassScrState extends State<ForgetPassScr> {
   }
 }
 
-class Over {
-  final String headline;
-  final String subline;
-  bool navtomain;
 
-  Over(this.headline, this.subline, this.navtomain);
-}

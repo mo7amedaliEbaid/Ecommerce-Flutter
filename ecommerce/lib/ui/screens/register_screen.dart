@@ -1,40 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:myfirst_app/constants/app_constants.dart';
+import 'package:myfirst_app/ui/widgets/myseparator_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/global_constants.dart';
+import '../../localization/localization.dart';
 import '../../providers/auth_provider.dart';
-import '../widgets/myDialog.dart';
-import 'categories_screen.dart';
-import 'forgetpassword_screen.dart';
 import 'logIn_screen.dart';
 
-class RegisterScreen extends StatefulWidget {
-  RegisterScreen({Key? key}) : super(key: key);
-
-  @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
-}
-
-class _RegisterScreenState extends State<RegisterScreen> {
-  bool _obscureText = true;
-
-
-  void _toggle() {
-    setState(() {
-      _obscureText = !_obscureText;
-    });
-  }
-
-
+class RegisterScreen extends StatelessWidget {
+  final GlobalKey<FormState> _registerformKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.sizeOf(context);
     return Scaffold(
-      backgroundColor: Colors.grey.shade300,
+      backgroundColor: scafoldBackground,
       body: Consumer<AuthProvider>(builder: (context, authdata, _) {
         return Form(
-          key: registerformKey,
+          key: _registerformKey,
           child: Padding(
             padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
             child: ListView(
@@ -61,27 +44,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: Column(
                         children: [
                           Text(
-                            'Register'.toUpperCase(),
+                            AppLocalization.of(context)
+                                .getTranslatedValue("register")
+                                .toString()
+                                .toUpperCase(),
                             style: bigStyle,
                           ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text('Create a New Account',
-                              style: lightStyle, textAlign: TextAlign.center),
+                          vertical_space,
+                          Text(
+                              AppLocalization.of(context)
+                                  .getTranslatedValue("createaccount")
+                                  .toString(),
+                              style: lightStyle,
+                              textAlign: TextAlign.center),
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    vertical_space,
+                    vertical_space,
                     TextFormField(
+                      onTapOutside: (event) => FocusScope.of(context).unfocus(),
                       validator: (String? value) {
-                        if (value == null) {
-                          return 'Please Enter Your Required FirstName';
-                        } else if (value.isEmpty) {
-                          return 'Please Enter Your Required FirstName';
+                        if (value == null || value.isEmpty) {
+                          return AppLocalization.of(context)
+                              .getTranslatedValue("fnamevalidate")
+                              .toString();
                         }
+                        return null;
                       },
                       controller: usernameController,
                       decoration: InputDecoration(
@@ -94,132 +83,131 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           filled: true,
                           fillColor: Colors.white,
                           border: InputBorder.none,
-                          hintText: 'First Name*',
+                          hintText: AppLocalization.of(context)
+                              .getTranslatedValue("fname")
+                              .toString(),
                           hintStyle: hintStyle),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    vertical_space,
+                    vertical_space,
                     TextFormField(
+                      onTapOutside: (event) => FocusScope.of(context).unfocus(),
                       validator: (String? value) {
-                        if (value == null) {
-                          return 'Please Enter Your Required LastName';
-                        } else if (value.isEmpty) {
-                          return 'Please Enter Your Required LastName';
+                        if (value == null || value.isEmpty) {
+                          return AppLocalization.of(context)
+                              .getTranslatedValue("lnamevalidate")
+                              .toString();
                         }
+                        return null;
                       },
                       decoration: InputDecoration(
-                          errorStyle: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400),
+                          errorStyle: errorstyle,
                           filled: true,
                           fillColor: Colors.white,
                           border: InputBorder.none,
                           prefixIcon: Icon(Icons.person, color: Colors.grey),
                           iconColor: Colors.grey,
-                          hintText: 'Last Name*',
+                          hintText: AppLocalization.of(context)
+                              .getTranslatedValue("lname")
+                              .toString(),
                           hintStyle: hintStyle),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    vertical_space,
+                    vertical_space,
                     TextFormField(
+                      onTapOutside: (event) => FocusScope.of(context).unfocus(),
                       validator: (String? value) {
-                        if (value == null) {
-                          return 'Please Enter Your Required Email';
-                        } else if (value.isEmpty) {
-                          return 'Please Enter Your Required Email';
+                        if (value == null || value.isEmpty) {
+                          return AppLocalization.of(context)
+                              .getTranslatedValue("emailvalidate")
+                              .toString();
                         }
+                        return null;
                       },
                       controller: emailController,
                       decoration: InputDecoration(
-                          errorStyle: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400),
+                          errorStyle: errorstyle,
                           filled: true,
                           fillColor: Colors.white,
                           border: InputBorder.none,
                           prefixIcon:
                               Icon(Icons.email_outlined, color: Colors.grey),
                           iconColor: Colors.grey,
-                          hintText: 'Email Address*',
+                          hintText: AppLocalization.of(context)
+                              .getTranslatedValue("email")
+                              .toString(),
                           hintStyle: hintStyle),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    vertical_space,
+                    vertical_space,
                     TextFormField(
+                      onTapOutside: (event) => FocusScope.of(context).unfocus(),
                       validator: (String? value) {
-                        if (value == null) {
-                          return 'Please Enter Your Required Password';
-                        } else if (value.isEmpty) {
-                          return 'Please Enter Your Required Password';
+                        if (value == null || value.isEmpty) {
+                          return AppLocalization.of(context)
+                              .getTranslatedValue("pass_validate")
+                              .toString();
                         }
                         return null;
                       },
-                      obscureText: _obscureText,
+                      obscureText: authdata.obscureText,
                       decoration: InputDecoration(
-                          errorStyle: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400),
+                          errorStyle: errorstyle,
                           filled: true,
                           fillColor: Colors.white,
                           border: InputBorder.none,
                           prefixIcon: Icon(Icons.lock, color: Colors.grey),
                           suffixIcon: IconButton(
-                              onPressed: _toggle,
+                              onPressed: authdata.toggle,
                               icon: Icon(
-                                  _obscureText
+                                  authdata.obscureText
                                       ? Icons.visibility_off
                                       : Icons.visibility,
                                   color: Colors.grey)),
                           iconColor: Colors.grey,
-                          hintText: 'Password*',
+                          hintText: AppLocalization.of(context)
+                              .getTranslatedValue("pass")
+                              .toString(),
                           hintStyle: hintStyle),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    vertical_space,
+                    vertical_space,
                     TextFormField(
+                      onTapOutside: (event) => FocusScope.of(context).unfocus(),
                       validator: (String? value) {
-                        if (value == null) {
-                          return 'Please Enter Your Required Password';
-                        } else if (value.isEmpty) {
-                          return 'Please Enter Your Required Password';
+                        if (value == null || value.isEmpty) {
+                          return AppLocalization.of(context)
+                              .getTranslatedValue("pass_validate")
+                              .toString();
                         }
+                        return null;
                       },
-                      obscureText: _obscureText,
+                      obscureText: authdata.obscureText,
                       controller: passwordController,
                       cursorColor: Colors.grey,
                       decoration: InputDecoration(
-                          errorStyle: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400),
+                          errorStyle: errorstyle,
                           filled: true,
                           fillColor: Colors.white,
                           border: InputBorder.none,
                           prefixIcon: Icon(Icons.lock, color: Colors.grey),
                           suffixIcon: IconButton(
-                              onPressed: _toggle,
+                              onPressed: authdata.toggle,
                               icon: Icon(
-                                  _obscureText
+                                  authdata.obscureText
                                       ? Icons.visibility_off
                                       : Icons.visibility,
                                   color: Colors.grey)),
-                          hintText: 'Confirm Password*',
+                          hintText: AppLocalization.of(context)
+                              .getTranslatedValue("confirm")
+                              .toString(),
                           hintStyle: hintStyle),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    vertical_space,
+                    vertical_space,
                     GestureDetector(
                       onTap: () {
-                        authdata.gofromregister(context);
-                        //  go();
+                        authdata.gofromregister(_registerformKey);
                       },
                       child: Container(
                         height: 50,
@@ -228,52 +216,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             borderRadius: BorderRadius.circular(5)),
                         child: Center(
                           child: Text(
-                            'Create Account'.toUpperCase(),
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18),
-                          ),
+                              AppLocalization.of(context)
+                                  .getTranslatedValue("create")
+                                  .toString()
+                                  .toUpperCase(),
+                              style: boldWhite),
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          color: Colors.black,
-                          height: 2,
-                          width: size.width * 0.4,
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          'OR',
-                          style: bigStyle,
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Container(
-                          color: Colors.black,
-                          height: 2,
-                          width: size.width * 0.4,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    vertical_space,
+                    MySeparator(context),
+                    vertical_space,
+                    vertical_space,
                     InkWell(
                       onTap: () {
-                        setState(() {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => LoginScreen()));
-                        });
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => LoginScreen()));
                       },
                       child: Container(
                         height: 50,
@@ -282,11 +240,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             borderRadius: BorderRadius.circular(5)),
                         child: Center(
                           child: Text(
-                            'LOGIN',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18),
+                            AppLocalization.of(context)
+                                .getTranslatedValue("login")
+                                .toString()
+                                .toUpperCase(),
+                            style: boldWhite,
                           ),
                         ),
                       ),

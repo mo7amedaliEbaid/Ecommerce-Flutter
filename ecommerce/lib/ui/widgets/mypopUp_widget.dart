@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-
-import '../screens/forgetpassword_screen.dart';
+import 'package:myfirst_app/constants/global_constants.dart';
+import 'package:myfirst_app/models/popUp_model.dart';
 import '../screens/logIn_screen.dart';
 import 'mybottomnavbar_widget.dart';
 
 class DismissibleDialog<T> extends PopupRoute<T> {
-  final Over over;
-  DismissibleDialog({required this.over});
+  final PopUpFields popUpFields;
+
+  DismissibleDialog({required this.popUpFields});
 
   @override
   Color? get barrierColor => Colors.black.withAlpha(0x60);
@@ -28,8 +29,8 @@ class DismissibleDialog<T> extends PopupRoute<T> {
         style: Theme.of(context).textTheme.bodyMedium!,
         child: UnconstrainedBox(
           child: Container(
-            height: MediaQuery.of(context).size.height * .5,
-            width: MediaQuery.of(context).size.width * .8,
+            height: MediaQuery.of(context).size.height * .35,
+            width: MediaQuery.of(context).size.width * .7,
             padding: const EdgeInsets.all(10.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
@@ -38,32 +39,34 @@ class DismissibleDialog<T> extends PopupRoute<T> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                SizedBox(
-                  height: 10,
-                ),
-                Icon(
-                  Icons.check_circle,
-                  size: 70,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(over.headline,
-                    style: Theme.of(context).textTheme.headline6),
-                const SizedBox(height: 20),
+                vertical_space,
+                popUpFields.fromauth
+                    ? Icon(
+                        Icons.check_circle,
+                        size: 70,
+                      )
+                    : Icon(
+                        Icons.thumb_up,
+                        size: 70,
+                      ),
+                vertical_space,
+                Text(popUpFields.headline,
+                    style: Theme.of(context).textTheme.labelLarge),
+                vertical_space,
                 Text(
-                  over.subline,
-                  style: Theme.of(context).textTheme.subtitle1,
+                  popUpFields.subline,
+                  style: Theme.of(context).textTheme.labelLarge,
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 45),
+                vertical_space,
+                vertical_space,
                 ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.black),
                     minimumSize: MaterialStateProperty.all(Size(100, 50)),
                   ),
                   onPressed: () {
-                    if (over.navtomain == true) {
+                    if (popUpFields.navtomain == true) {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => MyBottombar()));
                     } else {
@@ -71,14 +74,8 @@ class DismissibleDialog<T> extends PopupRoute<T> {
                           builder: (context) => LoginScreen()));
                     }
                   },
-                  child: Text(
-                    'ok',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 20,
-                    ),
-                  ),
-                )
+                  child: Text('ok', style: boldWhite.copyWith(fontSize: 20)),
+                ),
               ],
             ),
           ),

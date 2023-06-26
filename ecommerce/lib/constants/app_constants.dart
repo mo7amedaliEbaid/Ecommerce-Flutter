@@ -44,7 +44,7 @@ class AppConstants {
     BranchesScreen(),
     HomeScreen(),
     AccountScreen(),
-    Settings(),
+    SettingScreen(),
   ];
   static const String appbar_image = "assets/images/store2.png";
   static const String emptycart = "assets/images/emptycart.png";

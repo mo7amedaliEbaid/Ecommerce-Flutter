@@ -1,43 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:myfirst_app/constants/app_constants.dart';
 import 'package:myfirst_app/constants/global_constants.dart';
-import 'package:myfirst_app/ui/screens/privacy_screen.dart';
-import 'package:myfirst_app/ui/screens/return_screen.dart';
-import 'package:myfirst_app/ui/screens/terms_screen.dart';
+import 'package:myfirst_app/ui/screens/store_screen.dart';
 import 'package:provider/provider.dart';
 import '../../localization/localization.dart';
 import '../../models/language_model.dart';
 import '../../providers/locale_provider.dart';
 import 'contact_screen.dart';
 
-class Settings extends StatefulWidget {
-  const Settings({Key? key}) : super(key: key);
-
-  @override
-  State<Settings> createState() => _SettingsState();
-}
-
-class _SettingsState extends State<Settings> {
-
-
-  /*Locale _changeLanguage(Language language, context) {
-    Locale _a;
-    switch (language.languageCode) {
-      case AppConstants.ENGLISH:
-        _a = Locale(language.languageCode, "US");
-
-        break;
-      case AppConstants.Arabic:
-        _a = Locale(language.languageCode, "EG");
-
-        break;
-
-      default:
-        _a = Locale(language.languageCode, 'US');
-    }
-    return _a;
-  }*/
-
+class SettingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -71,7 +41,7 @@ class _SettingsState extends State<Settings> {
                   children: [
                     Text('off'),
                     Switch(value: true, onChanged: null),
-                    Text('on')
+                    Text('on'),
                   ],
                 ),
               ],
@@ -86,7 +56,6 @@ class _SettingsState extends State<Settings> {
                       .toString(),
                   style: bigStyle,
                 ),
-                // SizedBox(width: size.width*0.44),
                 Consumer<LocaleCont>(builder: (context, data, child) {
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -97,7 +66,8 @@ class _SettingsState extends State<Settings> {
                                 const EdgeInsets.symmetric(horizontal: 1.0),
                             child: InkWell(
                               onTap: () {
-                                data.updateLocale(data.changeLanguage(e, context));
+                                data.updateLocale(
+                                    data.changeLanguage(e, context));
                               },
                               child: Container(
                                   decoration: BoxDecoration(
@@ -149,24 +119,37 @@ class _SettingsState extends State<Settings> {
               ],
             ),
             SizedBox(height: size.height * 0.06),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  AppLocalization.of(context)
-                      .getTranslatedValue("about_ebaid_store")
-                      .toString(),
-                  style: bigStyle,
-                ),
-                //  SizedBox(width: size.width*0.46),
-                Icon(Icons.arrow_forward_ios),
-              ],
+            InkWell(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => StoreScreen(
+                          screen_title: AppLocalization.of(context)
+                              .getTranslatedValue("about")
+                              .toString(),
+                        )));
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    AppLocalization.of(context)
+                        .getTranslatedValue("about")
+                        .toString(),
+                    style: bigStyle,
+                  ),
+                  Icon(Icons.arrow_forward_ios),
+                ],
+              ),
             ),
             SizedBox(height: size.height * 0.06),
             InkWell(
               onTap: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => TermsScreen()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => StoreScreen(
+                          screen_title: AppLocalization.of(context)
+                              .getTranslatedValue("terms")
+                              .toString(),
+                        )));
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -177,7 +160,6 @@ class _SettingsState extends State<Settings> {
                         .toString(),
                     style: bigStyle,
                   ),
-                  //SizedBox(width: size.width*0.43),
                   Icon(Icons.arrow_forward_ios),
                 ],
               ),
@@ -185,8 +167,12 @@ class _SettingsState extends State<Settings> {
             SizedBox(height: size.height * 0.06),
             InkWell(
               onTap: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => PrivacyScreen()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => StoreScreen(
+                          screen_title: AppLocalization.of(context)
+                              .getTranslatedValue("privacy")
+                              .toString(),
+                        )));
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -205,8 +191,12 @@ class _SettingsState extends State<Settings> {
             SizedBox(height: size.height * 0.06),
             InkWell(
               onTap: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => ReturnScreen()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => StoreScreen(
+                          screen_title: AppLocalization.of(context)
+                              .getTranslatedValue("return")
+                              .toString(),
+                        )));
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
