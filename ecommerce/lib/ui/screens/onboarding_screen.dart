@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constants/global_constants.dart';
-import '../../localization/localization.dart';
+import '../../services/localization.dart';
 import '../../models/language_model.dart';
 import '../../providers/locale_provider.dart';
 import '../../providers/product_provider.dart';

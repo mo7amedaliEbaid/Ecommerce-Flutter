@@ -4,7 +4,7 @@ import 'package:myfirst_app/models/products_model.dart';
 import 'package:provider/provider.dart';
 import 'package:collection/collection.dart';
 import '../../constants/global_constants.dart';
-import '../../localization/localization.dart';
+import '../../services/localization.dart';
 import '../../providers/cart_provider.dart';
 
 Widget buildAddToCartButton(BuildContext context, Product product) {

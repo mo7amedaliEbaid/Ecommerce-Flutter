@@ -4,7 +4,7 @@ import 'package:myfirst_app/ui/screens/productsByCategory.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/app_constants.dart';
-import '../../localization/localization.dart';
+import '../../services/localization.dart';
 import '../../providers/product_provider.dart';
 import '../widgets/loading_shimmer.dart';
 import '../widgets/myappbar_widget.dart';

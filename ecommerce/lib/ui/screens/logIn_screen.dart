@@ -5,7 +5,7 @@ import 'package:myfirst_app/ui/widgets/myseparator_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/global_constants.dart';
-import '../../localization/localization.dart';
+import '../../services/localization.dart';
 import '../../providers/auth_provider.dart';
 import 'forgetpassword_screen.dart';
 

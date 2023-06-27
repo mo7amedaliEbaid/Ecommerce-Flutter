@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myfirst_app/constants/global_constants.dart';
 import 'package:myfirst_app/ui/screens/store_screen.dart';
 import 'package:provider/provider.dart';
-import '../../localization/localization.dart';
+import '../../services/localization.dart';
 import '../../models/language_model.dart';
 import '../../providers/locale_provider.dart';
 import 'contact_screen.dart';

@@ -6,9 +6,10 @@ import 'package:myfirst_app/constants/global_constants.dart';
 import 'package:myfirst_app/providers/favourites_provider.dart';
 import 'package:myfirst_app/providers/cart_provider.dart';
 import 'package:myfirst_app/ui/screens/cart_screen.dart';
+import 'package:myfirst_app/ui/screens/notification_screen.dart';
 import 'package:provider/provider.dart';
 
-import '../../localization/localization.dart';
+import '../../services/localization.dart';
 import '../../providers/product_provider.dart';
 import '../screens/favourites_screen.dart';
 import '../screens/searchscreen.dart';
@@ -36,10 +37,8 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                   return */
                     InkWell(
                   onTap: () {
-                    /* Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => FavouritePge(
-                              favouritelistProduct:
-                                  data.favouritelistProduct)));*/
+
+                   Navigator.of(context).pushNamed("/noti");
                   },
                   child: Icon(
                     Icons.add_alert_sharp,

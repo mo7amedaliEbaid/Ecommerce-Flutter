@@ -1,7 +1,9 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:myfirst_app/constants/global_constants.dart';
+import 'package:myfirst_app/ui/widgets/notification_button_widget.dart';
 
-import '../../localization/localization.dart';
+import '../../services/localization.dart';
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({Key? key}) : super(key: key);
 
@@ -24,6 +26,8 @@ class OrdersScreen extends StatelessWidget {
             .getTranslatedValue("orders")
             .toString(),style: boldWhite.copyWith(color: Colors.black),),
       ),
+      body: LocalNotificationWidget(),
     );
   }
 }
+*/

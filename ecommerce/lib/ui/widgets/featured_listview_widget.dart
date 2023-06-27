@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/global_constants.dart';
-import '../../localization/localization.dart';
+import '../../services/localization.dart';
 import '../../providers/product_provider.dart';
 import '../screens/allproducts_screen.dart';
 import 'loading_shimmer.dart';

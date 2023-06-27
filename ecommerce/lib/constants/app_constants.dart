@@ -7,6 +7,11 @@ import '../ui/screens/home_screen.dart';
 import '../ui/screens/settings_screen.dart';
 
 class AppConstants {
+static String bottombar_route='nav';
+static String register_route='/register';
+static String onboard_route='/onboarding';
+static String notification_route='/noti';
+static String notificationdrawer_route='/drawer';
   static const String PRICE_LOW_TO_HIGH = "Price: Low to High";
   static const String PRICE_HIGH_TO_LOW = "Price: High to Low";
   static const String ALPHABET_LOW_TO_HIGH = "A - Z";

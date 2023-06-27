@@ -3,7 +3,7 @@ import 'package:myfirst_app/providers/favourites_provider.dart';
 import 'package:myfirst_app/ui/screens/orders_screen.dart';
 import 'package:provider/provider.dart';
 import '../../constants/global_constants.dart';
-import '../../localization/localization.dart';
+import '../../services/localization.dart';
 import 'favourites_screen.dart';
 
 class AccountScreen extends StatelessWidget {
@@ -153,8 +153,8 @@ class AccountScreen extends StatelessWidget {
                 SizedBox(height: size.height * 0.03),
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => OrdersScreen()));
+                    /*Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => OrdersScreen()));*/
                   },
                   child: Container(
                     padding: EdgeInsets.all(20),
