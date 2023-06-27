@@ -8,7 +8,8 @@ import 'package:myfirst_app/providers/cart_provider.dart';
 import 'package:myfirst_app/providers/favourites_provider.dart';
 import 'package:myfirst_app/providers/auth_provider.dart';
 import 'package:myfirst_app/providers/product_provider.dart';
-import 'package:myfirst_app/services/notification.dart';
+import 'package:myfirst_app/providers/notifications_provider.dart';
+import 'package:myfirst_app/ui/screens/notification_details_screen.dart';
 import 'package:myfirst_app/ui/screens/notification_screen.dart';
 import 'package:myfirst_app/ui/screens/onboarding_screen.dart';
 import 'package:myfirst_app/ui/screens/register_screen.dart';
@@ -31,7 +32,7 @@ Future<void> main()async {
     DeviceOrientation.portraitUp,
   ]);
 
-  await NotificationServices().configureLocalTimeZone();
+//  await NotificationServices().configureLocalTimeZone();
 
   final NotificationAppLaunchDetails? notificationAppLaunchDetails = !kIsWeb &&
       Platform.isLinux
@@ -139,6 +140,7 @@ Future<void> main()async {
     ChangeNotifierProvider(create: (_) => FavouritesProvider()),
     ChangeNotifierProvider(create: (_) => AuthProvider()),
     ChangeNotifierProvider(create: (_) => LocaleCont()),
+    ChangeNotifierProvider(create: (_) => Notificationsprovider()),
   ], child: MyApp(notificationAppLaunchDetails: notificationAppLaunchDetails,)));
 }
 
@@ -179,7 +181,7 @@ class MyApp extends StatelessWidget {
           AppConstants.register_route: (context) => RegisterScreen(),
           AppConstants.onboard_route: (context) => OnBoardingScreen(),
           AppConstants.notification_route: (_) => NotificationsScreen(notificationAppLaunchDetails),
-          AppConstants.notificationdrawer_route: (_) => NotificationDetails(selectedNotificationPayload)
+          AppConstants.notificationdrawer_route: (_) => NotificationDetail(selectedNotificationPayload)
         },
         home: SplashScreen(),
       );
