@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:myfirst_app/models/products_model.dart';
+import 'package:myfirst_app/providers/notifications_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:collection/collection.dart';
 import '../../../constants/global_constants.dart';
@@ -9,13 +10,14 @@ import '../../../providers/cart_provider.dart';
 
 Widget buildAddToCartButton(BuildContext context, Product product) {
   Size size = MediaQuery.sizeOf(context);
-  return Consumer<CartProvider>(builder: (context, data, _) {
+  return Consumer2<CartProvider,Notificationsprovider>(builder: (context, data,notifdata, _) {
     Product? selectedModel = data.cartlist.firstWhereOrNull(
         (Product selectedItem) => selectedItem.id == product.id);
     if (selectedModel == null) {
       return InkWell(
         onTap: () {
           data.addItemToCart(product);
+          notifdata.showNotification("You have added ${product.title} to your cart");
         },
         child: Container(
           width: size.width * .3,
@@ -37,6 +39,7 @@ Widget buildAddToCartButton(BuildContext context, Product product) {
       return InkWell(
         onTap: () {
           data.removeSelectedItemFromCart(product.id!);
+          notifdata.showNotification("You have Removed ${product.title} from your cart");
         },
         child: Container(
           width: size.width * .3,

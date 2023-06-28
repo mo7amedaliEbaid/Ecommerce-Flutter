@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../constants/global_constants.dart';
+import '../../../providers/notifications_provider.dart';
 import '../../../services/localization.dart';
 import '../../../models/language_model.dart';
 import '../../../providers/locale_provider.dart';
@@ -20,11 +21,28 @@ class OnBoardingScreen extends StatefulWidget {
 }
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
+  late Notificationsprovider notificationsprovider;
+
+   @override
+  void initState() {
+    super.initState();
+    notificationsprovider =
+        Provider.of<Notificationsprovider>(context, listen: false);
+    notificationsprovider.isAndroidPermissionGranted();
+    notificationsprovider.requestPermissions();
+    notificationsprovider.configureDidReceiveLocalNotificationSubject(context);
+    notificationsprovider.configureSelectNotificationSubject(context);
+  }
+
+  @override
+  void dispose() {
+    didReceiveLocalNotificationStream.close();
+    selectNotificationStream.close();
+    super.dispose();
+  }
 
 
 
- // AppConstants constants = AppConstants();
-  ProductProvider productProvider = ProductProvider();
 
   @override
   Widget build(BuildContext context) {

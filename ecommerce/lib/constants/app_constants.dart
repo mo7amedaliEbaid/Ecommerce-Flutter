@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:myfirst_app/ui/screens/auth_screens/forgetpassword_screen.dart';
 
 import '../ui/screens/user_screens/account_screen.dart';
-import '../ui/screens/store_screens/branches_screen.dart';
 import '../ui/screens/store_screens/categories_screen.dart';
 import '../ui/screens/app_screens/home_screen.dart';
 import '../ui/screens/app_screens/settings_screen.dart';
 
 class AppConstants {
-static String bottombar_route='nav';
+  String? selectedNotificationPayload;
+  static String bottombar_route='nav';
 static String register_route='/register';
 static String onboard_route='/onboarding';
-static String notification_route='/noti';
 static String notificationdrawer_route='/drawer';
   static const String PRICE_LOW_TO_HIGH = "Price: Low to High";
   static const String PRICE_HIGH_TO_LOW = "Price: High to Low";
@@ -47,7 +47,8 @@ static String notificationdrawer_route='/drawer';
   static String? secselectedValue;
   final List<Widget> bottomBarPages = [
     CategoriesScreen(),
-    BranchesScreen(),
+    //BranchesScreen(),
+    ForgotpassScreen(),
     HomeScreen(),
     AccountScreen(),
     SettingScreen(),

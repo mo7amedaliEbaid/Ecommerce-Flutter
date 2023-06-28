@@ -6,28 +6,22 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import '../models/recievednotif_model.dart';
 
-int id = 0;
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 final StreamController<ReceivedNotification> didReceiveLocalNotificationStream =
     StreamController<ReceivedNotification>.broadcast();
-String? selectedNotificationPayload;
 const String navigationActionId = 'id_3';
 
-const String darwinNotificationCategoryText = 'textCategory';
-
-const String darwinNotificationCategoryPlain = 'plainCategory';
 
 
 
 final StreamController<String?> selectNotificationStream =
     StreamController<String?>.broadcast();
 
-const MethodChannel platform =
-    MethodChannel('dexterx.dev/flutter_local_notifications_example');
+//const MethodChannel platform =
+    //MethodChannel('dexterx.dev/flutter_local_notifications_example');
 
-const String portName = 'notification_send_port';
 
 final GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
     new GlobalKey<RefreshIndicatorState>();

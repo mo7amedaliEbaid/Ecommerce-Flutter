@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:timezone/timezone.dart' as tz;
+import 'package:myfirst_app/models/products_model.dart';
 import 'dart:async';
 import 'dart:io';
 
@@ -12,6 +12,8 @@ import '../ui/screens/app_screens/notification_details_screen.dart';
 
 class Notificationsprovider extends ChangeNotifier {
   bool notificationsEnabled = false;
+  int id = 0;
+
   void configureDidReceiveLocalNotificationSubject(BuildContext context) {
     didReceiveLocalNotificationStream.stream
         .listen((ReceivedNotification receivedNotification) async {
@@ -51,7 +53,7 @@ class Notificationsprovider extends ChangeNotifier {
       ));
     });
   }
-  Future<void> showNotification() async {
+  Future<void> showNotification(String payload) async {
     const AndroidNotificationDetails androidNotificationDetails =
         AndroidNotificationDetails('your channel id', 'your channel name',
             channelDescription: 'your channel description',
@@ -61,8 +63,8 @@ class Notificationsprovider extends ChangeNotifier {
     const NotificationDetails notificationDetails =
         NotificationDetails(android: androidNotificationDetails);
     await flutterLocalNotificationsPlugin.show(
-        id++, 'plain title', 'plain body', notificationDetails,
-        payload: 'item x');
+        id++, 'Alpha Store', 'Congratulation You have made successful purchase', notificationDetails,
+        payload: payload);
   }
 
   Future<void> isAndroidPermissionGranted() async {
@@ -93,133 +95,9 @@ class Notificationsprovider extends ChangeNotifier {
               AndroidFlutterLocalNotificationsPlugin>();
 
       final bool? granted = await androidImplementation?.requestPermission();
-      //   setState(() {
       notificationsEnabled = granted ?? false;
       notifyListeners();
-      // });
     }
-  }
-
-  Future<void> cancelNotification() async {
-    await flutterLocalNotificationsPlugin.cancel(--id);
-  }
-
-  Future<void> showNotificationCustomSound() async {
-    const AndroidNotificationDetails androidNotificationDetails =
-        AndroidNotificationDetails(
-      'your other channel id',
-      'your other channel name',
-      channelDescription: 'your other channel description',
-      sound: RawResourceAndroidNotificationSound('slow_spring_board'),
-    );
-    const DarwinNotificationDetails darwinNotificationDetails =
-        DarwinNotificationDetails(
-      sound: 'slow_spring_board.aiff',
-    );
-    final NotificationDetails notificationDetails = NotificationDetails(
-      android: androidNotificationDetails,
-      iOS: darwinNotificationDetails,
-    );
-    await flutterLocalNotificationsPlugin.show(
-      id++,
-      'custom sound notification title',
-      'custom sound notification body',
-      notificationDetails,
-    );
-  }
-
-  Future<void> cancelAllNotifications() async {
-    await flutterLocalNotificationsPlugin.cancelAll();
-  }
-
-  Future<void> showOngoingNotification() async {
-    const AndroidNotificationDetails androidNotificationDetails =
-        AndroidNotificationDetails('your channel id', 'your channel name',
-            channelDescription: 'your channel description',
-            importance: Importance.max,
-            priority: Priority.high,
-            ongoing: true,
-            autoCancel: false);
-    const NotificationDetails notificationDetails =
-        NotificationDetails(android: androidNotificationDetails);
-    await flutterLocalNotificationsPlugin.show(
-        id++,
-        'ongoing notification title',
-        'ongoing notification body',
-        notificationDetails);
-  }
-
-  Future<void> scheduleMonthlyMondayTenAMNotification() async {
-    await flutterLocalNotificationsPlugin.zonedSchedule(
-        0,
-        'monthly scheduled notification title',
-        'monthly scheduled notification body',
-        nextInstanceOfMondayTenAM(),
-        const NotificationDetails(
-          android: AndroidNotificationDetails('monthly notification channel id',
-              'monthly notification channel name',
-              channelDescription: 'monthly notificationdescription'),
-        ),
-        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-        uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.absoluteTime,
-        matchDateTimeComponents: DateTimeComponents.dayOfMonthAndTime);
-  }
-
-  Future<void> scheduleYearlyMondayTenAMNotification() async {
-    await flutterLocalNotificationsPlugin.zonedSchedule(
-        0,
-        'yearly scheduled notification title',
-        'yearly scheduled notification body',
-        nextInstanceOfMondayTenAM(),
-        const NotificationDetails(
-          android: AndroidNotificationDetails('yearly notification channel id',
-              'yearly notification channel name',
-              channelDescription: 'yearly notification description'),
-        ),
-        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-        uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.absoluteTime,
-        matchDateTimeComponents: DateTimeComponents.dateAndTime);
-  }
-
-  tz.TZDateTime nextInstanceOfTenAM() {
-    final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
-    tz.TZDateTime scheduledDate =
-        tz.TZDateTime(tz.local, now.year, now.month, now.day, 10);
-    if (scheduledDate.isBefore(now)) {
-      scheduledDate = scheduledDate.add(const Duration(days: 1));
-    }
-    return scheduledDate;
-  }
-
-  tz.TZDateTime nextInstanceOfMondayTenAM() {
-    tz.TZDateTime scheduledDate = nextInstanceOfTenAM();
-    while (scheduledDate.weekday != DateTime.monday) {
-      scheduledDate = scheduledDate.add(const Duration(days: 1));
-    }
-    return scheduledDate;
-  }
-
-  Future<void> checkPendingNotificationRequests(BuildContext context) async {
-    final List<PendingNotificationRequest> pendingNotificationRequests =
-        await flutterLocalNotificationsPlugin.pendingNotificationRequests();
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        content:
-            Text('${pendingNotificationRequests.length} pending notification '
-                'requests'),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: const Text('OK'),
-          ),
-        ],
-      ),
-    );
   }
 
   Future<void> showNotificationWithAudioAttributeAlarm() async {

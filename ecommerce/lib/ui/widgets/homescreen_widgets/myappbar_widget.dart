@@ -6,9 +6,7 @@ import 'package:myfirst_app/constants/global_constants.dart';
 import 'package:myfirst_app/providers/favourites_provider.dart';
 import 'package:myfirst_app/providers/cart_provider.dart';
 import 'package:myfirst_app/ui/screens/user_screens/cart_screen.dart';
-import 'package:myfirst_app/ui/screens/app_screens/notification_screen.dart';
 import 'package:provider/provider.dart';
-
 import '../../../services/localization.dart';
 import '../../../providers/product_provider.dart';
 import '../../screens/user_screens/favourites_screen.dart';
@@ -32,20 +30,35 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-                child: /*Consumer<FavouritesProvider>(
-                    builder: (context, data, child) {
-                  return */
-                    InkWell(
-                  onTap: () {
-
-                   Navigator.of(context).pushNamed("/noti");
-                  },
-                  child: Icon(
-                    Icons.add_alert_sharp,
-                    color: Colors.grey.shade700,
-                  ),
-                ),
-                // }),
+                child: Consumer<FavouritesProvider>(
+                    builder: (context, favdata, child) {
+                  return InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => FavouritePge()));
+                    },
+                    child: badges.Badge(
+                      child: const Icon(
+                        Icons.favorite,
+                        size: 30,
+                        // color: Colors.grey,
+                      ),
+                      badgeStyle: BadgeStyle(
+                        badgeColor: Colors.grey,
+                      ),
+                      badgeContent: Padding(
+                        padding: const EdgeInsets.all(0),
+                        child: Text(
+                          '${favdata.favouriteslist.length}',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }),
               ),
               Column(
                 children: [

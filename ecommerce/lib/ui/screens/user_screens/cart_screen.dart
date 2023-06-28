@@ -129,7 +129,7 @@ class _CartScreenState extends State<CartScreen> {
                         ),
                         vertical_space,
                         vertical_space,
-                        CheckoutWidget(),
+                        CheckoutWidget(context),
                         vertical_space,
                         vertical_space,
                         Text(

@@ -50,8 +50,8 @@ dependencies:
   url_launcher:
   flutter_local_notifications:
   path_provider:
-  device_info_plus: ^8.0.0
-  flutter_timezone: ^1.0.4
+  device_info_plus:
+  flutter_timezone:
   image:
   path:
 

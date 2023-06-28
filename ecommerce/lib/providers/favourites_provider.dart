@@ -15,12 +15,9 @@ class FavouritesProvider extends ChangeNotifier {
     notifyListeners();
 
     box.write('items_fav', items_fav);
-    print("item Added Successfully");
-    List<dynamic> value = GetStorage().read('items_fav');
+    //print("item Added Successfully");
+  //  List<dynamic> value = GetStorage().read('items_fav');
     notifyListeners();
-
-    print(
-        "$value vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
   }
 
   void updatingSession() {

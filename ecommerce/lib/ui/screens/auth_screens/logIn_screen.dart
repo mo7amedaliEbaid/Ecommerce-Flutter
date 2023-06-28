@@ -118,7 +118,7 @@ class LoginScreen extends StatelessWidget{
                       child: ElevatedButton(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => ForgetPassScr()));
+                                builder: (context) => ForgotpassScreen()));
                           },
                           style: ButtonStyle(
                               elevation: MaterialStateProperty.all(0),
