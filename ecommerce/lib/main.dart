@@ -9,13 +9,12 @@ import 'package:myfirst_app/providers/favourites_provider.dart';
 import 'package:myfirst_app/providers/auth_provider.dart';
 import 'package:myfirst_app/providers/product_provider.dart';
 import 'package:myfirst_app/providers/notifications_provider.dart';
-import 'package:myfirst_app/ui/screens/notification_details_screen.dart';
-import 'package:myfirst_app/ui/screens/notification_screen.dart';
-import 'package:myfirst_app/ui/screens/onboarding_screen.dart';
-import 'package:myfirst_app/ui/screens/register_screen.dart';
-import 'package:myfirst_app/ui/screens/splash_screen.dart';
-import 'package:myfirst_app/ui/widgets/mybottomnavbar_widget.dart';
-import 'package:myfirst_app/ui/widgets/notification_button_widget.dart';
+import 'package:myfirst_app/ui/screens/app_screens/notification_details_screen.dart';
+import 'package:myfirst_app/ui/screens/app_screens/notification_screen.dart';
+import 'package:myfirst_app/ui/screens/app_screens/onboarding_screen.dart';
+import 'package:myfirst_app/ui/screens/auth_screens/register_screen.dart';
+import 'package:myfirst_app/ui/screens/app_screens/splash_screen.dart';
+import 'package:myfirst_app/ui/widgets/app_widgets/mybottomnavbar_widget.dart';
 import 'package:provider/provider.dart';
 import 'constants/global_constants.dart';
 import 'models/recievednotif_model.dart';
@@ -25,8 +24,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 
-
-Future<void> main()async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -35,7 +33,7 @@ Future<void> main()async {
 //  await NotificationServices().configureLocalTimeZone();
 
   final NotificationAppLaunchDetails? notificationAppLaunchDetails = !kIsWeb &&
-      Platform.isLinux
+          Platform.isLinux
       ? null
       : await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
   String initialRoute = AppConstants.notification_route;
@@ -46,10 +44,10 @@ Future<void> main()async {
   }
 
   const AndroidInitializationSettings initializationSettingsAndroid =
-  AndroidInitializationSettings('ic_launcher');
+      AndroidInitializationSettings('ic_launcher');
 
   final List<DarwinNotificationCategory> darwinNotificationCategories =
-  <DarwinNotificationCategory>[
+      <DarwinNotificationCategory>[
     DarwinNotificationCategory(
       darwinNotificationCategoryText,
       actions: <DarwinNotificationAction>[
@@ -92,11 +90,8 @@ Future<void> main()async {
       },
     )
   ];
-
-  /// Note: permissions aren't requested here just to demonstrate that can be
-  /// done later
   final DarwinInitializationSettings initializationSettingsDarwin =
-  DarwinInitializationSettings(
+      DarwinInitializationSettings(
     requestAlertPermission: false,
     requestBadgePermission: false,
     requestSoundPermission: false,
@@ -134,14 +129,31 @@ Future<void> main()async {
     },
     onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
   );
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (_) => ProductProvider()),
-    ChangeNotifierProvider(create: (_) => CartProvider()),
-    ChangeNotifierProvider(create: (_) => FavouritesProvider()),
-    ChangeNotifierProvider(create: (_) => AuthProvider()),
-    ChangeNotifierProvider(create: (_) => LocaleCont()),
-    ChangeNotifierProvider(create: (_) => Notificationsprovider()),
-  ], child: MyApp(notificationAppLaunchDetails: notificationAppLaunchDetails,)));
+  runApp(MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ProductProvider()),
+        ChangeNotifierProvider(create: (_) => CartProvider()),
+        ChangeNotifierProvider(create: (_) => FavouritesProvider()),
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => LocaleCont()),
+        ChangeNotifierProvider(create: (_) => Notificationsprovider()),
+      ],
+      child: MyApp(
+        notificationAppLaunchDetails: notificationAppLaunchDetails,
+      )));
+}
+
+@pragma('vm:entry-point')
+void notificationTapBackground(NotificationResponse notificationResponse) {
+  // ignore: avoid_print
+  print('notification(${notificationResponse.id}) action tapped: '
+      '${notificationResponse.actionId} with'
+      ' payload: ${notificationResponse.payload}');
+  if (notificationResponse.input?.isNotEmpty ?? false) {
+    // ignore: avoid_print
+    print(
+        'notification action tapped with input: ${notificationResponse.input}');
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -149,6 +161,7 @@ class MyApp extends StatelessWidget {
   ProductProvider productProvider = ProductProvider();
   AppConstants customConstants = AppConstants();
   final NotificationAppLaunchDetails? notificationAppLaunchDetails;
+
   @override
   Widget build(BuildContext context) {
     return Consumer<LocaleCont>(builder: (context, data, child) {
@@ -180,8 +193,10 @@ class MyApp extends StatelessWidget {
           AppConstants.bottombar_route: (context) => MyBottombar(),
           AppConstants.register_route: (context) => RegisterScreen(),
           AppConstants.onboard_route: (context) => OnBoardingScreen(),
-          AppConstants.notification_route: (_) => NotificationsScreen(notificationAppLaunchDetails),
-          AppConstants.notificationdrawer_route: (_) => NotificationDetail(selectedNotificationPayload)
+          AppConstants.notification_route: (_) =>
+              NotificationsScreen(/*notificationAppLaunchDetails*/),
+          AppConstants.notificationdrawer_route: (_) =>
+              NotificationDetail(selectedNotificationPayload)
         },
         home: SplashScreen(),
       );

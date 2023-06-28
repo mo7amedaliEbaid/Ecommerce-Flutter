@@ -7,10 +7,50 @@ import 'dart:async';
 import 'dart:io';
 
 import '../constants/global_constants.dart';
+import '../models/recievednotif_model.dart';
+import '../ui/screens/app_screens/notification_details_screen.dart';
 
 class Notificationsprovider extends ChangeNotifier {
   bool notificationsEnabled = false;
+  void configureDidReceiveLocalNotificationSubject(BuildContext context) {
+    didReceiveLocalNotificationStream.stream
+        .listen((ReceivedNotification receivedNotification) async {
+      await showDialog(
+        context: context,
+        builder: (BuildContext context) => CupertinoAlertDialog(
+          title: receivedNotification.title != null
+              ? Text(receivedNotification.title!)
+              : null,
+          content: receivedNotification.body != null
+              ? Text(receivedNotification.body!)
+              : null,
+          actions: <Widget>[
+            CupertinoDialogAction(
+              isDefaultAction: true,
+              onPressed: () async {
+                Navigator.of(context, rootNavigator: true).pop();
+                await Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) =>
+                        NotificationDetail(receivedNotification.payload),
+                  ),
+                );
+              },
+              child: const Text('Ok'),
+            )
+          ],
+        ),
+      );
+    });
+  }
 
+  void configureSelectNotificationSubject(BuildContext context) {
+    selectNotificationStream.stream.listen((String? payload) async {
+      await Navigator.of(context).push(MaterialPageRoute<void>(
+        builder: (BuildContext context) => NotificationDetail(payload),
+      ));
+    });
+  }
   Future<void> showNotification() async {
     const AndroidNotificationDetails androidNotificationDetails =
         AndroidNotificationDetails('your channel id', 'your channel name',

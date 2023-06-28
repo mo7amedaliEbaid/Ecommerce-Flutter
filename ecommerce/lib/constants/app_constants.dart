@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../ui/screens/account_screen.dart';
-import '../ui/screens/branches_screen.dart';
-import '../ui/screens/categories_screen.dart';
-import '../ui/screens/home_screen.dart';
-import '../ui/screens/settings_screen.dart';
+import '../ui/screens/user_screens/account_screen.dart';
+import '../ui/screens/store_screens/branches_screen.dart';
+import '../ui/screens/store_screens/categories_screen.dart';
+import '../ui/screens/app_screens/home_screen.dart';
+import '../ui/screens/app_screens/settings_screen.dart';
 
 class AppConstants {
 static String bottombar_route='nav';
@@ -23,6 +23,7 @@ static String notificationdrawer_route='/drawer';
     PRICE_HIGH_TO_LOW,
   ];
   static const String gmail_link = "https://www.google.com/gmail/about/";
+  static const String ad_img = "assets/images/ad.jpg";
   static const String ENGLISH = "en";
   static const String Arabic = "ar";
   static const String pageviewimage = "assets/images/splashstore.jpg";

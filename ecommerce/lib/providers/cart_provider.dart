@@ -8,7 +8,6 @@ class CartProvider extends ChangeNotifier {
   List<Product> cartlist = <Product>[];
 
   void addItemToCart(Product product) {
-    // product.quantity = 1;
     cartlist.add(product);
     List<Map<String, dynamic>> items_cart =
         cartlist.map((Product e) => e.toJson()).toList();
@@ -19,8 +18,6 @@ class CartProvider extends ChangeNotifier {
     List<dynamic> value = GetStorage().read('items_cart');
     notifyListeners();
 
-    //print(
-    //   "$value vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
   }
 
   void updatingSession() {
@@ -34,10 +31,10 @@ class CartProvider extends ChangeNotifier {
     });
   }
 
-  double grandTotal = 0;
+//  double grandTotal = 0;
 
   double calculateGrandTotal() {
- //   grandTotal = 0;
+    double grandTotal = 0;
     for (int i = 0; i < cartlist.length; i++) {
       grandTotal = grandTotal +
           (cartlist[i].quantity * cartlist[i].price!.round());
@@ -94,12 +91,12 @@ class CartProvider extends ChangeNotifier {
       cartlist.addAll(getModelFromSession);
     }
     updatingSession();
-    notifyListeners();
+   // notifyListeners();
   }
 
   void transactionCompleted(BuildContext context) {
     box.write("items_cart", []).then((value) {
-      grandTotal = 0;
+     double grandTotal = calculateGrandTotal();
       cartlist.clear();
       Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(

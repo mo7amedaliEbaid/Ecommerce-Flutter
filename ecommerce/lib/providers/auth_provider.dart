@@ -7,8 +7,8 @@ import 'package:myfirst_app/models/popUp_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/global_constants.dart';
-import '../ui/screens/forgetpassword_screen.dart';
-import '../ui/widgets/mypopUp_widget.dart';
+import '../ui/screens/auth_screens/forgetpassword_screen.dart';
+import '../ui/widgets/app_widgets/mypopUp_widget.dart';
 
 class AuthProvider with ChangeNotifier {
   void register(String username, email, password) async {

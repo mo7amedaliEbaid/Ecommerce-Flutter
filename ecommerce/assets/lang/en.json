@@ -41,6 +41,7 @@
   "lname": "Last Name*",
   "emailvalidate": "Please Enter Your Required Email",
   "email": "Email Address*",
-  "login": "LogIn"
+  "login": "LogIn",
+  "cart": "Cart"
 
 }
