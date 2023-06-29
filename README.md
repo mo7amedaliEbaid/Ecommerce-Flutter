@@ -44,4 +44,6 @@ dependencies:
   image:    
   path:    
 ## Screen Shots 
-https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/tree/master/ecommerce/screen_shots
+https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/tree/master/ecommerce/screen_shots    
+
+ ![alt text](https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/6d0dc5a6cffa4efdf70ee6c15712391e6514b8ed/ecommerce/screen_shots/alpha.jpg)         
