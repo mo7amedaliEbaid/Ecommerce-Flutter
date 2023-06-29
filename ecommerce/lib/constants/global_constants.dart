@@ -16,8 +16,7 @@ const String navigationActionId = 'id_3';
 
 
 
-final StreamController<String?> selectNotificationStream =
-    StreamController<String?>.broadcast();
+
 
 //const MethodChannel platform =
     //MethodChannel('dexterx.dev/flutter_local_notifications_example');
@@ -91,7 +90,9 @@ TextStyle errorstyle =
 TextStyle lightStyle = TextStyle(
   fontWeight: FontWeight.w500,
   fontSize: 18,
+  overflow: TextOverflow.ellipsis
 );
 
 TextStyle hintStyle =
     TextStyle(fontWeight: FontWeight.w500, fontSize: 17, color: Colors.black);
+String? selectedNotificationPayload;

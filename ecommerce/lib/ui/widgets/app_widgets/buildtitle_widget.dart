@@ -18,7 +18,7 @@ buildTitle(BuildContext context) {
               AppLocalization.of(context)
                   .getTranslatedValue("cart")
                   .toString(),
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              style: titleStyle,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -36,12 +36,12 @@ buildTitle(BuildContext context) {
                     ),
                     horizontal_space,
                     Container(
-                      color: Colors.black,
+                      color: Colors.white,
                       width: 25,
                       height: 25,
                       child: Icon(
                         Icons.check,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                     )
                   ],

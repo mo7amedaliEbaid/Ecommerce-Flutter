@@ -44,8 +44,8 @@ class NotificationDetailState extends State<NotificationDetail> {
         child: Column(
           children: <Widget>[
             Container(
-              margin: EdgeInsets.fromLTRB(0, 25, 0, 0),
-              height: size.height*.3,
+            //  margin: EdgeInsets.fromLTRB(0, 25, 0, 0),
+              height: size.height*.28,
               width: size.width*.5,
               decoration: BoxDecoration(
                   image: DecorationImage(
@@ -59,16 +59,16 @@ class NotificationDetailState extends State<NotificationDetail> {
               style:titleStyle
             ),
             SizedBox(
-              height: size.height*.1,
+              height: size.height*.07,
             ),
             Container(
-                height: size.height* .2,
+                height: size.height* .3,
                 width: size.width * .8,
                 child: AutoSizeText(
                   '${_payload ?? ''}',
                   textAlign: TextAlign.center,
                   style: mediumStyle,
-                  maxLines: 4,
+                  maxLines: 10,
                 )),
             ElevatedButton(
               style: ButtonStyle(

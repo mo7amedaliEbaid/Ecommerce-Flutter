@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:myfirst_app/models/products_model.dart';
 import 'dart:async';
 import 'dart:io';
 
 import '../constants/global_constants.dart';
+import '../main.dart';
 import '../models/recievednotif_model.dart';
 import '../ui/screens/app_screens/notification_details_screen.dart';
 
@@ -53,6 +53,7 @@ class Notificationsprovider extends ChangeNotifier {
       ));
     });
   }
+
   Future<void> showNotification(String payload) async {
     const AndroidNotificationDetails androidNotificationDetails =
         AndroidNotificationDetails('your channel id', 'your channel name',
@@ -63,7 +64,10 @@ class Notificationsprovider extends ChangeNotifier {
     const NotificationDetails notificationDetails =
         NotificationDetails(android: androidNotificationDetails);
     await flutterLocalNotificationsPlugin.show(
-        id++, 'Alpha Store', 'Congratulation You have made successful purchase', notificationDetails,
+        id++,
+        'Alpha Store',
+        'There are Some Changes have been made to your cart',
+        notificationDetails,
         payload: payload);
   }
 
@@ -100,7 +104,10 @@ class Notificationsprovider extends ChangeNotifier {
     }
   }
 
-  Future<void> showNotificationWithAudioAttributeAlarm() async {
+  Future<void> showNotificationWithAudioAttributeAlarm(
+    int numofitems,
+    double totalprice,
+  ) async {
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
         AndroidNotificationDetails(
       'your alarm channel id',
@@ -113,10 +120,11 @@ class Notificationsprovider extends ChangeNotifier {
     NotificationDetails platformChannelSpecifics =
         NotificationDetails(android: androidPlatformChannelSpecifics);
     await flutterLocalNotificationsPlugin.show(
-      0,
-      'notification sound controlled by alarm volume',
-      'alarm notification sound body',
-      platformChannelSpecifics,
-    );
+        0,
+        'Congratulations You Purchased successfully from alpha store',
+        'You Purchased ${numofitems} Products With ${totalprice} KWD',
+        platformChannelSpecifics,
+        payload:
+            "You Ordered (${numofitems}) Products From Aipha Store Which Cost You ${totalprice} KWD \n \n We usually deliver in two days for maximum \n \n Thank You");
   }
 }

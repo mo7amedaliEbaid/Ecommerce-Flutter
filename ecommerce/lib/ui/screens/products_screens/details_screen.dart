@@ -16,7 +16,7 @@ class DetailsScreen extends StatelessWidget {
       backgroundColor: Colors.grey.shade300,
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: Colors.black, //change your color here
+          color: Colors.black,
         ),
         automaticallyImplyLeading: false,
         backgroundColor: Colors.grey.shade300,

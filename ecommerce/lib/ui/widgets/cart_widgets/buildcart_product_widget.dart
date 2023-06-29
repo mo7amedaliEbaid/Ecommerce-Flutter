@@ -16,7 +16,7 @@ buildProductCard(BuildContext context, Product product) {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              width: size.width * .3,
+              width: size.width * .27,
               height: size.height * .15,
               child: Image.network(
                 product.image!,
@@ -33,7 +33,7 @@ buildProductCard(BuildContext context, Product product) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                    width: size.width*.44,
+                    width: size.width*.47,
                     margin: EdgeInsets.only(bottom: 5),
                     child: AutoSizeText(product.title!,
                         maxLines: 2, style: titleStyle.copyWith(fontSize: 18))),

@@ -16,13 +16,12 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   MyAppBar({Key? key}) : super(key: key);
 
   @override
-  Size get preferredSize => Size(400, 190);
+  Size get preferredSize => Size(400, 200);
 
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
     return Container(
-      height: size.height * 0.24,
-      //width: 400,
+      height: size.height * 0.267,
       child: Column(
         children: [
           Row(
@@ -35,7 +34,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                   return InkWell(
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => FavouritePge()));
+                          builder: (context) => FavouritesScreen()));
                     },
                     child: badges.Badge(
                       child: const Icon(
@@ -63,9 +62,9 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
               Column(
                 children: [
                   Container(
-                    margin: EdgeInsets.fromLTRB(0, 25, 0, 0),
-                    height: 70,
-                    width: 100,
+                    margin: EdgeInsets.fromLTRB(10, 25, 10, 0),
+                    height: size.height*.11,
+                    width: size.width*.26,
                     decoration: BoxDecoration(
                         image: DecorationImage(
                             image: AssetImage('${AppConstants.appbar_image}'),

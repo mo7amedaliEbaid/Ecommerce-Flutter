@@ -21,13 +21,24 @@ import 'services/localization.dart';
 import 'providers/locale_provider.dart';
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
-
+import 'dart:io';
+final StreamController<String?> selectNotificationStream =
+StreamController<String?>.broadcast();
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-
+  final NotificationAppLaunchDetails? notificationAppLaunchDetails = !kIsWeb &&
+          Platform.isLinux
+      ? null
+      : await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
+  String initialRoute = AppConstants.appbar_image;
+  if (notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) {
+    selectedNotificationPayload =
+        notificationAppLaunchDetails!.notificationResponse?.payload;
+    initialRoute = AppConstants.notificationdetails;
+  }
   const AndroidInitializationSettings initializationSettingsAndroid =
       AndroidInitializationSettings('launch_ic');
   final DarwinInitializationSettings initializationSettingsDarwin =
@@ -77,10 +88,28 @@ Future<void> main() async {
   ], child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   MyApp({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late Notificationsprovider notificationsprovider;
+
+  @override
+  void initState() {
+    super.initState();
+    notificationsprovider =
+        Provider.of<Notificationsprovider>(context, listen: false);
+    notificationsprovider.isAndroidPermissionGranted();
+    notificationsprovider.requestPermissions();
+    notificationsprovider.configureDidReceiveLocalNotificationSubject(context);
+    notificationsprovider.configureSelectNotificationSubject(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,8 +141,8 @@ class MyApp extends StatelessWidget {
           AppConstants.bottombar_route: (context) => MyBottombar(),
           AppConstants.register_route: (context) => RegisterScreen(),
           AppConstants.onboard_route: (context) => OnBoardingScreen(),
-          AppConstants.notificationdrawer_route: (_) =>
-              NotificationDetail(AppConstants().selectedNotificationPayload)
+          AppConstants.notificationdetails: (_) =>
+              NotificationDetail(selectedNotificationPayload)
         },
         home: SplashScreen(),
       );

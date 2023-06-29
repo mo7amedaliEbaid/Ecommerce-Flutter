@@ -8,15 +8,11 @@ class FavouritesProvider extends ChangeNotifier {
   List<Product> favouriteslist = <Product>[];
 
   void addItemTofavourites(Product product) {
-    // product.quantity = 1;
     favouriteslist.add(product);
     List<Map<String, dynamic>> items_fav =
         favouriteslist.map((Product e) => e.toJson()).toList();
     notifyListeners();
-
     box.write('items_fav', items_fav);
-    //print("item Added Successfully");
-  //  List<dynamic> value = GetStorage().read('items_fav');
     notifyListeners();
   }
 

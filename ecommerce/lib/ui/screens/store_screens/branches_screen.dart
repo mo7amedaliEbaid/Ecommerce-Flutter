@@ -1,8 +1,10 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:myfirst_app/constants/app_constants.dart';
 
 import '../../../constants/global_constants.dart';
+import '../../../services/localization.dart';
 
 class BranchesScreen extends StatefulWidget {
   BranchesScreen({Key? key}) : super(key: key);
@@ -13,6 +15,7 @@ class BranchesScreen extends StatefulWidget {
 
 class _BranchesScreenState extends State<BranchesScreen> {
   bool nocountryChosen = true;
+
   //AppConstants constants = AppConstants();
 
   @override
@@ -26,7 +29,7 @@ class _BranchesScreenState extends State<BranchesScreen> {
         automaticallyImplyLeading: false,
         centerTitle: true,
         title: Text(
-          "Branches",
+          AppLocalization.of(context).getTranslatedValue("branches").toString(),
           style: titleStyle,
         ),
         leading: InkWell(
@@ -51,16 +54,16 @@ class _BranchesScreenState extends State<BranchesScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: const Text(
-                      "Country",
-                      style: TextStyle(
-                          fontSize: 21, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.left,
+                    padding: EdgeInsets.all(10.0),
+                    child: Text(
+                      AppLocalization.of(context)
+                          .getTranslatedValue("country")
+                          .toString(),
+                      style: titleStyle,
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(left: size.width * .04),
+                    margin: EdgeInsets.symmetric(horizontal: size.width * .04),
                     height: size.height * .08,
                     width: size.width * .88,
                     child: DropdownButtonHideUnderline(
@@ -68,17 +71,13 @@ class _BranchesScreenState extends State<BranchesScreen> {
                         isExpanded: true,
                         hint: Row(
                           children: [
-                            SizedBox(
-                              width: 15,
-                            ),
+                            horizontal_space,
                             Expanded(
-                              child: Text(
-                                'Select Your country',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
+                              child: AutoSizeText(
+                                AppLocalization.of(context)
+                                    .getTranslatedValue("choosecountry")
+                                    .toString(),
+                                style: titleStyle.copyWith(fontSize: 18),
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
@@ -89,11 +88,7 @@ class _BranchesScreenState extends State<BranchesScreen> {
                                   value: item,
                                   child: Text(
                                     item,
-                                    style: const TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
+                                    style: titleStyle,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ))
@@ -113,8 +108,7 @@ class _BranchesScreenState extends State<BranchesScreen> {
                         buttonStyleData: ButtonStyleData(
                           height: 150,
                           width: 100,
-                          padding:
-                              const EdgeInsets.only(left: 14, right: 14),
+                          padding: const EdgeInsets.only(left: 14, right: 14),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all(
@@ -134,15 +128,15 @@ class _BranchesScreenState extends State<BranchesScreen> {
                           iconDisabledColor: Colors.grey,
                         ),
                         dropdownStyleData: DropdownStyleData(
-                          maxHeight: 200,
-                          width: 200,
+                          maxHeight: size.height * .2,
+                          width: size.width * .4,
                           padding: null,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(14),
                             color: Colors.white,
                           ),
                           elevation: 2,
-                          offset: const Offset(150, 0),
+                          offset: const Offset(-150, 0),
                           scrollbarTheme: ScrollbarThemeData(
                             radius: const Radius.circular(40),
                             thickness: MaterialStateProperty.all<double>(6),
@@ -157,14 +151,10 @@ class _BranchesScreenState extends State<BranchesScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  vertical_space,
                   buildListbranches(context),
-                 // buildListbranches(context),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  // buildListbranches(context),
+                  vertical_space,
                 ]),
           ],
         ),
@@ -173,6 +163,7 @@ class _BranchesScreenState extends State<BranchesScreen> {
   }
 
   buildListbranches(BuildContext context) {
+    Size size = MediaQuery.sizeOf(context);
     return nocountryChosen
         ? Align(
             alignment: Alignment.bottomCenter,
@@ -180,11 +171,12 @@ class _BranchesScreenState extends State<BranchesScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: 120,
+                  height: size.height * .16,
                 ),
                 Container(
-                  width: 120,
-                  height: 120,
+                  margin: EdgeInsets.only(bottom: 20),
+                  width: size.width * .35,
+                  height: size.height * .15,
                   decoration: BoxDecoration(
                       shape: BoxShape.circle, color: Colors.black),
                   child: Icon(
@@ -193,88 +185,100 @@ class _BranchesScreenState extends State<BranchesScreen> {
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "No Branches here",
+                AutoSizeText(
+                  AppLocalization.of(context)
+                      .getTranslatedValue("nobranch")
+                      .toString(),
                   style: titleStyle,
                 ),
               ],
             ),
           )
         : Container(
-                  margin: EdgeInsets.all(15),
-                  padding: EdgeInsets.symmetric(horizontal: 40),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
+            margin: EdgeInsets.all(15),
+            padding: EdgeInsets.symmetric(horizontal: 40),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.white,
+            ),
+            height: size.height * .37,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 30,
+                ),
+                Container(
+                  width: size.width * .4,
+                  child: AutoSizeText(
+                    'Area name',
+                    maxLines: 2,
+                    style: TextStyle(
+                        overflow: TextOverflow.ellipsis,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w500),
                   ),
-                  height: 270,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Container(
-                        width: 150,
-                        child: Text(
-                          'Area name',
-                          maxLines: 2,
-                          style: TextStyle(
-                              overflow: TextOverflow.ellipsis,
-                              fontSize: 24,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        child: Text(
-                          "Lorem Ipsum is simply dummy text of the printing",
-                          // "test",
-                          style:smallStyle,
-                        ),
-                      ),SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        children: [
-                          Icon(Icons.phone,color: Colors.black,size: 35,),
-                          SizedBox(
-                            width: 25,
-                          ),
-                          Text("25648651",style: titleStyle,)
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        children: [
-                          Icon(Icons.alarm,color: Colors.black,size: 35,),
-                          SizedBox(
-                            width: 25,
-                          ),
-                          Text("Sun to Mon",style: titleStyle,),
-
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 45,
-                          ),
-                          Text("10:00 AM - 8:00 PM",style: titleStyle,),
-                        ],
-                      )
-                    ],
+                ),
+                vertical_space,
+                Container(
+                  child: AutoSizeText(
+                    "Lorem Ipsum is simply dummy text of the printing",
+                    // "test",
+                    style: smallStyle,
                   ),
-                );
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.phone,
+                      color: Colors.black,
+                      size: 35,
+                    ),
+                    SizedBox(
+                      width: 25,
+                    ),
+                    AutoSizeText(
+                      "25648651",
+                      style: titleStyle,
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.alarm,
+                      color: Colors.black,
+                      size: 35,
+                    ),
+                    SizedBox(
+                      width: 25,
+                    ),
+                    Text(
+                      "Sun to Mon",
+                      style: titleStyle,
+                    ),
+                  ],
+                ),
+                vertical_space,
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 45,
+                    ),
+                    Text(
+                      "10:00 AM - 8:00 PM",
+                      style: titleStyle,
+                    ),
+                  ],
+                )
+              ],
+            ),
+          );
   }
 }

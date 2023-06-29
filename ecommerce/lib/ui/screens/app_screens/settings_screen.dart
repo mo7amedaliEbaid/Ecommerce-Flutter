@@ -38,7 +38,13 @@ class SettingScreen extends StatelessWidget {
                 Row(
                   children: [
                     Text('off'),
-                    Switch(value: true, onChanged: null),
+                    Switch(
+                      value: true,
+                      onChanged: null,
+                      activeTrackColor: Colors.white,
+                      inactiveTrackColor: Colors.white,
+                      thumbColor: MaterialStatePropertyAll<Color>(Colors.black),
+                    ),
                     Text('on'),
                   ],
                 ),

@@ -74,9 +74,7 @@ class _CartScreenState extends State<CartScreen> {
                         ),
                         Text(
                           "Your Cart is Empty",
-                          style: TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.bold),
-                        ),
+                          style:titleStyle)
                       ],
                     ),
                   )
@@ -94,7 +92,7 @@ class _CartScreenState extends State<CartScreen> {
                             Navigator.of(context).pushReplacementNamed(AppConstants.bottombar_route);
                           },
                           child: Container(
-                            height: 60,
+                            height: 50,
                             decoration: BoxDecoration(
                                 color: Colors.black,
                                 borderRadius: BorderRadius.circular(5)),
@@ -113,9 +111,11 @@ class _CartScreenState extends State<CartScreen> {
                           height: 20,
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () { 
+                            Navigator.pushNamed(context, AppConstants.bottombar_route);
+                          },
                           child: Container(
-                            height: 60,
+                            height: 50,
                             decoration: BoxDecoration(
                                 color: Colors.grey.shade600,
                                 borderRadius: BorderRadius.circular(5)),
@@ -127,7 +127,6 @@ class _CartScreenState extends State<CartScreen> {
                             ),
                           ),
                         ),
-                        vertical_space,
                         vertical_space,
                         CheckoutWidget(context),
                         vertical_space,
@@ -154,9 +153,8 @@ class _CartScreenState extends State<CartScreen> {
         return Column(
           children: [
             ...data.cartlist.map((e) => buildProductCard(context, e)),
-            SizedBox(
-              height: 25,
-            )
+           vertical_space,
+           vertical_space,
           ],
         );
       },

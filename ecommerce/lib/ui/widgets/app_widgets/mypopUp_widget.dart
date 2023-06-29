@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myfirst_app/constants/app_constants.dart';
 import 'package:myfirst_app/constants/global_constants.dart';
 import 'package:myfirst_app/models/popUp_model.dart';
 import '../../screens/auth_screens/logIn_screen.dart';
@@ -67,8 +68,8 @@ class DismissibleDialog<T> extends PopupRoute<T> {
                   ),
                   onPressed: () {
                     if (popUpFields.navtomain == true) {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => MyBottombar()));
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          AppConstants.bottombar_route, (route) => false);
                     } else {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => LoginScreen()));

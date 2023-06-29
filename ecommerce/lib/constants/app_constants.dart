@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:myfirst_app/ui/screens/auth_screens/forgetpassword_screen.dart';
 
+import '../ui/screens/store_screens/branches_screen.dart';
 import '../ui/screens/user_screens/account_screen.dart';
 import '../ui/screens/store_screens/categories_screen.dart';
 import '../ui/screens/app_screens/home_screen.dart';
 import '../ui/screens/app_screens/settings_screen.dart';
 
 class AppConstants {
-  String? selectedNotificationPayload;
   static String bottombar_route='nav';
 static String register_route='/register';
 static String onboard_route='/onboarding';
-static String notificationdrawer_route='/drawer';
+static String notificationdetails='/details';
   static const String PRICE_LOW_TO_HIGH = "Price: Low to High";
   static const String PRICE_HIGH_TO_LOW = "Price: High to Low";
   static const String ALPHABET_LOW_TO_HIGH = "A - Z";
@@ -35,6 +35,7 @@ static String notificationdrawer_route='/drawer';
     'Pounds',
     'Yen',
     'Lira',
+    'KWD',
   ];
   static final List<String> countries = [
     'Kuwait',
@@ -47,8 +48,7 @@ static String notificationdrawer_route='/drawer';
   static String? secselectedValue;
   final List<Widget> bottomBarPages = [
     CategoriesScreen(),
-    //BranchesScreen(),
-    ForgotpassScreen(),
+    BranchesScreen(),
     HomeScreen(),
     AccountScreen(),
     SettingScreen(),
