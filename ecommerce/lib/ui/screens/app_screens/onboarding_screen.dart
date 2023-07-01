@@ -1,39 +1,134 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:myfirst_app/constants/app_constants.dart';
+import 'package:myfirst_app/ui/screens/app_screens/notification_details_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'dart:io';
 import '../../../constants/global_constants.dart';
-import '../../../main.dart';
-import '../../../providers/notifications_provider.dart';
+import '../../../constants/notifications.dart';
+import '../../../models/recievednotif_model.dart';
+
 import '../../../services/localization.dart';
 import '../../../models/language_model.dart';
 import '../../../providers/locale_provider.dart';
-import '../../../providers/product_provider.dart';
-import '../../widgets/app_widgets/mybottomnavbar_widget.dart';
+
 import '../auth_screens/logIn_screen.dart';
 
 class OnBoardingScreen extends StatefulWidget {
-  OnBoardingScreen({Key? key}) : super(key: key);
 
+  const OnBoardingScreen(
+      this.notificationAppLaunchDetails, {
+        Key? key,
+      }) : super(key: key);
+
+
+  final NotificationAppLaunchDetails? notificationAppLaunchDetails;
+
+  bool get didNotificationLaunchApp =>
+      notificationAppLaunchDetails?.didNotificationLaunchApp ?? false;
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
 }
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
-  late Notificationsprovider notificationsprovider;
+  bool _notificationsEnabled = false;
 
   @override
   void initState() {
     super.initState();
-    notificationsprovider =
-        Provider.of<Notificationsprovider>(context, listen: false);
-    notificationsprovider.isAndroidPermissionGranted();
-    notificationsprovider.requestPermissions();
-    notificationsprovider.configureDidReceiveLocalNotificationSubject(context);
-    notificationsprovider.configureSelectNotificationSubject(context);
+    _isAndroidPermissionGranted();
+    _requestPermissions();
+    _configureDidReceiveLocalNotificationSubject();
+    _configureSelectNotificationSubject();
+  }
+
+  Future<void> _isAndroidPermissionGranted() async {
+    if (Platform.isAndroid) {
+      final bool granted = await flutterLocalNotificationsPlugin
+          .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
+          ?.areNotificationsEnabled() ??
+          false;
+
+      setState(() {
+        _notificationsEnabled = granted;
+      });
+    }
+  }
+
+  Future<void> _requestPermissions() async {
+    if (Platform.isIOS || Platform.isMacOS) {
+      await flutterLocalNotificationsPlugin
+          .resolvePlatformSpecificImplementation<
+          IOSFlutterLocalNotificationsPlugin>()
+          ?.requestPermissions(
+        alert: true,
+        badge: true,
+        sound: true,
+      );
+      await flutterLocalNotificationsPlugin
+          .resolvePlatformSpecificImplementation<
+          MacOSFlutterLocalNotificationsPlugin>()
+          ?.requestPermissions(
+        alert: true,
+        badge: true,
+        sound: true,
+      );
+    } else if (Platform.isAndroid) {
+      final AndroidFlutterLocalNotificationsPlugin? androidImplementation =
+      flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>();
+
+      final bool? granted = await androidImplementation?.requestPermission();
+      setState(() {
+        _notificationsEnabled = granted ?? false;
+      });
+    }
+  }
+
+  void _configureDidReceiveLocalNotificationSubject() {
+    didReceiveLocalNotificationStream.stream
+        .listen((ReceivedNotification receivedNotification) async {
+      await showDialog(
+        context: context,
+        builder: (BuildContext context) =>
+            CupertinoAlertDialog(
+              title: receivedNotification.title != null
+                  ? Text(receivedNotification.title!)
+                  : null,
+              content: receivedNotification.body != null
+                  ? Text(receivedNotification.body!)
+                  : null,
+              actions: <Widget>[
+                CupertinoDialogAction(
+                  isDefaultAction: true,
+                  onPressed: () async {
+                    Navigator.of(context, rootNavigator: true).pop();
+                    await Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) =>
+                            NotificationDetail(receivedNotification.payload),
+                      ),
+                    );
+                  },
+                  child: const Text('Ok'),
+                )
+              ],
+            ),
+      );
+    });
+  }
+
+  void _configureSelectNotificationSubject() {
+    selectNotificationStream.stream.listen((String? payload) async {
+      await Navigator.of(context).push(MaterialPageRoute<void>(
+        builder: (BuildContext context) => NotificationDetail(payload),
+      ));
+    });
   }
 
   @override
@@ -168,7 +263,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           .toList(),
                       value: AppConstants.selectedValue,
                       onChanged: (value) {
-                        setState(() {
+                      setState(() {
                           AppConstants.selectedValue = value as String;
                         });
                       },
@@ -200,7 +295,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           color: Colors.white,
                         ),
                         elevation: 8,
-                        offset: const Offset(-100, 70),
+                        offset: const Offset(100, 70),
                         scrollbarTheme: ScrollbarThemeData(
                           radius: const Radius.circular(40),
                           thickness: MaterialStateProperty.all<double>(6),
@@ -230,8 +325,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       username == null
                           ? Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => LoginScreen()))
-                          : Navigator.of(context).pushNamedAndRemoveUntil(
-                              AppConstants.bottombar_route, (route) => false);
+                          : Navigator.of(context).pushNamed(
+                              AppConstants.bottombar_route);
                       },
                     child: Text(
                         AppLocalization.of(context)

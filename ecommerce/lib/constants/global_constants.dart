@@ -1,25 +1,9 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-
-import '../models/recievednotif_model.dart';
-
-
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
-final StreamController<ReceivedNotification> didReceiveLocalNotificationStream =
-    StreamController<ReceivedNotification>.broadcast();
-const String navigationActionId = 'id_3';
 
 
 
-
-
-
-//const MethodChannel platform =
-    //MethodChannel('dexterx.dev/flutter_local_notifications_example');
 
 
 final GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
@@ -44,7 +28,7 @@ TextStyle titleStyle = const TextStyle(
   color: Colors.black,
   fontSize: 20,
   fontWeight: FontWeight.bold,
-  overflow: TextOverflow.ellipsis,
+//  overflow: TextOverflow.ellipsis,
 );
 
 TextStyle mediumStyle = const TextStyle(

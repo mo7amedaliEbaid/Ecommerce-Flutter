@@ -6,6 +6,8 @@ import 'package:myfirst_app/constants/global_constants.dart';
 import 'package:myfirst_app/providers/favourites_provider.dart';
 import 'package:myfirst_app/providers/cart_provider.dart';
 import 'package:myfirst_app/ui/screens/user_screens/cart_screen.dart';
+import 'package:myfirst_app/ui/widgets/app_widgets/cartbadge_widget.dart';
+import 'package:myfirst_app/ui/widgets/app_widgets/favbadge_widget.dart';
 import 'package:provider/provider.dart';
 import '../../../services/localization.dart';
 import '../../../providers/product_provider.dart';
@@ -23,41 +25,14 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Container(
       height: size.height * 0.267,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-                child: Consumer<FavouritesProvider>(
-                    builder: (context, favdata, child) {
-                  return InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => FavouritesScreen()));
-                    },
-                    child: badges.Badge(
-                      child: const Icon(
-                        Icons.favorite,
-                        size: 30,
-                        // color: Colors.grey,
-                      ),
-                      badgeStyle: BadgeStyle(
-                        badgeColor: Colors.grey,
-                      ),
-                      badgeContent: Padding(
-                        padding: const EdgeInsets.all(0),
-                        child: Text(
-                          '${favdata.favouriteslist.length}',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                }),
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                child:buildfav_badge()
               ),
               Column(
                 children: [
@@ -80,37 +55,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                   )
                 ],
               ),
-              Consumer<CartProvider>(builder: (context, data, child) {
-                return Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-                  child: IconButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => CartScreen()));
-                    },
-                    icon: badges.Badge(
-                      child: const Icon(
-                        Icons.shopping_bag,
-                        size: 30,
-                        // color: Colors.grey,
-                      ),
-                      badgeStyle: BadgeStyle(
-                        badgeColor: Colors.grey,
-                      ),
-                      badgeContent: Padding(
-                        padding: const EdgeInsets.all(0),
-                        child: Text(
-                          '${data.cartlist.length}',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              }),
+              buildcart_badge()
             ],
           ),
           vertical_space,

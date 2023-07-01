@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:myfirst_app/constants/app_constants.dart';
 import 'package:myfirst_app/ui/screens/auth_screens/register_screen.dart';
@@ -41,7 +42,8 @@ class LoginScreen extends StatelessWidget{
                       ),
                     ),
                     Container(
-                      width: 200,
+                      width: size.width*.5,
+                      height: size.height*.1,
                       child: Column(
                         children: [
                           Text(
@@ -51,10 +53,10 @@ class LoginScreen extends StatelessWidget{
                             style: bigStyle,
                           ),
                           vertical_space,
-                          Text(AppLocalization.of(context)
+                          AutoSizeText(AppLocalization.of(context)
                               .getTranslatedValue("loginplease")
                               .toString(),
-                              style: lightStyle, textAlign: TextAlign.center),
+                              style: lightStyle, textAlign: TextAlign.center,maxLines: 2,),
                         ],
                       ),
                     ),

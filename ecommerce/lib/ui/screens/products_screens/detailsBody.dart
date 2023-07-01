@@ -66,7 +66,7 @@ class _DetailsBodyState extends State<DetailsBody> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
     return Container(
-      padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
       child: ListView(
         children: [
           Consumer<ProductProvider>(builder: (context, data, child) {

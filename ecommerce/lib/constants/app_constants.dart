@@ -8,9 +8,12 @@ import '../ui/screens/app_screens/home_screen.dart';
 import '../ui/screens/app_screens/settings_screen.dart';
 
 class AppConstants {
-  static String bottombar_route='nav';
+  static String bottombar_route='/nav';
 static String register_route='/register';
 static String onboard_route='/onboarding';
+static String home_route='/home';
+static String details_route='/productdetails';
+  static final splashname="/splash";
 static String notificationdetails='/details';
   static const String PRICE_LOW_TO_HIGH = "Price: Low to High";
   static const String PRICE_HIGH_TO_LOW = "Price: High to Low";

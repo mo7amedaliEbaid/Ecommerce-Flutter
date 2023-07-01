@@ -82,8 +82,7 @@ class _AdsScreenState extends State<AdsScreen> {
                         right: 10,
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => OnBoardingScreen()));
+                            Navigator.of(context).pushNamed(AppConstants.onboard_route);
                           },
                           child: Text('Skip',
                               style: boldWhite),

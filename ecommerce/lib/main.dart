@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -16,24 +15,21 @@ import 'package:myfirst_app/ui/screens/app_screens/splash_screen.dart';
 import 'package:myfirst_app/ui/widgets/app_widgets/mybottomnavbar_widget.dart';
 import 'package:provider/provider.dart';
 import 'constants/global_constants.dart';
+import 'constants/notifications.dart';
 import 'models/recievednotif_model.dart';
 import 'services/localization.dart';
 import 'providers/locale_provider.dart';
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
-import 'dart:io';
-final StreamController<String?> selectNotificationStream =
-StreamController<String?>.broadcast();
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  final NotificationAppLaunchDetails? notificationAppLaunchDetails = !kIsWeb &&
-          Platform.isLinux
-      ? null
-      : await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
-  String initialRoute = AppConstants.appbar_image;
+  final NotificationAppLaunchDetails? notificationAppLaunchDetails =
+      await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
+  String initialRoute = AppConstants.splashname;
   if (notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) {
     selectedNotificationPayload =
         notificationAppLaunchDetails!.notificationResponse?.payload;
@@ -58,6 +54,7 @@ Future<void> main() async {
       );
     },
   );
+
   final InitializationSettings initializationSettings = InitializationSettings(
     android: initializationSettingsAndroid,
     iOS: initializationSettingsDarwin,
@@ -77,75 +74,57 @@ Future<void> main() async {
           break;
       }
     },
+    onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
   );
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (_) => ProductProvider()),
-    ChangeNotifierProvider(create: (_) => CartProvider()),
-    ChangeNotifierProvider(create: (_) => FavouritesProvider()),
-    ChangeNotifierProvider(create: (_) => AuthProvider()),
-    ChangeNotifierProvider(create: (_) => LocaleCont()),
-    ChangeNotifierProvider(create: (_) => Notificationsprovider()),
-  ], child: MyApp()));
-}
-
-class MyApp extends StatefulWidget {
-  MyApp({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  late Notificationsprovider notificationsprovider;
-
-  @override
-  void initState() {
-    super.initState();
-    notificationsprovider =
-        Provider.of<Notificationsprovider>(context, listen: false);
-    notificationsprovider.isAndroidPermissionGranted();
-    notificationsprovider.requestPermissions();
-    notificationsprovider.configureDidReceiveLocalNotificationSubject(context);
-    notificationsprovider.configureSelectNotificationSubject(context);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Consumer<LocaleCont>(builder: (context, data, child) {
-      return MaterialApp(
-        locale: data.locale,
-        localizationsDelegates: [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-          AppLocalization.delegate,
-        ],
-        supportedLocales: [
-          Locale('en', 'US'),
-          Locale('ar', 'EG'),
-        ],
-        localeResolutionCallback: (deviceLocale, supportedLocales) {
-          for (var locale in supportedLocales) {
-            if (locale.languageCode == deviceLocale!.languageCode &&
-                locale.countryCode == deviceLocale.countryCode) {
-              return deviceLocale;
-            }
-          }
-          return supportedLocales.first;
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ProductProvider()),
+        ChangeNotifierProvider(create: (_) => CartProvider()),
+        ChangeNotifierProvider(create: (_) => FavouritesProvider()),
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => LocaleCont()),
+        ChangeNotifierProvider(create: (_) => Notificationsprovider()),
+      ],
+      child: Consumer<LocaleCont>(
+        builder: (context, data, child) {
+          return MaterialApp(
+            locale: data.locale,
+            localizationsDelegates: [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+              AppLocalization.delegate,
+            ],
+            supportedLocales: [
+              Locale('en', 'US'),
+              Locale('ar', 'EG'),
+            ],
+            localeResolutionCallback: (deviceLocale, supportedLocales) {
+              for (var locale in supportedLocales) {
+                if (locale.languageCode == deviceLocale!.languageCode &&
+                    locale.countryCode == deviceLocale.countryCode) {
+                  return deviceLocale;
+                }
+              }
+              return supportedLocales.first;
+            },
+            navigatorKey: navigatorKey,
+            debugShowCheckedModeBanner: false,
+            initialRoute: initialRoute,
+            routes: {
+              AppConstants.bottombar_route: (context) => MyBottombar(),
+              AppConstants.register_route: (context) => RegisterScreen(),
+              AppConstants.onboard_route: (context) =>
+                  OnBoardingScreen(notificationAppLaunchDetails),
+              AppConstants.splashname: (context) => SplashScreen(),
+              AppConstants.notificationdetails: (_) =>
+                  NotificationDetail(selectedNotificationPayload)
+            },
+            // home: SplashScreen(),
+          );
         },
-        navigatorKey: navigatorKey,
-        debugShowCheckedModeBanner: false,
-        routes: {
-          AppConstants.bottombar_route: (context) => MyBottombar(),
-          AppConstants.register_route: (context) => RegisterScreen(),
-          AppConstants.onboard_route: (context) => OnBoardingScreen(),
-          AppConstants.notificationdetails: (_) =>
-              NotificationDetail(selectedNotificationPayload)
-        },
-        home: SplashScreen(),
-      );
-    });
-  }
+      ),
+    ),
+  );
 }

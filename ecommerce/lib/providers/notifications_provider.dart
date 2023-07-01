@@ -3,18 +3,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'dart:async';
-import 'dart:io';
 
-import '../constants/global_constants.dart';
-import '../main.dart';
-import '../models/recievednotif_model.dart';
-import '../ui/screens/app_screens/notification_details_screen.dart';
+import '../constants/notifications.dart';
+
 
 class Notificationsprovider extends ChangeNotifier {
-  bool notificationsEnabled = false;
-  int id = 0;
 
-  void configureDidReceiveLocalNotificationSubject(BuildContext context) {
+
+  /*void configureDidReceiveLocalNotificationSubject(BuildContext context) {
     didReceiveLocalNotificationStream.stream
         .listen((ReceivedNotification receivedNotification) async {
       await showDialog(
@@ -44,15 +40,15 @@ class Notificationsprovider extends ChangeNotifier {
         ),
       );
     });
-  }
+  }*/
 
-  void configureSelectNotificationSubject(BuildContext context) {
+ /* void configureSelectNotificationSubject(BuildContext context) {
     selectNotificationStream.stream.listen((String? payload) async {
       await Navigator.of(context).push(MaterialPageRoute<void>(
         builder: (BuildContext context) => NotificationDetail(payload),
       ));
     });
-  }
+  }*/
 
   Future<void> showNotification(String payload) async {
     const AndroidNotificationDetails androidNotificationDetails =
@@ -71,7 +67,7 @@ class Notificationsprovider extends ChangeNotifier {
         payload: payload);
   }
 
-  Future<void> isAndroidPermissionGranted() async {
+/*  Future<void> isAndroidPermissionGranted() async {
     if (Platform.isAndroid) {
       final bool granted = await flutterLocalNotificationsPlugin
               .resolvePlatformSpecificImplementation<
@@ -102,7 +98,7 @@ class Notificationsprovider extends ChangeNotifier {
       notificationsEnabled = granted ?? false;
       notifyListeners();
     }
-  }
+  }*/
 
   Future<void> showNotificationWithAudioAttributeAlarm(
     int numofitems,

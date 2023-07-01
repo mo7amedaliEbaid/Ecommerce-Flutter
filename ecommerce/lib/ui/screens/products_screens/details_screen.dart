@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myfirst_app/providers/cart_provider.dart';
 import 'package:myfirst_app/ui/screens/user_screens/cart_screen.dart';
+import 'package:myfirst_app/ui/widgets/app_widgets/cartbadge_widget.dart';
 import 'package:provider/provider.dart';
 import '../../../constants/global_constants.dart';
 import 'detailsBody.dart';
@@ -24,6 +25,7 @@ class DetailsScreen extends StatelessWidget {
         title: Consumer<CartProvider>(builder: (context,data,child){
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               IconButton(
                 onPressed: () {
@@ -35,13 +37,10 @@ class DetailsScreen extends StatelessWidget {
                 'Product Details',
                 style: hintStyle,
               ),
-              InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            CartScreen()));
-                  },
-                  child: Icon(Icons.shopping_bag)),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 0),
+                child: buildcart_badge(),
+              )
             ],
           );
         })

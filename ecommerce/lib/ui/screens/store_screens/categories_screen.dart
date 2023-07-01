@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:myfirst_app/constants/global_constants.dart';
+import 'package:myfirst_app/ui/widgets/app_widgets/cartbadge_widget.dart';
+import 'package:myfirst_app/ui/widgets/app_widgets/favbadge_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../../constants/app_constants.dart';
@@ -22,8 +24,8 @@ class CategoriesScreen extends StatelessWidget {
             color: Colors.black,
           ),
           leading: Padding(
-            padding: const EdgeInsets.only(left: 10.0),
-            child: Icon(Icons.add_alert_sharp),
+            padding:  EdgeInsets.fromLTRB( 10.0,15,10,0),
+            child:buildfav_badge(),
           ),
           centerTitle: true,
           title: Text(
@@ -33,10 +35,11 @@ class CategoriesScreen extends StatelessWidget {
           backgroundColor: Colors.grey.shade300,
           elevation: 0,
           actions: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18.0),
-              child: Icon(Icons.shopping_bag),
-            ),
+           Padding(
+             padding:  EdgeInsets.fromLTRB( 10.0,10,15,10),
+             child: buildcart_badge(),
+           ),
+
           ],
         ),
         backgroundColor: Colors.grey.shade300,

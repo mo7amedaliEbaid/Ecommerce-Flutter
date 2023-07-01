@@ -49,11 +49,6 @@ dependencies:
   badges:
   url_launcher:
   flutter_local_notifications:
-  path_provider:
-  device_info_plus:
-  flutter_timezone:
-  image:
-  path:
 
 
 

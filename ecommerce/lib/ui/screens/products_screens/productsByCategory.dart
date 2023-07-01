@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myfirst_app/ui/screens/products_screens/productsbyCategory_body.dart';
+import 'package:myfirst_app/ui/widgets/app_widgets/cartbadge_widget.dart';
 
 class ProductsbyCategory extends StatelessWidget {
   ProductsbyCategory({Key? key, required this.selectedCategory})
@@ -32,10 +33,10 @@ class ProductsbyCategory extends StatelessWidget {
           ),
         ),
         actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30.0),
-            child: Icon(Icons.shopping_bag),
-          ),
+         Padding(
+           padding:  EdgeInsets.fromLTRB( 10.0,10,15,10),
+           child: buildcart_badge(),
+         )
         ],
       ),
       body: ProductsbyCategoryBody(

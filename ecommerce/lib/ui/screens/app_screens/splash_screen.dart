@@ -6,7 +6,6 @@ import '../store_screens/ads_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +73,7 @@ class _SplashBodyState extends State<SplashBody>
 
   void goToNextView() {
     Future.delayed(Duration(seconds: 2), () {
-      Navigator.of(context).pushReplacement(
+      Navigator.of(context).push(
           MaterialPageRoute(builder: (context) => AdsScreen()));
     });
   }

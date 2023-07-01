@@ -9,7 +9,9 @@ import '../store_screens/contact_screen.dart';
 
 class SettingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery
+        .of(context)
+        .size;
     return Scaffold(
       backgroundColor: scafoldBackground,
       appBar: AppBar(
@@ -38,13 +40,18 @@ class SettingScreen extends StatelessWidget {
                 Row(
                   children: [
                     Text('off'),
-                    Switch(
-                      value: true,
-                      onChanged: null,
-                      activeTrackColor: Colors.white,
-                      inactiveTrackColor: Colors.white,
-                      thumbColor: MaterialStatePropertyAll<Color>(Colors.black),
-                    ),
+                  Switch(
+                        value:true,
+                        onChanged: (bool value){
+
+                        },
+                        activeTrackColor: Colors.white,
+                        inactiveTrackColor: Colors.white,
+                        thumbColor: MaterialStatePropertyAll<Color>(Colors
+                            .black),
+                      ),
+
+
                     Text('on'),
                   ],
                 ),
@@ -70,14 +77,18 @@ class SettingScreen extends StatelessWidget {
                           activeTrackColor: Colors.white,
                           inactiveTrackColor: Colors.white,
                           thumbColor:
-                              MaterialStatePropertyAll<Color>(Colors.black),
+                          MaterialStatePropertyAll<Color>(Colors.black),
                           onChanged: (bool value) {
                             data.changeswitch_text();
                             data.isenglish == true
                                 ? data.updateLocale(data.changeLanguage(
-                                    Language.languageList().first, context))
+                                Language
+                                    .languageList()
+                                    .first, context))
                                 : data.updateLocale(data.changeLanguage(
-                                    Language.languageList().last, context));
+                                Language
+                                    .languageList()
+                                    .last, context));
                             value = data.isenglish;
                           }),
                     ],
@@ -113,7 +124,8 @@ class SettingScreen extends StatelessWidget {
             InkWell(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => StoreScreen(
+                    builder: (context) =>
+                        StoreScreen(
                           screen_title: AppLocalization.of(context)
                               .getTranslatedValue("about")
                               .toString(),
@@ -136,7 +148,8 @@ class SettingScreen extends StatelessWidget {
             InkWell(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => StoreScreen(
+                    builder: (context) =>
+                        StoreScreen(
                           screen_title: AppLocalization.of(context)
                               .getTranslatedValue("terms")
                               .toString(),
@@ -159,7 +172,8 @@ class SettingScreen extends StatelessWidget {
             InkWell(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => StoreScreen(
+                    builder: (context) =>
+                        StoreScreen(
                           screen_title: AppLocalization.of(context)
                               .getTranslatedValue("privacy")
                               .toString(),
@@ -183,7 +197,8 @@ class SettingScreen extends StatelessWidget {
             InkWell(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => StoreScreen(
+                    builder: (context) =>
+                        StoreScreen(
                           screen_title: AppLocalization.of(context)
                               .getTranslatedValue("return")
                               .toString(),
