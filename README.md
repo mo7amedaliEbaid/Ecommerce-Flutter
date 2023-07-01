@@ -37,13 +37,23 @@ dependencies:
   get_storage:    
   badges:    
   url_launcher:    
-  flutter_local_notifications:    
-  path_provider:    
-  device_info_plus:    
-  flutter_timezone:    
-  image:    
-  path:    
-## Screen Shots 
-https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/tree/master/ecommerce/screen_shots    
+  flutter_local_notifications:  
+## Video
+  https://drive.google.com/drive/folders/1nJkxAnhhpdmZ1WbMtWzS3Txc49yHmApe?usp=sharing
 
- ![alt text](https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/6d0dc5a6cffa4efdf70ee6c15712391e6514b8ed/ecommerce/screen_shots/alpha.jpg)         
+  ## Apk
+  https://drive.google.com/drive/folders/1nBL1PXrbQWN5UbkvpKhI4KaPKB1nd24k?usp=drive_link
+## Screen Shots 
+https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/tree/master/ecommerce/screenshots   
+
+<p float="left">
+  <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/home.jpg" width="120" />
+  <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/details.jpg" width="120" /> 
+  <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/cart.jpg" width="120" />
+   <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/checkout.jpg" width="120" />
+   <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/settings.jpg" width="120" />
+   <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/account.jpg" width="120" />
+   <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/branches1.jpg" width="120" />
+</p>
+
+       
