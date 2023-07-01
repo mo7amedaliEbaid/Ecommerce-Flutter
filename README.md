@@ -48,6 +48,8 @@ https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/tree/master/ecommerce/scree
   <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/cart.jpg" width="120" />
    <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/checkout.jpg" width="120" />
    <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/settings.jpg" width="120" />
+   <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/account.jpg" width="120" />
+   <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/branches1.jpg" width="120" />
 </p>
 
        
