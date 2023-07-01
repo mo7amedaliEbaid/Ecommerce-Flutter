@@ -43,11 +43,11 @@ dependencies:
 https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/tree/master/ecommerce/screenshots   
 
 <p float="left">
-  <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/home.jpg" width="100" />
-  <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/details.jpg" width="100" /> 
-  <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/cart.jpg" width="100" />
-   <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/checkout.jpg" width="100" />
-   <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/settings.jpg" width="100" />
+  <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/home.jpg" width="120" />
+  <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/details.jpg" width="120" /> 
+  <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/cart.jpg" width="120" />
+   <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/checkout.jpg" width="120" />
+   <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/settings.jpg" width="120" />
 </p>
 
        
