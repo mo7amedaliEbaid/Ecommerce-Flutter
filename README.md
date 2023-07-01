@@ -38,12 +38,14 @@ dependencies:
   badges:    
   url_launcher:    
   flutter_local_notifications:    
-  path_provider:    
-  device_info_plus:    
-  flutter_timezone:    
-  image:    
-  path:    
+  
 ## Screen Shots 
-https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/tree/master/ecommerce/screen_shots    
+https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/tree/master/ecommerce/screen_shots   
 
- ![alt text](https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/6d0dc5a6cffa4efdf70ee6c15712391e6514b8ed/ecommerce/screen_shots/alpha.jpg)         
+<p float="left">
+  <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/home.jpg" width="100" />
+  <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/details.jpg" width="100" /> 
+  <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/cart.jpg" width="100" />
+</p>
+
+       
