@@ -37,8 +37,12 @@ dependencies:
   get_storage:    
   badges:    
   url_launcher:    
-  flutter_local_notifications:    
-  
+  flutter_local_notifications:  
+## Video
+  https://drive.google.com/drive/folders/1nJkxAnhhpdmZ1WbMtWzS3Txc49yHmApe?usp=sharing
+
+  ## Apk
+  https://drive.google.com/drive/folders/1nBL1PXrbQWN5UbkvpKhI4KaPKB1nd24k?usp=drive_link
 ## Screen Shots 
 https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/tree/master/ecommerce/screenshots   
 
