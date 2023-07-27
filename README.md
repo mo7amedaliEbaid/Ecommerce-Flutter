@@ -7,6 +7,7 @@ and implemented notifications.
 Cart and favourite lists are provided.    
 Search is provided,    
 Sorting products is implemented.
+         
 ## KeyWords and Cocepts:
 Provider, Statemanagement,    
 Notifications, Authentication,    
