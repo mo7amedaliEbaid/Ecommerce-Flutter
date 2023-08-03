@@ -1,59 +1,57 @@
 # Alpha Store
-Alpha Store is a Flutter app for hyper, multi-categories market to
-display products, manage sales and orders.      
-I used Provider state management,
-implemented localization to support both arabic and english languages, 
-and implemented notifications.      
-Cart and favourite lists are provided.    
-Search is provided,    
-Sorting products is implemented.
-## KeyWords and Cocepts:
-Provider, Statemanagement,    
-Notifications, Authentication,    
-Get Storage, Animations,      
-Ecommerce, Cart,    
-Connectivity Checking, 
-Loading Shimmer, Search,         
-Localization , Api , Http,      
-Media Query, RefreshIndicator,    
-NotificationListener, Notched Bottom Bar
+Alpha Store is a Flutter app for hyper, multi-categories market to display products, manage sales and orders.      
 
-## Used Packages: 
-dependencies:    
-  flutter:    
-    sdk: flutter    
+## State Management
+- Provider
+
+## Features
+- Notifications
+- Authentication
+- Cache     
+- Cart
+- Connectivity Checking
+- Loading Shimmer
+- Searc functionality        
+- Localization to support (English, Arabic)     
+- Responsive Design
+- Sorting products
+
+## Demo Video
+<a href="https://youtu.be/b0jFR4gesVs"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_of_YouTube_%282015-2017%29.svg/2560px-Logo_of_YouTube_%282015-2017%29.svg.png" width="170"></img></a>
+
+## Download App
+<a href="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/releases/download/v1.0.0/alphastore.apk"><img src="https://playerzon.com/asset/download.png" width="170"></img></a>
+
+## Dependencies
   flutter_localizations:    
-    sdk: flutter    
-  intl: any    
-  cupertino_icons: ^1.0.2    
-  http:    
-  provider:    
-  dropdown_button2:    
-  dots_indicator:    
-  shimmer:    
-  shared_preferences:    
-  connectivity_plus:    
+  intl:   
+  http:        
+  provider:        
+  dropdown_button2:       
+  dots_indicator:       
+  shimmer:        
+  shared_preferences:       
+  connectivity_plus:        
   auto_size_text:    
-  get_storage:    
-  badges:    
-  url_launcher:    
-  flutter_local_notifications:  
-## Video
-  https://drive.google.com/drive/folders/1nJkxAnhhpdmZ1WbMtWzS3Txc49yHmApe?usp=sharing
+  get_storage:      
+  badges:     
+  url_launcher:      
+  flutter_local_notifications:      
 
-  ## Apk
-  https://drive.google.com/drive/folders/1nBL1PXrbQWN5UbkvpKhI4KaPKB1nd24k?usp=drive_link
+
 ## Screen Shots 
-https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/tree/master/ecommerce/screenshots   
-
+Fore more screen shots [Here](https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/fe18bdf4506faa5463ddaf96ab935cafd350e79e/ecommerce/screenshots)
+<br />
 <p float="left">
-  <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/home.jpg" width="120" />
-  <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/details.jpg" width="120" /> 
-  <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/cart.jpg" width="120" />
-   <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/checkout.jpg" width="120" />
-   <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/settings.jpg" width="120" />
-   <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/account.jpg" width="120" />
-   <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/branches1.jpg" width="120" />
+  <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/home.jpg" width="170" />
+  <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/details.jpg" width="170" /> 
+  <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/cart.jpg" width="170" />
+   <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/checkout.jpg" width="170" />
+   <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/settings.jpg" width="170" />
+   <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/account.jpg" width="170" />
+   <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/f2195548c5787c9831e461735408e043aaed0920/ecommerce/screenshots/branches1.jpg" width="170" />
+   <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/fe18bdf4506faa5463ddaf96ab935cafd350e79e/ecommerce/screenshots/contactus.jpg" width="170" />
+   <img src="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/blob/fe18bdf4506faa5463ddaf96ab935cafd350e79e/ecommerce/screenshots/fav.jpg" width="170" />
 </p>
 
        
