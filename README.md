@@ -17,7 +17,7 @@ Alpha Store is a Flutter app for hyper, multi-categories market to display produ
 - Sorting products
 
 ## Demo Video
-<a href="https://youtu.be/b0jFR4gesVs"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_of_YouTube_%282015-2017%29.svg/2560px-Logo_of_YouTube_%282015-2017%29.svg.png" width="170"></img></a>
+<a href="https://youtu.be/D2AO7Mc54OA"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_of_YouTube_%282015-2017%29.svg/2560px-Logo_of_YouTube_%282015-2017%29.svg.png" width="170"></img></a>
 
 ## Download App
 <a href="https://github.com/mo7amedaliEbaid/Ecommerce-Flutter/releases/download/v1.0.0/alphastore.apk"><img src="https://playerzon.com/asset/download.png" width="170"></img></a>
